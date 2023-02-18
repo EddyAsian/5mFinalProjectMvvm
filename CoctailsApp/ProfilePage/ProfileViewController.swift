@@ -44,17 +44,17 @@ class ProfileViewController: UIViewController {
         textField.placeholder = "Email:"
         textField.font = UIFont(name: "Avenir Next", size: 16)
         textField.borderStyle = .roundedRect
-        textField.backgroundColor = UIColor.profileBack
+        textField.backgroundColor = UIColor.registerBack
         textField.isUserInteractionEnabled = true
         return textField
     }()
     
     lazy var dateOfBirthInformation: UITextField = {
         var textField = UITextField()
-        textField.placeholder = "Date Of Birth:"
+        textField.placeholder = "Date Of Birth:  xx/xx/xxxx"
         textField.font = UIFont(name: "Avenir Next", size: 16)
         textField.borderStyle = .roundedRect
-        textField.backgroundColor = UIColor.profileBack
+        textField.backgroundColor = UIColor.registerBack
         textField.isUserInteractionEnabled = true
         return textField
     }()
@@ -64,9 +64,23 @@ class ProfileViewController: UIViewController {
         textField.placeholder = "Addres:"
         textField.font = UIFont(name: "Avenir Next", size: 16)
         textField.borderStyle = .roundedRect
-        textField.backgroundColor = UIColor.profileBack
+        textField.backgroundColor = UIColor.registerBack
         textField.isUserInteractionEnabled = true
         return textField
+    }()
+    
+    var registerUser: UIButton = {
+        var button = UIButton(type: .system)
+        button.backgroundColor = UIColor.tabBarItemAccent
+        button.setTitle("Sign up", for: .normal)
+        button.titleLabel?.textColor = .white
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
+        button.layer.cornerRadius = 10
+        button.layer.shadowOffset = CGSize(width: 0.0, height: 5)
+        button.layer.shadowOpacity = 0.2
+        button.addTarget(self, action: #selector(registerUserTapped(_:)), for: .touchUpInside)
+        return button
     }()
     
     override func viewDidLoad() {
@@ -83,6 +97,7 @@ class ProfileViewController: UIViewController {
         view.addSubview(emailInformation)
         view.addSubview(dateOfBirthInformation)
         view.addSubview(addressInformation)
+        view.addSubview(registerUser)
     }
     
     private func setUpConstraints() {
@@ -133,11 +148,30 @@ class ProfileViewController: UIViewController {
             maker.width.equalTo(310)
             maker.height.equalTo(110)
         }
+        
+        registerUser.snp.makeConstraints { maker in
+            maker.bottom.equalToSuperview().inset(110)
+            maker.centerX.equalToSuperview()
+            maker.width.equalTo(170)
+            maker.height.equalTo(30)
+        }
     }
     
     private func setUpUI() {
         setUpSubviews()
         setUpConstraints()
     }
+    
+    @objc
+    private func registerUserTapped(_ sender: UIButton) {
+        let authServiceVC = AuthServiceVC()
+
+        navigationController?.pushViewController(authServiceVC, animated: true)
+    }
+    
+
+    
 }
+
+
 

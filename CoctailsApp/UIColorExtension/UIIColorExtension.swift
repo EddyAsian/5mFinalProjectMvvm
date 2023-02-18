@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIColor {
+    
     static var tabBarItemAccent: UIColor {
         #colorLiteral(red: 0, green: 0.6935355067, blue: 0, alpha: 0.8470588235)
     }
@@ -41,7 +42,11 @@ extension UIColor {
     }
     
     static var profileBack: UIColor {
-        #colorLiteral(red: 0.989731729, green: 0.9488551021, blue: 0.9418329597, alpha: 1)
+        #colorLiteral(red: 1, green: 0.9417746067, blue: 0.9245080948, alpha: 1)
+    }
+    
+    static var registerBack: UIColor {
+        #colorLiteral(red: 0.8976168238, green: 0.944407542, blue: 0.8538011364, alpha: 0.3773291379)
     }
     
     static var buyNow: UIColor {

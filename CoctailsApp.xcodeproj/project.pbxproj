@@ -25,7 +25,10 @@
 		28C4AE8C299911A2008299C3 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C4AE8B299911A2008299C3 /* ProfileViewModel.swift */; };
 		28C4AE8F299911EA008299C3 /* CoctailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C4AE8E299911EA008299C3 /* CoctailsViewModel.swift */; };
 		97CBEA007A42FE89574D9F6F /* Pods_CoctailsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6CDF999D2F8E8F3015646B3 /* Pods_CoctailsApp.framework */; };
+		D49742D929A143F1002699D4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D49742D829A143F1002699D4 /* GoogleService-Info.plist */; };
+		D49742DB29A1493E002699D4 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49742DA29A1493E002699D4 /* DatabaseManager.swift */; };
 		D49A35C3299DE2E800436BFF /* UIIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A35C2299DE2E800436BFF /* UIIColorExtension.swift */; };
+		D49A3EAF29A13CCA00BF2DA8 /* AuthServiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A3EAE29A13CCA00BF2DA8 /* AuthServiceVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +53,10 @@
 		28C4AE8E299911EA008299C3 /* CoctailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoctailsViewModel.swift; sourceTree = "<group>"; };
 		554590F3EB0B8068FFB0FE7E /* Pods-CoctailsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoctailsApp.release.xcconfig"; path = "Target Support Files/Pods-CoctailsApp/Pods-CoctailsApp.release.xcconfig"; sourceTree = "<group>"; };
 		D3ADBEC4314104752136CBB9 /* Pods-CoctailsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoctailsApp.debug.xcconfig"; path = "Target Support Files/Pods-CoctailsApp/Pods-CoctailsApp.debug.xcconfig"; sourceTree = "<group>"; };
+		D49742D829A143F1002699D4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D49742DA29A1493E002699D4 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		D49A35C2299DE2E800436BFF /* UIIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIIColorExtension.swift; sourceTree = "<group>"; };
+		D49A3EAE29A13CCA00BF2DA8 /* AuthServiceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceVC.swift; sourceTree = "<group>"; };
 		F6CDF999D2F8E8F3015646B3 /* Pods_CoctailsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoctailsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -69,6 +75,7 @@
 		288CE6C22998A7EF006E2FE8 = {
 			isa = PBXGroup;
 			children = (
+				D49742D829A143F1002699D4 /* GoogleService-Info.plist */,
 				288CE6CD2998A7EF006E2FE8 /* CoctailsApp */,
 				288CE6CC2998A7EF006E2FE8 /* Products */,
 				8824E7E0BE1A75443376DCB3 /* Pods */,
@@ -91,6 +98,7 @@
 				28C4AE8729991158008299C3 /* CoctailsMenuPage */,
 				28C4AE8D299911B0008299C3 /* CoctailInfoPage */,
 				28C4AE8A29991187008299C3 /* ProfilePage */,
+				D49A3EAD29A13CA300BF2DA8 /* AuthServiceVC */,
 				28C4AE842998F2D7008299C3 /* Model */,
 				28C4AE832998F2A7008299C3 /* CustomDetails */,
 				288CE6E32998A8D9006E2FE8 /* Resources */,
@@ -102,8 +110,8 @@
 		288CE6E22998A8A2006E2FE8 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				288CE6D02998A7EF006E2FE8 /* SceneDelegate.swift */,
 				288CE6CE2998A7EF006E2FE8 /* AppDelegate.swift */,
+				288CE6D02998A7EF006E2FE8 /* SceneDelegate.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -136,6 +144,7 @@
 				28C4AE9029993FD3008299C3 /* Enums */,
 				28C4AE862998F2F7008299C3 /* NetworkLayer */,
 				28C4AE852998F2F0008299C3 /* DTOs */,
+				D49742DA29A1493E002699D4 /* DatabaseManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -215,6 +224,14 @@
 			path = UIColorExtension;
 			sourceTree = "<group>";
 		};
+		D49A3EAD29A13CA300BF2DA8 /* AuthServiceVC */ = {
+			isa = PBXGroup;
+			children = (
+				D49A3EAE29A13CCA00BF2DA8 /* AuthServiceVC.swift */,
+			);
+			path = AuthServiceVC;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -277,6 +294,7 @@
 			files = (
 				288CE6DB2998A7F1006E2FE8 /* LaunchScreen.storyboard in Resources */,
 				288CE6D82998A7F1006E2FE8 /* Assets.xcassets in Resources */,
+				D49742D929A143F1002699D4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,12 +355,14 @@
 				D49A35C3299DE2E800436BFF /* UIIColorExtension.swift in Sources */,
 				288CE6D32998A7EF006E2FE8 /* CoctailsMenuViewController.swift in Sources */,
 				28C4AE8929991180008299C3 /* CoctailsMenuViewModel.swift in Sources */,
+				D49742DB29A1493E002699D4 /* DatabaseManager.swift in Sources */,
 				28C4AE8C299911A2008299C3 /* ProfileViewModel.swift in Sources */,
 				288CE6F12998ABAB006E2FE8 /* ReviewCustomView.swift in Sources */,
 				288CE6E52998A95B006E2FE8 /* CoctailsAppTabBarController.swift in Sources */,
 				288CE6E72998A9DF006E2FE8 /* ProfileViewController.swift in Sources */,
 				28C4AE822998EDAD008299C3 /* AddProductCustomButton.swift in Sources */,
 				288CE6CF2998A7EF006E2FE8 /* AppDelegate.swift in Sources */,
+				D49A3EAF29A13CCA00BF2DA8 /* AuthServiceVC.swift in Sources */,
 				288CE6D12998A7EF006E2FE8 /* SceneDelegate.swift in Sources */,
 				288CE6F32998ABC3006E2FE8 /* RatingCustomView.swift in Sources */,
 			);
@@ -484,7 +504,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z29P7FCR6C;
+				DEVELOPMENT_TEAM = K9J4W59S3Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CoctailsApp/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -512,7 +532,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z29P7FCR6C;
+				DEVELOPMENT_TEAM = K9J4W59S3Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CoctailsApp/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

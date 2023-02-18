@@ -34,8 +34,9 @@ class MenuCollectionViewCell: UICollectionViewCell {
     }()
     
     var productBuyButton: UIButton = {
-        var button = UIButton()
+        var button = UIButton(type: .system)
         button.backgroundColor = UIColor.buyNow
+        button.setTitleColor(.white, for: .normal)
         button.setTitle("Buy now", for: .normal)
         button.titleLabel?.textColor = .white
         button.titleLabel?.font = .systemFont(ofSize: 10, weight: .semibold)

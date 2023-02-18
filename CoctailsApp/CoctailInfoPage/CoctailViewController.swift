@@ -95,7 +95,8 @@ class CoctailViewController: UIViewController {
     }()
     
     lazy var addToBasketButton: AddProductCustomButton = {
-        var button = AddProductCustomButton()
+        var button = AddProductCustomButton(type: .system)
+        button.setTitleColor(.white, for: .normal)
         return button
     }()
     

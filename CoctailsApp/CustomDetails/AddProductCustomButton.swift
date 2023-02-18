@@ -95,7 +95,6 @@ class AddProductCustomButton: UIButton {
         
         numberLabel.snp.makeConstraints { maker in
             maker.centerY.equalToSuperview()
-//            maker.width.height.equalTo(25)
             maker.left.equalToSuperview().inset(20)
         }
         

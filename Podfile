@@ -9,6 +9,10 @@ pod 'Kingfisher'
 pod 'RxSwift'
 pod 'RxCocoa'
 pod 'Cosmos'
+pod 'FirebaseFirestore'
+pod 'Firebase'
+pod 'Firebase/Core'
+pod 'Firebase/Auth'
   # Pods for CoctailsApp
 
 end
