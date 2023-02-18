@@ -1,0 +1,38 @@
+PODS:
+  - Cosmos (23.0.0)
+  - Kingfisher (7.6.1)
+  - RxCocoa (6.5.0):
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+  - RxRelay (6.5.0):
+    - RxSwift (= 6.5.0)
+  - RxSwift (6.5.0)
+  - SnapKit (5.6.0)
+
+DEPENDENCIES:
+  - Cosmos
+  - Kingfisher
+  - RxCocoa
+  - RxSwift
+  - SnapKit
+
+SPEC REPOS:
+  trunk:
+    - Cosmos
+    - Kingfisher
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - SnapKit
+
+SPEC CHECKSUMS:
+  Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
+  Kingfisher: 93a3c6d0d551658a31e19f21747e1d15cb39d525
+  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
+  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+
+PODFILE CHECKSUM: 5bc6a534aacb57cc44d79b2d48ed4f3990fcd412
+
+COCOAPODS: 1.11.3
