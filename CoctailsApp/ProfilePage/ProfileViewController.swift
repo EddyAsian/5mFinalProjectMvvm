@@ -89,6 +89,34 @@ class ProfileViewController: UIViewController {
         setUpUI()
     }
     
+    func saveUserDefaultManager() {
+        guard let email = emailInformation.text else { return }
+        guard let dateOfBirth = dateOfBirthInformation.text else { return }
+        guard let adress = addressInformation.text else { return }
+        
+        UserDefaultManager.shared.save(email, for: .email)
+        print("Email is saved")
+        UserDefaultManager.shared.save(dateOfBirth, for: .dateOfBirth)
+        print("Date of Birth is saved")
+        UserDefaultManager.shared.save(adress, for: .adress)
+        print("Adress is saved")
+    }
+    
+    func saveKeyChainManager() {
+        guard let email = emailInformation.text else { return }
+        guard let dateOfBirth = dateOfBirthInformation.text else { return }
+        guard let adress = addressInformation.text else { return }
+        
+        let service = "thecocktaildb.com"
+        let account = "User"
+        let emailData = Data(email.utf8)
+        let dateOfBirthData = Data(dateOfBirth.utf8)
+        let adressData = Data(adress.utf8)
+        KeyChainManager.shared.save(emailData, service: service, account: account)
+        KeyChainManager.shared.save(dateOfBirthData, service: service, account: account)
+        KeyChainManager.shared.save(adressData, service: service, account: account)
+    }
+    
     private func setUpSubviews() {
         view.addSubview(borderView)
         view.addSubview(profileTitle)
@@ -165,12 +193,8 @@ class ProfileViewController: UIViewController {
     @objc
     private func registerUserTapped(_ sender: UIButton) {
         let authServiceVC = AuthServiceVC()
-
         navigationController?.pushViewController(authServiceVC, animated: true)
     }
-    
-
-    
 }
 
 

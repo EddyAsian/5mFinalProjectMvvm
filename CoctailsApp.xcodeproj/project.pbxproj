@@ -29,6 +29,8 @@
 		D49742DB29A1493E002699D4 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49742DA29A1493E002699D4 /* DatabaseManager.swift */; };
 		D49A35C3299DE2E800436BFF /* UIIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A35C2299DE2E800436BFF /* UIIColorExtension.swift */; };
 		D49A3EAF29A13CCA00BF2DA8 /* AuthServiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A3EAE29A13CCA00BF2DA8 /* AuthServiceVC.swift */; };
+		D49BE03929A1A0A500680AAE /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49BE03829A1A0A500680AAE /* UserDefaultManager.swift */; };
+		D49BE03C29A1ADF500680AAE /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49BE03B29A1ADF500680AAE /* KeyChainManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,8 @@
 		D49742DA29A1493E002699D4 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		D49A35C2299DE2E800436BFF /* UIIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIIColorExtension.swift; sourceTree = "<group>"; };
 		D49A3EAE29A13CCA00BF2DA8 /* AuthServiceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceVC.swift; sourceTree = "<group>"; };
+		D49BE03829A1A0A500680AAE /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDefaultManager.swift; path = "../../../../.Trash/CoctailsApp 06.06.53/CoctailsApp/Model/UserDefaultManager.swift"; sourceTree = "<group>"; };
+		D49BE03B29A1ADF500680AAE /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KeyChainManager.swift; path = ../../../../KeyChainManager.swift; sourceTree = "<group>"; };
 		F6CDF999D2F8E8F3015646B3 /* Pods_CoctailsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoctailsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -94,6 +98,8 @@
 		288CE6CD2998A7EF006E2FE8 /* CoctailsApp */ = {
 			isa = PBXGroup;
 			children = (
+				D49BE03A29A1ADD800680AAE /* KeyChainManager */,
+				D49BE03729A1A00D00680AAE /* UserDefaultManager */,
 				D49A3EAC29A1261000BF2DA8 /* UIColorExtension */,
 				28C4AE8729991158008299C3 /* CoctailsMenuPage */,
 				28C4AE8D299911B0008299C3 /* CoctailInfoPage */,
@@ -232,6 +238,22 @@
 			path = AuthServiceVC;
 			sourceTree = "<group>";
 		};
+		D49BE03729A1A00D00680AAE /* UserDefaultManager */ = {
+			isa = PBXGroup;
+			children = (
+				D49BE03829A1A0A500680AAE /* UserDefaultManager.swift */,
+			);
+			path = UserDefaultManager;
+			sourceTree = "<group>";
+		};
+		D49BE03A29A1ADD800680AAE /* KeyChainManager */ = {
+			isa = PBXGroup;
+			children = (
+				D49BE03B29A1ADF500680AAE /* KeyChainManager.swift */,
+			);
+			path = KeyChainManager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -354,6 +376,7 @@
 				288CE6ED2998AAF6006E2FE8 /* Drinks.swift in Sources */,
 				D49A35C3299DE2E800436BFF /* UIIColorExtension.swift in Sources */,
 				288CE6D32998A7EF006E2FE8 /* CoctailsMenuViewController.swift in Sources */,
+				D49BE03C29A1ADF500680AAE /* KeyChainManager.swift in Sources */,
 				28C4AE8929991180008299C3 /* CoctailsMenuViewModel.swift in Sources */,
 				D49742DB29A1493E002699D4 /* DatabaseManager.swift in Sources */,
 				28C4AE8C299911A2008299C3 /* ProfileViewModel.swift in Sources */,
@@ -361,6 +384,7 @@
 				288CE6E52998A95B006E2FE8 /* CoctailsAppTabBarController.swift in Sources */,
 				288CE6E72998A9DF006E2FE8 /* ProfileViewController.swift in Sources */,
 				28C4AE822998EDAD008299C3 /* AddProductCustomButton.swift in Sources */,
+				D49BE03929A1A0A500680AAE /* UserDefaultManager.swift in Sources */,
 				288CE6CF2998A7EF006E2FE8 /* AppDelegate.swift in Sources */,
 				D49A3EAF29A13CCA00BF2DA8 /* AuthServiceVC.swift in Sources */,
 				288CE6D12998A7EF006E2FE8 /* SceneDelegate.swift in Sources */,

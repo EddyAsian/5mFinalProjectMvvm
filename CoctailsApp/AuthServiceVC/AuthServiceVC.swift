@@ -13,6 +13,8 @@ import FirebaseAuth
 
 class AuthServiceVC: UIViewController {
     
+    let profileVC = ProfileViewController()
+    
     lazy var menuPagesHeader: UILabel = {
         var menuPagesHeader = UILabel()
         menuPagesHeader.text = "2-Step Verification"
@@ -130,8 +132,7 @@ class AuthServiceVC: UIViewController {
         verifyPhoneAuthTapped()
     }
     
-    //    private let phoneNumber = "+996999804033"
-    private let phoneNumber = "+996999555388"
+    private let phoneNumber = "+996999804033"
     private var verificationId: String?
     
     private func authentificateWithPN() {
@@ -165,6 +166,8 @@ class AuthServiceVC: UIViewController {
                 print("error is: \(error.localizedDescription)")
             } else {
                 print("Authorized: \(authResult?.user)")
+                self.profileVC.saveUserDefaultManager()
+                self.profileVC.saveKeyChainManager()
             }
         }
     }
