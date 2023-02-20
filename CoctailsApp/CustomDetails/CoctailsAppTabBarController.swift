@@ -9,10 +9,41 @@ import UIKit
 
 class CoctailsAppTabBarController: UITabBarController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setTabBarAppearance()
-        setupVC()
+    private func createControllers(
+        from baseVC: UIViewController,
+        image: UIImage?
+    ) -> UIViewController {
+        let itemVC = UINavigationController(rootViewController: baseVC)
+        itemVC.tabBarItem.title = title
+        itemVC.tabBarItem.image = image
+        return itemVC
+    }
+    
+    private func generateItemIcon(from icon: UIImage) -> UIImage {
+        icon.resizeImage(to: CGSize(width: 40, height: 40))
+    }
+    
+    private let itemIcons: [UIImage] = [
+        UIImage(systemName: "person.circle") ?? UIImage(),
+        UIImage(systemName: "house.circle") ?? UIImage(),
+        UIImage(systemName: "cart.circle") ?? UIImage()
+    ]
+    
+    private func setupVC() {
+        viewControllers = [
+            createControllers(
+                from: ProfileViewController(),
+                image: generateItemIcon(from: itemIcons[0])
+            ),
+            createControllers(
+                from: CoctailsMenuViewController(),
+                image: generateItemIcon(from: itemIcons[1])
+            ),
+            createControllers(
+                from: CoctailsMenuViewController(),
+                image: generateItemIcon(from: itemIcons[2])
+            )
+        ]
     }
     
     private func setTabBarAppearance () {
@@ -24,8 +55,8 @@ class CoctailsAppTabBarController: UITabBarController {
         let roundLayer = CAShapeLayer()
         let bezierPath = UIBezierPath(
             roundedRect: CGRect(x: positionOnX,
-                               y: tabBar.bounds.minY - positionOnY,
-                               width: width, height: height),
+                                y: tabBar.bounds.minY - positionOnY,
+                                width: width, height: height),
             cornerRadius: height / 2
         )
         roundLayer.path = bezierPath.cgPath
@@ -37,29 +68,9 @@ class CoctailsAppTabBarController: UITabBarController {
         tabBar.unselectedItemTintColor = .tabBarItemLight
     }
     
-    private func setupVC() {
-        viewControllers =
-        [
-            createControllers(for: ProfileViewController(),
-                              title: "Profile",
-                              image: UIImage(systemName: "person.circle")!),
-            createControllers(for: CoctailsMenuViewController(),
-                              title: "",
-                              image: UIImage(systemName: "house.circle")!),
-            createControllers(for: CoctailsMenuViewController(),
-                              title: "",
-                              image: UIImage(systemName: "trash.circle")!)
-        ]
-    }
-    
-    private func createControllers(
-        for rootViewController: UIViewController,
-        title: String,
-        image: UIImage
-    ) -> UIViewController {
-        let navVC = UINavigationController(rootViewController: rootViewController)
-        navVC.tabBarItem.image = image
-        return navVC
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setTabBarAppearance()
+        setupVC()
     }
 }
-

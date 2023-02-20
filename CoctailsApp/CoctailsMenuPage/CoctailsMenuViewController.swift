@@ -43,7 +43,6 @@ class CoctailsMenuViewController: UIViewController {
         return searchBar
     }()
     
-    
     lazy var menuCollectionView: UICollectionView = {
         var viewLayout = UICollectionViewFlowLayout()
         viewLayout.itemSize = CGSize(width: 191, height: 170)

@@ -751,6 +751,7 @@ PODS:
     - Libuv-gRPC (= 0.0.10)
   - gRPC-Core/Interface (1.44.0)
   - GTMSessionFetcher/Core (3.1.0)
+  - KeychainSwift (13.0.0)
   - Kingfisher (7.6.1)
   - leveldb-library (1.22.1)
   - Libuv-gRPC (0.0.10):
@@ -779,6 +780,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - FirebaseFirestore
+  - KeychainSwift (~> 13.0.0)
   - Kingfisher
   - RxCocoa
   - RxSwift
@@ -801,6 +803,7 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
+    - KeychainSwift
     - Kingfisher
     - leveldb-library
     - Libuv-gRPC
@@ -827,6 +830,7 @@ SPEC CHECKSUMS:
   "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
   gRPC-Core: 943e491cb0d45598b0b0eb9e910c88080369290b
   GTMSessionFetcher: c9e714f7eec91a55641e2bab9f45fd83a219b882
+  KeychainSwift: 23d6c16cbc33f20fafa30c3d783241b4b87d998c
   Kingfisher: 93a3c6d0d551658a31e19f21747e1d15cb39d525
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
@@ -837,6 +841,6 @@ SPEC CHECKSUMS:
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: 950fec853a6423b726a19eda1f8bdf0049b4a0d7
+PODFILE CHECKSUM: bc0c7d0d58ab7103153f98cf83c983de4b51072d
 
 COCOAPODS: 1.11.3

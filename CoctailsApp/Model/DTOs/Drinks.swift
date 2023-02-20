@@ -8,6 +8,7 @@
 import Foundation
 
 struct Coctail: Decodable{
+    
     var drinks: [Drinks]?
 }
 

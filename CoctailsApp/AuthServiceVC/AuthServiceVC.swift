@@ -10,6 +10,7 @@ import RxSwift
 import RxRelay
 import Firebase
 import FirebaseAuth
+import KeychainSwift
 
 class AuthServiceVC: UIViewController {
     
@@ -132,7 +133,9 @@ class AuthServiceVC: UIViewController {
         verifyPhoneAuthTapped()
     }
     
-    private let phoneNumber = "+996999804033"
+//    private let phoneNumber = "+996999804033"
+//    private let phoneNumber = "+996707848894"
+    private let phoneNumber = "+996999555388"
     private var verificationId: String?
     
     private func authentificateWithPN() {
@@ -161,13 +164,13 @@ class AuthServiceVC: UIViewController {
     }
     
     private func authInApp(with credential: PhoneAuthCredential) {
-        Auth.auth().signIn(with: credential) { authResult, error in
+        Auth.auth().signIn(with: credential) { [self] authResult, error in
             if let error = error {
                 print("error is: \(error.localizedDescription)")
             } else {
                 print("Authorized: \(authResult?.user)")
-                self.profileVC.saveUserDefaultManager()
-                self.profileVC.saveKeyChainManager()
+                profileVC.saveUserDefaultManager()
+//                profileVC.saveKeyChainManager()
             }
         }
     }

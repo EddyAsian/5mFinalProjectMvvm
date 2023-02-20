@@ -7,8 +7,11 @@
 
 import UIKit
 import SnapKit
+import KeychainSwift
 
 class ProfileViewController: UIViewController {
+    
+    let keychain = KeychainSwift(keyPrefix: Keys.keyPrefix)
     
     lazy var profileTitle: UILabel = {
         var title = UILabel()
@@ -59,7 +62,7 @@ class ProfileViewController: UIViewController {
         return textField
     }()
     
-    lazy var addressInformation: UITextField = {
+    lazy var adressInformation: UITextField = {
         var textField = UITextField()
         textField.placeholder = "Addres:"
         textField.font = UIFont(name: "Avenir Next", size: 16)
@@ -79,7 +82,44 @@ class ProfileViewController: UIViewController {
         button.layer.cornerRadius = 10
         button.layer.shadowOffset = CGSize(width: 0.0, height: 5)
         button.layer.shadowOpacity = 0.2
-        button.addTarget(self, action: #selector(registerUserTapped(_:)), for: .touchUpInside)
+        button.addTarget(
+            self, action: #selector(registerUserTapped(_:)),
+            for: .touchUpInside
+        )
+        return button
+    }()
+    
+    var logIn: UIButton = {
+        var button = UIButton(type: .system)
+        button.backgroundColor = UIColor.tabBarItemAccent
+        button.setTitle("Log in", for: .normal)
+        button.titleLabel?.textColor = .white
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
+        button.layer.cornerRadius = 10
+        button.layer.shadowOffset = CGSize(width: 0.0, height: 5)
+        button.layer.shadowOpacity = 0.2
+        button.addTarget(
+            self, action: #selector(logInUserTapped(_:)),
+            for: .touchUpInside
+        )
+        return button
+    }()
+    
+    var clear: UIButton = {
+        var button = UIButton(type: .system)
+        button.backgroundColor = UIColor.tabBarItemAccent
+        button.setTitle("Clear", for: .normal)
+        button.titleLabel?.textColor = .white
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
+        button.layer.cornerRadius = 10
+        button.layer.shadowOffset = CGSize(width: 0.0, height: 5)
+        button.layer.shadowOpacity = 0.2
+        button.addTarget(
+            self, action: #selector(clearUserTapped(_:)),
+            for: .touchUpInside
+        )
         return button
     }()
     
@@ -92,40 +132,52 @@ class ProfileViewController: UIViewController {
     func saveUserDefaultManager() {
         guard let email = emailInformation.text else { return }
         guard let dateOfBirth = dateOfBirthInformation.text else { return }
-        guard let adress = addressInformation.text else { return }
+        guard let adress = adressInformation.text else { return }
         
         UserDefaultManager.shared.save(email, for: .email)
-        print("Email is saved")
+        let readEmail = UserDefaultManager.shared.string(for: .email)
+        print("Email is saved to UserDefault: \(readEmail)")
         UserDefaultManager.shared.save(dateOfBirth, for: .dateOfBirth)
-        print("Date of Birth is saved")
+        let readDataOfBirth = UserDefaultManager.shared.string(for: .dateOfBirth)
+        print("Date of Birth is saved to UserDefault: \(readDataOfBirth)")
         UserDefaultManager.shared.save(adress, for: .adress)
-        print("Adress is saved")
+        let readAdress = UserDefaultManager.shared.string(for: .adress)
+        print("Adress is saved to UserDefault: \(readAdress)")
     }
     
     func saveKeyChainManager() {
-        guard let email = emailInformation.text else { return }
-        guard let dateOfBirth = dateOfBirthInformation.text else { return }
-        guard let adress = addressInformation.text else { return }
+        if emailInformation.text != "" {
+            guard let email = emailInformation.text else { return }
+            keychain.set(email, forKey: Keys.email)
+            print("Email is saved to Keychain")
+        } else {
+            print("Email is not saved to Keychain")
+        }
         
-        let service = "thecocktaildb.com"
-        let account = "User"
-        let emailData = Data(email.utf8)
-        let dateOfBirthData = Data(dateOfBirth.utf8)
-        let adressData = Data(adress.utf8)
-        KeyChainManager.shared.save(emailData, service: service, account: account)
-        KeyChainManager.shared.save(dateOfBirthData, service: service, account: account)
-        KeyChainManager.shared.save(adressData, service: service, account: account)
+        if adressInformation.text != "" {
+            guard let adress = adressInformation.text else { return }
+            keychain.set(adress, forKey: Keys.adress)
+            print("Adress is saved to Keychain")
+        }
+        
+        if dateOfBirthInformation.text != "" {
+            guard let dateOfBirth = dateOfBirthInformation.text else { return }
+            keychain.set(dateOfBirth, forKey: Keys.dateOfBirth)
+            print("Date of Birth is saved to Keychain")
+        }
     }
     
     private func setUpSubviews() {
-        view.addSubview(borderView)
         view.addSubview(profileTitle)
+        view.addSubview(borderView)
+        view.addSubview(logIn)
         view.addSubview(profileImage)
         view.addSubview(usernameLabel)
         view.addSubview(emailInformation)
         view.addSubview(dateOfBirthInformation)
-        view.addSubview(addressInformation)
+        view.addSubview(adressInformation)
         view.addSubview(registerUser)
+        view.addSubview(clear)
     }
     
     private func setUpConstraints() {
@@ -134,6 +186,14 @@ class ProfileViewController: UIViewController {
             maker.centerX.equalToSuperview()
             maker.width.equalTo(340)
             maker.height.equalTo(5)
+        }
+        
+        clear.snp.makeConstraints { maker in
+            maker.bottom.equalTo(borderView).offset(50)
+            maker.right.equalToSuperview().offset(-20)
+            
+            maker.width.equalTo(60)
+            maker.height.equalTo(30)
         }
         
         profileTitle.snp.makeConstraints{ maker in
@@ -170,7 +230,7 @@ class ProfileViewController: UIViewController {
             maker.height.equalTo(45)
         }
         
-        addressInformation.snp.makeConstraints{ maker in
+        adressInformation.snp.makeConstraints{ maker in
             maker.top.equalTo(dateOfBirthInformation.snp.bottom).offset(25)
             maker.left.equalToSuperview().offset(30)
             maker.width.equalTo(310)
@@ -179,8 +239,16 @@ class ProfileViewController: UIViewController {
         
         registerUser.snp.makeConstraints { maker in
             maker.bottom.equalToSuperview().inset(110)
-            maker.centerX.equalToSuperview()
-            maker.width.equalTo(170)
+            maker.right.equalToSuperview().offset(-20)
+            maker.width.equalTo(140)
+            maker.height.equalTo(30)
+        }
+        
+        logIn.snp.makeConstraints { maker in
+            maker.bottom.equalToSuperview().inset(110)
+            maker.left.equalToSuperview().offset(30)
+            
+            maker.width.equalTo(140)
             maker.height.equalTo(30)
         }
     }
@@ -191,9 +259,36 @@ class ProfileViewController: UIViewController {
     }
     
     @objc
+    private func logInUserTapped(_ sender: UIButton) {
+        if let getEmail = keychain.get(Keys.email) {
+            emailInformation.text = getEmail
+        }
+        
+        if let getDateOfBirth = keychain.get(Keys.dateOfBirth) {
+            dateOfBirthInformation.text = getDateOfBirth
+        }
+        
+        if let getAdress = keychain.get(Keys.adress) {
+            adressInformation.text = getAdress
+        }
+    }
+    
+    @objc
     private func registerUserTapped(_ sender: UIButton) {
         let authServiceVC = AuthServiceVC()
         navigationController?.pushViewController(authServiceVC, animated: true)
+        saveKeyChainManager()
+    }
+    
+    @objc
+    private func clearUserTapped(_ sender: UIButton) {
+        if keychain.clear() {
+            print("Keychain is cleared")
+            emailInformation.text = ""
+            dateOfBirthInformation.text = ""
+            adressInformation.text = ""
+            
+        }
     }
 }
 

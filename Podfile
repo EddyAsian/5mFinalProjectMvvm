@@ -13,6 +13,7 @@ pod 'FirebaseFirestore'
 pod 'Firebase'
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
+pod 'KeychainSwift', '~> 13.0.0'
   # Pods for CoctailsApp
 
 end

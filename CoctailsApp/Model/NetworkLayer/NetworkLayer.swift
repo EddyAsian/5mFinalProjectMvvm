@@ -46,7 +46,6 @@ final class NetworkLayer {
             case .lookupDrinkByID:
                 components.path =  "/api/json/v1/1\(ApiType.lookupDrinkByID.path)"
             }
-            
             return components
         }
     }
