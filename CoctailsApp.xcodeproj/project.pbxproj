@@ -12,9 +12,9 @@
 		288CE6D32998A7EF006E2FE8 /* CoctailsMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288CE6D22998A7EF006E2FE8 /* CoctailsMenuViewController.swift */; };
 		288CE6D82998A7F1006E2FE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 288CE6D72998A7F1006E2FE8 /* Assets.xcassets */; };
 		288CE6DB2998A7F1006E2FE8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 288CE6D92998A7F1006E2FE8 /* LaunchScreen.storyboard */; };
-		288CE6E52998A95B006E2FE8 /* CoctailsAppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288CE6E42998A95B006E2FE8 /* CoctailsAppTabBarController.swift */; };
+		288CE6E52998A95B006E2FE8 /* CocktailsTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288CE6E42998A95B006E2FE8 /* CocktailsTabBarController.swift */; };
 		288CE6E72998A9DF006E2FE8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288CE6E62998A9DF006E2FE8 /* ProfileViewController.swift */; };
-		288CE6E92998A9FF006E2FE8 /* CoctailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288CE6E82998A9FF006E2FE8 /* CoctailViewController.swift */; };
+		288CE6E92998A9FF006E2FE8 /* ChoosedCocktailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288CE6E82998A9FF006E2FE8 /* ChoosedCocktailViewController.swift */; };
 		288CE6EB2998AAC1006E2FE8 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288CE6EA2998AAC1006E2FE8 /* MenuCollectionViewCell.swift */; };
 		288CE6ED2998AAF6006E2FE8 /* Drinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288CE6EC2998AAF6006E2FE8 /* Drinks.swift */; };
 		288CE6EF2998AB52006E2FE8 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288CE6EE2998AB52006E2FE8 /* NetworkLayer.swift */; };
@@ -27,11 +27,14 @@
 		97CBEA007A42FE89574D9F6F /* Pods_CoctailsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6CDF999D2F8E8F3015646B3 /* Pods_CoctailsApp.framework */; };
 		D42D24C629A1CDB800008A81 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42D24C529A1CDB800008A81 /* UserDefaultManager.swift */; };
 		D42D24CB29A3900E00008A81 /* UIImageResize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42D24CA29A3900E00008A81 /* UIImageResize.swift */; };
-		D49742D929A143F1002699D4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D49742D829A143F1002699D4 /* GoogleService-Info.plist */; };
-		D49742DB29A1493E002699D4 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49742DA29A1493E002699D4 /* DatabaseManager.swift */; };
-		D49A35C3299DE2E800436BFF /* UIIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A35C2299DE2E800436BFF /* UIIColorExtension.swift */; };
-		D49A3EAF29A13CCA00BF2DA8 /* AuthServiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A3EAE29A13CCA00BF2DA8 /* AuthServiceVC.swift */; };
-		D49BE03C29A1ADF500680AAE /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49BE03B29A1ADF500680AAE /* KeyChainManager.swift */; };
+		D49A35C3299DE2E800436BFF /* UIIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A35C2299DE2E800436BFF /* UIIColor.swift */; };
+		D49A3EAF29A13CCA00BF2DA8 /* AuthServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A3EAE29A13CCA00BF2DA8 /* AuthServiceViewController.swift */; };
+		D49AD24429A3E1CC00FE7FCC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D49AD24329A3E1CC00FE7FCC /* GoogleService-Info.plist */; };
+		D49EA2FC29A4698F007C450A /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49EA2FB29A4698F007C450A /* KeyChainManager.swift */; };
+		D49EA2FE29A46AA0007C450A /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49EA2FD29A46AA0007C450A /* View+Extension.swift */; };
+		D49EA30129A476B8007C450A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49EA30029A476B8007C450A /* Constants.swift */; };
+		D49EA30329A48B56007C450A /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49EA30229A48B56007C450A /* AuthManager.swift */; };
+		D49EA30629A5326E007C450A /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49EA30529A5326E007C450A /* DatabaseManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,9 +45,9 @@
 		288CE6D72998A7F1006E2FE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		288CE6DA2998A7F1006E2FE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		288CE6DC2998A7F1006E2FE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		288CE6E42998A95B006E2FE8 /* CoctailsAppTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoctailsAppTabBarController.swift; sourceTree = "<group>"; };
+		288CE6E42998A95B006E2FE8 /* CocktailsTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsTabBarController.swift; sourceTree = "<group>"; };
 		288CE6E62998A9DF006E2FE8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		288CE6E82998A9FF006E2FE8 /* CoctailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoctailViewController.swift; sourceTree = "<group>"; };
+		288CE6E82998A9FF006E2FE8 /* ChoosedCocktailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosedCocktailViewController.swift; sourceTree = "<group>"; };
 		288CE6EA2998AAC1006E2FE8 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		288CE6EC2998AAF6006E2FE8 /* Drinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drinks.swift; sourceTree = "<group>"; };
 		288CE6EE2998AB52006E2FE8 /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
@@ -58,11 +61,14 @@
 		D3ADBEC4314104752136CBB9 /* Pods-CoctailsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoctailsApp.debug.xcconfig"; path = "Target Support Files/Pods-CoctailsApp/Pods-CoctailsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D42D24C529A1CDB800008A81 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		D42D24CA29A3900E00008A81 /* UIImageResize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageResize.swift; sourceTree = "<group>"; };
-		D49742D829A143F1002699D4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		D49742DA29A1493E002699D4 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
-		D49A35C2299DE2E800436BFF /* UIIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIIColorExtension.swift; sourceTree = "<group>"; };
-		D49A3EAE29A13CCA00BF2DA8 /* AuthServiceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceVC.swift; sourceTree = "<group>"; };
-		D49BE03B29A1ADF500680AAE /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KeyChainManager.swift; path = ../../../../KeyChainManager.swift; sourceTree = "<group>"; };
+		D49A35C2299DE2E800436BFF /* UIIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIIColor.swift; sourceTree = "<group>"; };
+		D49A3EAE29A13CCA00BF2DA8 /* AuthServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceViewController.swift; sourceTree = "<group>"; };
+		D49AD24329A3E1CC00FE7FCC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D49EA2FB29A4698F007C450A /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
+		D49EA2FD29A46AA0007C450A /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		D49EA30029A476B8007C450A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D49EA30229A48B56007C450A /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		D49EA30529A5326E007C450A /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		F6CDF999D2F8E8F3015646B3 /* Pods_CoctailsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoctailsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -81,7 +87,6 @@
 		288CE6C22998A7EF006E2FE8 = {
 			isa = PBXGroup;
 			children = (
-				D49742D829A143F1002699D4 /* GoogleService-Info.plist */,
 				288CE6CD2998A7EF006E2FE8 /* CoctailsApp */,
 				288CE6CC2998A7EF006E2FE8 /* Products */,
 				8824E7E0BE1A75443376DCB3 /* Pods */,
@@ -100,18 +105,11 @@
 		288CE6CD2998A7EF006E2FE8 /* CoctailsApp */ = {
 			isa = PBXGroup;
 			children = (
-				D42D24C929A38FEF00008A81 /* UIImageResize */,
-				D49A3EAC29A1261000BF2DA8 /* UIColorExtension */,
-				D49BE03A29A1ADD800680AAE /* KeyChainManager */,
-				D49BE03729A1A00D00680AAE /* UserDefaultManager */,
-				28C4AE8729991158008299C3 /* CoctailsMenuPage */,
-				28C4AE8D299911B0008299C3 /* CoctailInfoPage */,
-				28C4AE8A29991187008299C3 /* ProfilePage */,
-				D49A3EAD29A13CA300BF2DA8 /* AuthServiceVC */,
-				28C4AE842998F2D7008299C3 /* Model */,
-				28C4AE832998F2A7008299C3 /* CustomDetails */,
-				288CE6E32998A8D9006E2FE8 /* Resources */,
+				D49AD24329A3E1CC00FE7FCC /* GoogleService-Info.plist */,
 				288CE6E22998A8A2006E2FE8 /* App */,
+				D49EA2EA29A46300007C450A /* Extensions */,
+				D49EA2EF29A46452007C450A /* Managers */,
+				288CE6E32998A8D9006E2FE8 /* Resources */,
 			);
 			path = CoctailsApp;
 			sourceTree = "<group>";
@@ -121,6 +119,7 @@
 			children = (
 				288CE6CE2998A7EF006E2FE8 /* AppDelegate.swift */,
 				288CE6D02998A7EF006E2FE8 /* SceneDelegate.swift */,
+				D49EA2FF29A47684007C450A /* Constants */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -138,8 +137,6 @@
 		28C4AE832998F2A7008299C3 /* CustomDetails */ = {
 			isa = PBXGroup;
 			children = (
-				288CE6EA2998AAC1006E2FE8 /* MenuCollectionViewCell.swift */,
-				288CE6E42998A95B006E2FE8 /* CoctailsAppTabBarController.swift */,
 				288CE6F22998ABC3006E2FE8 /* RatingCustomView.swift */,
 				288CE6F02998ABAB006E2FE8 /* ReviewCustomView.swift */,
 				28C4AE812998EDAD008299C3 /* AddProductCustomButton.swift */,
@@ -150,10 +147,8 @@
 		28C4AE842998F2D7008299C3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				28C4AE9029993FD3008299C3 /* Enums */,
-				28C4AE862998F2F7008299C3 /* NetworkLayer */,
 				28C4AE852998F2F0008299C3 /* DTOs */,
-				D49742DA29A1493E002699D4 /* DatabaseManager.swift */,
+				D49EA2FD29A46AA0007C450A /* View+Extension.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -166,21 +161,12 @@
 			path = DTOs;
 			sourceTree = "<group>";
 		};
-		28C4AE862998F2F7008299C3 /* NetworkLayer */ = {
+		28C4AE862998F2F7008299C3 /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
 				288CE6EE2998AB52006E2FE8 /* NetworkLayer.swift */,
 			);
-			path = NetworkLayer;
-			sourceTree = "<group>";
-		};
-		28C4AE8729991158008299C3 /* CoctailsMenuPage */ = {
-			isa = PBXGroup;
-			children = (
-				288CE6D22998A7EF006E2FE8 /* CoctailsMenuViewController.swift */,
-				28C4AE8829991180008299C3 /* CoctailsMenuViewModel.swift */,
-			);
-			path = CoctailsMenuPage;
+			path = NetworkManager;
 			sourceTree = "<group>";
 		};
 		28C4AE8A29991187008299C3 /* ProfilePage */ = {
@@ -192,20 +178,13 @@
 			path = ProfilePage;
 			sourceTree = "<group>";
 		};
-		28C4AE8D299911B0008299C3 /* CoctailInfoPage */ = {
+		28C4AE8D299911B0008299C3 /* CocktailInfoPage */ = {
 			isa = PBXGroup;
 			children = (
-				288CE6E82998A9FF006E2FE8 /* CoctailViewController.swift */,
+				288CE6E82998A9FF006E2FE8 /* ChoosedCocktailViewController.swift */,
 				28C4AE8E299911EA008299C3 /* CoctailsViewModel.swift */,
 			);
-			path = CoctailInfoPage;
-			sourceTree = "<group>";
-		};
-		28C4AE9029993FD3008299C3 /* Enums */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Enums;
+			path = CocktailInfoPage;
 			sourceTree = "<group>";
 		};
 		8824E7E0BE1A75443376DCB3 /* Pods */ = {
@@ -233,18 +212,26 @@
 			path = UIImageResize;
 			sourceTree = "<group>";
 		};
-		D49A3EAC29A1261000BF2DA8 /* UIColorExtension */ = {
+		D495D5C529A54F4900EFA606 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				D49A35C2299DE2E800436BFF /* UIIColorExtension.swift */,
+				28C4AE832998F2A7008299C3 /* CustomDetails */,
 			);
-			path = UIColorExtension;
+			path = Components;
+			sourceTree = "<group>";
+		};
+		D49A3EAC29A1261000BF2DA8 /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				D49A35C2299DE2E800436BFF /* UIIColor.swift */,
+			);
+			path = UIColor;
 			sourceTree = "<group>";
 		};
 		D49A3EAD29A13CA300BF2DA8 /* AuthServiceVC */ = {
 			isa = PBXGroup;
 			children = (
-				D49A3EAE29A13CCA00BF2DA8 /* AuthServiceVC.swift */,
+				D49A3EAE29A13CCA00BF2DA8 /* AuthServiceViewController.swift */,
 			);
 			path = AuthServiceVC;
 			sourceTree = "<group>";
@@ -254,15 +241,142 @@
 			children = (
 				D42D24C529A1CDB800008A81 /* UserDefaultManager.swift */,
 			);
-			path = UserDefaultManager;
+			name = UserDefaultManager;
 			sourceTree = "<group>";
 		};
 		D49BE03A29A1ADD800680AAE /* KeyChainManager */ = {
 			isa = PBXGroup;
 			children = (
-				D49BE03B29A1ADF500680AAE /* KeyChainManager.swift */,
+				D49EA2FB29A4698F007C450A /* KeyChainManager.swift */,
 			);
 			path = KeyChainManager;
+			sourceTree = "<group>";
+		};
+		D49EA2EA29A46300007C450A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D42D24C929A38FEF00008A81 /* UIImageResize */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D49EA2EF29A46452007C450A /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				D49EA30429A5324A007C450A /* DatabaseManager */,
+				D49BE03729A1A00D00680AAE /* UserDefaultManager */,
+				D49BE03A29A1ADD800680AAE /* KeyChainManager */,
+				28C4AE862998F2F7008299C3 /* NetworkManager */,
+				D49EA2F029A464C1007C450A /* AuthManager */,
+				D49EA2F229A465A8007C450A /* Modules */,
+			);
+			name = Managers;
+			path = UserDefaultManager;
+			sourceTree = "<group>";
+		};
+		D49EA2F029A464C1007C450A /* AuthManager */ = {
+			isa = PBXGroup;
+			children = (
+				D49EA30229A48B56007C450A /* AuthManager.swift */,
+			);
+			path = AuthManager;
+			sourceTree = "<group>";
+		};
+		D49EA2F229A465A8007C450A /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				D49EA2F329A46633007C450A /* MainModule */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		D49EA2F329A46633007C450A /* MainModule */ = {
+			isa = PBXGroup;
+			children = (
+				D49EA2F429A46650007C450A /* WorkFlows */,
+			);
+			path = MainModule;
+			sourceTree = "<group>";
+		};
+		D49EA2F429A46650007C450A /* WorkFlows */ = {
+			isa = PBXGroup;
+			children = (
+				D49EA2FA29A468F4007C450A /* ProfilePageworkFlow */,
+				D49EA2F629A4675D007C450A /* MainPageWorkFlow */,
+			);
+			path = WorkFlows;
+			sourceTree = "<group>";
+		};
+		D49EA2F529A4667E007C450A /* MainTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				288CE6E42998A95B006E2FE8 /* CocktailsTabBarController.swift */,
+			);
+			path = MainTabBarController;
+			sourceTree = "<group>";
+		};
+		D49EA2F629A4675D007C450A /* MainPageWorkFlow */ = {
+			isa = PBXGroup;
+			children = (
+				D49EA2F829A467F2007C450A /* MainView */,
+				D49EA2F929A46838007C450A /* MainViewModel */,
+				D49EA2F729A4679B007C450A /* Components */,
+			);
+			path = MainPageWorkFlow;
+			sourceTree = "<group>";
+		};
+		D49EA2F729A4679B007C450A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D49EA2F529A4667E007C450A /* MainTabBarController */,
+				288CE6EA2998AAC1006E2FE8 /* MenuCollectionViewCell.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		D49EA2F829A467F2007C450A /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				288CE6D22998A7EF006E2FE8 /* CoctailsMenuViewController.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		D49EA2F929A46838007C450A /* MainViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				28C4AE8829991180008299C3 /* CoctailsMenuViewModel.swift */,
+			);
+			path = MainViewModel;
+			sourceTree = "<group>";
+		};
+		D49EA2FA29A468F4007C450A /* ProfilePageworkFlow */ = {
+			isa = PBXGroup;
+			children = (
+				D495D5C529A54F4900EFA606 /* Components */,
+				28C4AE842998F2D7008299C3 /* Model */,
+				D49A3EAD29A13CA300BF2DA8 /* AuthServiceVC */,
+				28C4AE8D299911B0008299C3 /* CocktailInfoPage */,
+				28C4AE8A29991187008299C3 /* ProfilePage */,
+			);
+			path = ProfilePageworkFlow;
+			sourceTree = "<group>";
+		};
+		D49EA2FF29A47684007C450A /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				D49A3EAC29A1261000BF2DA8 /* UIColor */,
+				D49EA30029A476B8007C450A /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		D49EA30429A5324A007C450A /* DatabaseManager */ = {
+			isa = PBXGroup;
+			children = (
+				D49EA30529A5326E007C450A /* DatabaseManager.swift */,
+			);
+			path = DatabaseManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,8 +440,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				288CE6DB2998A7F1006E2FE8 /* LaunchScreen.storyboard in Resources */,
+				D49AD24429A3E1CC00FE7FCC /* GoogleService-Info.plist in Resources */,
 				288CE6D82998A7F1006E2FE8 /* Assets.xcassets in Resources */,
-				D49742D929A143F1002699D4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,25 +495,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				288CE6EF2998AB52006E2FE8 /* NetworkLayer.swift in Sources */,
+				D49EA30329A48B56007C450A /* AuthManager.swift in Sources */,
 				28C4AE8F299911EA008299C3 /* CoctailsViewModel.swift in Sources */,
-				288CE6E92998A9FF006E2FE8 /* CoctailViewController.swift in Sources */,
+				288CE6E92998A9FF006E2FE8 /* ChoosedCocktailViewController.swift in Sources */,
 				288CE6EB2998AAC1006E2FE8 /* MenuCollectionViewCell.swift in Sources */,
 				288CE6ED2998AAF6006E2FE8 /* Drinks.swift in Sources */,
-				D49A35C3299DE2E800436BFF /* UIIColorExtension.swift in Sources */,
+				D49A35C3299DE2E800436BFF /* UIIColor.swift in Sources */,
+				D49EA30629A5326E007C450A /* DatabaseManager.swift in Sources */,
+				D49EA30129A476B8007C450A /* Constants.swift in Sources */,
 				288CE6D32998A7EF006E2FE8 /* CoctailsMenuViewController.swift in Sources */,
-				D49BE03C29A1ADF500680AAE /* KeyChainManager.swift in Sources */,
 				28C4AE8929991180008299C3 /* CoctailsMenuViewModel.swift in Sources */,
-				D49742DB29A1493E002699D4 /* DatabaseManager.swift in Sources */,
 				28C4AE8C299911A2008299C3 /* ProfileViewModel.swift in Sources */,
 				288CE6F12998ABAB006E2FE8 /* ReviewCustomView.swift in Sources */,
-				288CE6E52998A95B006E2FE8 /* CoctailsAppTabBarController.swift in Sources */,
+				288CE6E52998A95B006E2FE8 /* CocktailsTabBarController.swift in Sources */,
 				288CE6E72998A9DF006E2FE8 /* ProfileViewController.swift in Sources */,
 				28C4AE822998EDAD008299C3 /* AddProductCustomButton.swift in Sources */,
 				D42D24C629A1CDB800008A81 /* UserDefaultManager.swift in Sources */,
 				288CE6CF2998A7EF006E2FE8 /* AppDelegate.swift in Sources */,
-				D49A3EAF29A13CCA00BF2DA8 /* AuthServiceVC.swift in Sources */,
+				D49A3EAF29A13CCA00BF2DA8 /* AuthServiceViewController.swift in Sources */,
 				288CE6D12998A7EF006E2FE8 /* SceneDelegate.swift in Sources */,
+				D49EA2FE29A46AA0007C450A /* View+Extension.swift in Sources */,
 				D42D24CB29A3900E00008A81 /* UIImageResize.swift in Sources */,
+				D49EA2FC29A4698F007C450A /* KeyChainManager.swift in Sources */,
 				288CE6F32998ABC3006E2FE8 /* RatingCustomView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

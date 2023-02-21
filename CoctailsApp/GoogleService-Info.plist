@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>374880600796-qummis4dpo2cqsksg2n02090bu7jafat.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.374880600796-qummis4dpo2cqsksg2n02090bu7jafat</string>
+	<key>API_KEY</key>
+	<string>AIzaSyClkc0_lG2dxtzZfA2vuxk6mJLpIsuRnas</string>
+	<key>GCM_SENDER_ID</key>
+	<string>374880600796</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>edu.CoctailsApp</string>
+	<key>PROJECT_ID</key>
+	<string>cocktailsapp-d6e73</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cocktailsapp-d6e73.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:374880600796:ios:3ba18ea2d173e597f12a19</string>
+</dict>
+</plist>

@@ -1,12 +1,18 @@
 //
 //  UserDefaultManager.swift
-//  CoctailsApp
+//  CocktailsApp
 //
 //  Created by Eldar on 19/2/23.
 //
 
 
 import Foundation
+
+struct UserInfo: Codable {
+    let email: String
+    let dateOfBirth: String
+    let adress: String
+}
 
 class UserDefaultManager {
     
@@ -20,9 +26,9 @@ class UserDefaultManager {
     
     private init() { }
     
-    
-    func save(_ model: String, for key: Storage) {
-        UserDefaults.standard.set(model, forKey: key.rawValue)
+    func save<T: Codable>(_ model: T, for key: Storage) {
+        let encodedData = try! JSONEncoder().encode(model)
+        UserDefaults.standard.set(encodedData, forKey: key.rawValue)
     }
     
     func remove(with key: Storage) {
@@ -33,4 +39,3 @@ class UserDefaultManager {
         UserDefaults.standard.string(forKey: key.rawValue) ?? ""
     }
 }
-
