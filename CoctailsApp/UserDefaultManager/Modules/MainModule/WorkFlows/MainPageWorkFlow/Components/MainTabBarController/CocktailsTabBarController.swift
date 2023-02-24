@@ -33,11 +33,16 @@ class CocktailsTabBarController: UITabBarController {
         viewControllers =
         [
             createControllers(
+                from: AuthorizedProfileVC(),
+                image: generateItemIcon(from: itemIcons[0])
+            ),
+            createControllers(
+
                 from: CocktailsMenuViewController(),
                 image: generateItemIcon(from: itemIcons[1])
             ),
             createControllers(
-                from: CocktailsMenuViewController(),
+                from: BasketViewController(),
                 image: generateItemIcon(from: itemIcons[2])
             )
         ]

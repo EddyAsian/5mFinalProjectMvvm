@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Cocktails" representedClassName="Cocktails" syncable="YES">
+        <attribute name="cocktailsDescription" optional="YES" attributeType="String"/>
+        <attribute name="cocktailsImage" optional="YES" attributeType="String"/>
+        <attribute name="cocktailsModel" optional="YES" attributeType="Binary"/>
+        <attribute name="cocktailsName" optional="YES" attributeType="String"/>
+        <attribute name="dateAdded" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="ratingNumber" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+</model>

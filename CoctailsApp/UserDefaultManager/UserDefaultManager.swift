@@ -8,12 +8,6 @@
 
 import Foundation
 
-struct UserInfo: Codable {
-    let email: String
-    let dateOfBirth: String
-    let adress: String
-}
-
 class UserDefaultManager {
     
     enum Storage: String {

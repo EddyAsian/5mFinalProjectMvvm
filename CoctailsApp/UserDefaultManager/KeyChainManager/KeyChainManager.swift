@@ -10,4 +10,5 @@ public struct Keys {
     static let email = "email"
     static let dateOfBirth = "dateOfBirth"
     static let adress = "adress"
+    static let password = "password"
 }

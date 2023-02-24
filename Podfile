@@ -4,6 +4,7 @@
 target 'CocktailsApp' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
+
 pod 'SnapKit'
 pod 'Kingfisher'
 pod 'RxSwift'
@@ -14,6 +15,6 @@ pod 'Firebase'
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'KeychainSwift', '~> 13.0.0'
-  # Pods for CocktailsApp
+  # Pods for CoctailsApp
 
 end

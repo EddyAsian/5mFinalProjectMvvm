@@ -18,11 +18,13 @@ class AuthManager  {
     
     private init() { }
     
-    private let phoneNumber = "+996707848894"
+//    private let phoneNumber = "+996707848894"
     
     private var verificationId: String?
     
     func authentificateWithPN() {
+        let sms = AddNumberViewController()
+        guard let phoneNumber = sms.smsCode.text else { return  }
         PhoneAuthProvider.provider().verifyPhoneNumber(
             phoneNumber, uiDelegate: nil
         ) { verificationID, error in

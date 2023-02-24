@@ -9,8 +9,7 @@ import UIKit
 import SnapKit
 
 class RatingCustomView: UIView {
-    
-    lazy var profileImageView: UIImageView = {
+   lazy var profileImageView: UIImageView = {
         var imageView = UIImageView()
         imageView.image = UIImage(systemName: "person")
         return imageView
@@ -18,7 +17,7 @@ class RatingCustomView: UIView {
     
     lazy var ratingLabel: UILabel = {
         var label = UILabel()
-        label.text = "3.6"
+        label.text = "36"
         label.font = UIFont(name: "Avenir Heavy", size: 20)
         return label
     }()

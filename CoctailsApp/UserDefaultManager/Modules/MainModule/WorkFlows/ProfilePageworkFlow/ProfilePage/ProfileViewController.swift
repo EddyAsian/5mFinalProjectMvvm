@@ -43,12 +43,13 @@ class ProfileViewController: UIViewController {
     }()
     
     lazy var emailInformation: UITextField = {
-        let textField = UITextField()
+        var textField = UITextField()
         textField.placeholder = "Email:"
         textField.font = UIFont(name: "Avenir Next", size: 16)
         textField.borderStyle = .roundedRect
         textField.backgroundColor = ColorConstants.registerBack
         textField.isUserInteractionEnabled = true
+        textField.layer.cornerRadius = Constants.cornerRadius
         return textField
     }()
     
@@ -59,6 +60,7 @@ class ProfileViewController: UIViewController {
         textField.borderStyle = .roundedRect
         textField.backgroundColor = ColorConstants.registerBack
         textField.isUserInteractionEnabled = true
+        textField.layer.cornerRadius = Constants.cornerRadius
         return textField
     }()
     
@@ -69,6 +71,19 @@ class ProfileViewController: UIViewController {
         textField.borderStyle = .roundedRect
         textField.backgroundColor = ColorConstants.registerBack
         textField.isUserInteractionEnabled = true
+        textField.layer.cornerRadius = Constants.cornerRadius
+        return textField
+    }()
+    
+    lazy var passwordLabel: UITextField = {
+        var textField = UITextField()
+        textField.placeholder = "Password:"
+        textField.font = UIFont(name: "Avenir Next", size: 16)
+        textField.borderStyle = .roundedRect
+        textField.isSecureTextEntry = true
+        textField.backgroundColor = ColorConstants.registerBack
+        textField.isUserInteractionEnabled = true
+        textField.layer.cornerRadius = Constants.cornerRadius
         return textField
     }()
     
@@ -125,7 +140,7 @@ class ProfileViewController: UIViewController {
     
     private func setUpConstraints() {
         borderView.snp.makeConstraints{ maker in
-            maker.top.equalToSuperview().offset(150)
+            maker.top.equalToSuperview().offset(120)
             maker.centerX.equalToSuperview()
             maker.width.equalTo(340)
             maker.height.equalTo(5)
@@ -140,14 +155,14 @@ class ProfileViewController: UIViewController {
         }
         
         profileTitle.snp.makeConstraints{ maker in
-            maker.top.equalToSuperview().offset(100)
+            maker.top.equalToSuperview().offset(70)
             maker.left.equalToSuperview().offset(30)
             maker.width.equalTo(100)
             maker.height.equalTo(40)
         }
         
         profileImage.snp.makeConstraints{ maker in
-            maker.top.equalTo(borderView.snp.bottom).offset(50)
+            maker.top.equalTo(borderView.snp.bottom).offset(20)
             maker.left.equalToSuperview().offset(30)
             maker.width.height.equalTo(188)
         }
@@ -162,35 +177,42 @@ class ProfileViewController: UIViewController {
         emailInformation.snp.makeConstraints{ maker in
             maker.top.equalTo(usernameLabel.snp.bottom).offset(65)
             maker.left.equalToSuperview().offset(30)
-            maker.width.equalTo(310)
+            maker.width.equalTo(340)
             maker.height.equalTo(45)
         }
         
         dateOfBirthInformation.snp.makeConstraints{ maker in
             maker.top.equalTo(emailInformation.snp.bottom).offset(25)
             maker.left.equalToSuperview().offset(30)
-            maker.width.equalTo(310)
+            maker.width.equalTo(340)
             maker.height.equalTo(45)
         }
         
         adressInformation.snp.makeConstraints{ maker in
             maker.top.equalTo(dateOfBirthInformation.snp.bottom).offset(25)
             maker.left.equalToSuperview().offset(30)
-            maker.width.equalTo(310)
+            maker.width.equalTo(340)
             maker.height.equalTo(110)
         }
         
-        registerUser.snp.makeConstraints { maker in
-            maker.bottom.equalToSuperview().inset(110)
-            maker.right.equalToSuperview().offset(-20)
+        passwordLabel.snp.makeConstraints{ maker in
+            maker.top.equalTo(adressInformation.snp.bottom).offset(25)
+            maker.centerX.equalToSuperview()
+            maker.width.equalTo(250)
+            maker.height.equalTo(45)
+        }
+        
+        logIn.snp.makeConstraints { maker in
+            maker.bottom.equalToSuperview().inset(70)
+            maker.left.equalToSuperview().offset(30)
+            
             maker.width.equalTo(140)
             maker.height.equalTo(30)
         }
         
-        logIn.snp.makeConstraints { maker in
-            maker.bottom.equalToSuperview().inset(110)
-            maker.left.equalToSuperview().offset(30)
-            
+        registerUser.snp.makeConstraints { maker in
+            maker.bottom.equalToSuperview().inset(70)
+            maker.right.equalToSuperview().offset(-30)
             maker.width.equalTo(140)
             maker.height.equalTo(30)
         }
@@ -200,6 +222,7 @@ class ProfileViewController: UIViewController {
         super.loadView()
         view.backgroundColor = ColorConstants.profileBack
         setUpUI()
+        getKeychain()
     }
     
     private func setUpUI() {
@@ -216,6 +239,7 @@ class ProfileViewController: UIViewController {
         view.addSubview(emailInformation)
         view.addSubview(dateOfBirthInformation)
         view.addSubview(adressInformation)
+        view.addSubview(passwordLabel)
         view.addSubview(registerUser)
         view.addSubview(clear)
     }
@@ -223,10 +247,11 @@ class ProfileViewController: UIViewController {
     func saveUserDefaultManager() {
         guard let email = emailInformation.text,
               let dateOfBirth = dateOfBirthInformation.text,
-              let adress = adressInformation.text else {
+              let adress = adressInformation.text,
+              let password = passwordLabel.text else {
             return
         }
-        let model = UserInfo(email: email, dateOfBirth: dateOfBirth, adress: adress)
+        let model = UserInfo(email: email, dateOfBirth: dateOfBirth, adress: adress, password: password)
         UserDefaultManager.shared.save(model, for: .adress)
         UserDefaultManager.shared.save(model, for: .email)
         UserDefaultManager.shared.save(model, for: .dateOfBirth)
@@ -262,6 +287,12 @@ class ProfileViewController: UIViewController {
             keychain.set(dateOfBirth, forKey: Keys.dateOfBirth)
             print("Date of Birth is saved to Keychain")
         }
+        
+        if passwordLabel.text != "" {
+            guard let password = passwordLabel.text else { return }
+            keychain.set(password, forKey: Keys.password)
+            print("Adress is saved to Keychain")
+        }
     }
     
     func clearKeychain() {
@@ -271,6 +302,41 @@ class ProfileViewController: UIViewController {
     
     @objc
     private func logInUserTapped(_ sender: UIButton) {
+        
+        if passwordLabel.text == keychain.get(Keys.password) {
+            dismiss(animated: false)
+            let tabBar = CocktailsTabBarController()
+            tabBar.modalPresentationStyle = .fullScreen
+    //        navigationController?.pushViewController(tabBar, animated: true)
+            present(tabBar, animated: true, completion: nil)
+            tabBar.selectedIndex = 1
+        } else {
+            showPasswordAlert()
+        }
+        
+        
+        
+      }
+    
+    @objc
+    private func sighUpTapped(_ sender: UIButton) {
+        addNewUser()
+        clearKeychain()
+        saveKeyChainManager()
+        let addNumberVc = AddNumberViewController()
+        dismiss(animated: false)
+        present(addNumberVc, animated: true)
+        
+    }
+    
+    @objc
+    private func clearUserTapped(_ sender: UIButton) {
+        emailInformation.text = ""
+        dateOfBirthInformation.text = ""
+        adressInformation.text = ""
+    }
+    
+    private func getKeychain() {
         if let getEmail = keychain.get(Keys.email) {
             emailInformation.text = getEmail
         }
@@ -283,23 +349,42 @@ class ProfileViewController: UIViewController {
             adressInformation.text = getAdress
         }
     }
-    
-    @objc
-    private func sighUpTapped(_ sender: UIButton) {
-        let authServiceVC = AuthServiceViewController()
-        present(authServiceVC, animated: true)
-        saveKeyChainManager()
-        saveUserDefaultManager()
+     
+    private func showAlert() {
+        let alert = UIAlertController(
+            title: "It's not enough",
+            message: "Please, fill up all 3 fields ",
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(title: "OK", style: .cancel)
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
     
-    @objc
-    private func clearUserTapped(_ sender: UIButton) {
-        emailInformation.text = ""
-        dateOfBirthInformation.text = ""
-        adressInformation.text = ""
+    private func showPasswordAlert() {
+        let alert = UIAlertController(
+            title: "Error",
+            message: "Password is not correct",
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(title: "OK", style: .cancel)
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
+    
+    func addNewUser() {
+        guard !emailInformation.text!.isEmpty,
+              !dateOfBirthInformation.text!.isEmpty,
+              !adressInformation.text!.isEmpty else {
+            showAlert()
+            return
+        }
+    }
+    
+//    override func viewDidDisappear(_ animated: Bool) {
+//        self.dismiss(animated: false, completion: nil)
+//    }
 }
-
 
 
 

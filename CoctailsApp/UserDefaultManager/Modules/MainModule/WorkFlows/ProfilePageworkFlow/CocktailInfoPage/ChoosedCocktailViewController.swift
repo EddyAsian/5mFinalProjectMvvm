@@ -8,8 +8,52 @@
 import UIKit
 import SnapKit
 import Kingfisher
+import CoreData
+import RxRelay
+
+
+
+protocol SelecetProductDelegate: AnyObject {
+    func addNewDrink(_ drink: Drinks)
+}
 
 class ChoosedCocktailViewController: UIViewController {
+    
+//    public lazy var viewModel = { DrinkInfoViewModel() }()
+    class var identifier: String { String(describing: self) }
+    class var nib: UINib { UINib(nibName: identifier, bundle: nil) }
+    
+    
+    private var filteredDrinks = [Drinks]()
+//    {
+//        didSet {
+//            updateUIwithSearchResultsState(resultIsEmpty: filteredDrinks.isEmpty)
+//            drinksCollectionView.reloadData()
+//        }
+//    }
+    
+    private var cocktailsCoreData: [Cocktails] = []
+    var textToShow = ""
+    var isLiked: Bool = false
+    
+    weak var delegate: SelecetProductDelegate?
+    
+//    private let info: Drinks
+//
+//    init(dish: Drinks) {
+//
+//        self.info = dish
+//        super.init(nibName: nil, bundle: nil)
+//    }
+    
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//
+
+    
+    var food: Drinks?
+    
     
     lazy var productImage: UIImageView = {
         var imageView = UIImageView()
@@ -48,25 +92,31 @@ class ChoosedCocktailViewController: UIViewController {
     
     lazy var likedProductIcon: UIImageView = {
         var imageView = UIImageView()
-        imageView.image = UIImage(systemName: "heart.circle")
+        imageView.image = UIImage(systemName: "heart")
         imageView.layer.cornerRadius = 20
         imageView.backgroundColor = .white
         imageView.tintColor = ColorConstants.likedProductIcon
+        let tap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(ChoosedCocktailViewController.likeTap)
+        )
+        imageView.addGestureRecognizer(tap)
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
     lazy var descriptionTitleLabel: UILabel = {
         var label = UILabel()
-        label.text = "Description"
+        label.text = "Description long text"
         label.font = UIFont(name: "Avenir Heavy", size: 20)
-        label.textColor = .black
+        label.textColor = ColorConstants.description
         return label
     }()
     
     lazy var descriptionLabel: UILabel = {
         var label = UILabel()
         label.text = String(describing: cocktail!.instructions)
-        label.font = UIFont(name: "Avenir Next", size: 10)
+        label.font = UIFont(name: "Avenir Next", size: 14)
         label.textColor = .black
         label.numberOfLines = 0
         return label
@@ -76,7 +126,7 @@ class ChoosedCocktailViewController: UIViewController {
         var label = UILabel()
         label.text = "Latest Reviews"
         label.textColor = .black
-        label.font = UIFont(name: "Avenir Heavy", size: 10)
+        label.font = UIFont(name: "Avenir Heavy", size: 11)
         label.textAlignment = .right
         label.backgroundColor = .white
         return label
@@ -97,6 +147,10 @@ class ChoosedCocktailViewController: UIViewController {
     lazy var addToBasketButton: AddProductCustomButton = {
         var button = AddProductCustomButton(type: .system)
         button.setTitleColor(.white, for: .normal)
+        button.addTarget(
+            self, action: #selector(openBasketVc),
+            for: .touchUpInside
+        )
         return button
     }()
     
@@ -106,11 +160,15 @@ class ChoosedCocktailViewController: UIViewController {
         return imageView
     }()
     
+    
+    
     var cocktail: Drinks?
     
     override func loadView() {
         super.loadView()
         setUpUI()
+//        saveToDB()
+        fetchSomething()
         let backButton = UIBarButtonItem()
         backButton.title = "      "
         backButton.tintColor = .white
@@ -152,7 +210,7 @@ class ChoosedCocktailViewController: UIViewController {
         likedProductIcon.snp.makeConstraints { maker in
             maker.top.equalToSuperview().offset(-25)
             maker.left.equalTo(informationView.snp.right).inset(70)
-            maker.width.height.equalTo(40)
+            maker.width.height.equalTo(45)
         }
         
         descriptionTitleLabel.snp.makeConstraints { maker in
@@ -165,29 +223,29 @@ class ChoosedCocktailViewController: UIViewController {
         descriptionLabel.snp.makeConstraints { maker in
             maker.top.equalTo(descriptionTitleLabel.snp.bottom)
             maker.left.equalTo(descriptionTitleLabel)
-            maker.width.equalTo(140)
-            maker.height.equalTo(100)
+            maker.width.equalTo(160)
+//            maker.height.equalTo(100)
         }
         
         latestReviewsTitleLabel.snp.makeConstraints { maker in
             maker.top.equalTo(likedProductIcon.snp.bottom).offset(10)
             maker.right.equalTo(likedProductIcon)
-            maker.width.equalTo(120)
-            maker.height.equalTo(10)
+            maker.width.equalTo(140)
+            maker.height.equalTo(20)
         }
         
         reviewsViewFirst.snp.makeConstraints { maker in
             maker.top.equalTo(latestReviewsTitleLabel.snp.bottom)
             maker.right.equalTo(likedProductIcon)
-            maker.width.equalTo(120)
-            maker.height.equalTo(50)
+            maker.width.equalTo(140)
+            maker.height.equalTo(60)
         }
         
         reviewsViewSecond.snp.makeConstraints { maker in
             maker.top.equalTo(reviewsViewFirst.snp.bottom).offset(10)
             maker.right.equalTo(likedProductIcon)
-            maker.width.equalTo(120)
-            maker.height.equalTo(50)
+            maker.width.equalTo(140)
+            maker.height.equalTo(60)
         }
         
         addToBasketButton.snp.makeConstraints { maker in
@@ -197,10 +255,39 @@ class ChoosedCocktailViewController: UIViewController {
             maker.height.equalTo(60)
         }
         
-        backImage.snp.makeConstraints{ maker in
+        backImage.snp.makeConstraints { maker in
             maker.left.equalToSuperview().inset(0)
             maker.top.equalToSuperview().offset(-438)
             maker.width.height.equalTo(105)
+        }
+     }
+    
+    private func saveToDB(_ name: String, _ description: String, _ image: String, _ model: String) {
+        let cocktail = Cocktails(context: AppDelegate.shared.coreDataStack.managedContext)
+        cocktail.setValue(Date(), forKey: #keyPath(Cocktails.dateAdded))
+        cocktail.setValue(name, forKey: #keyPath(Cocktails.cocktailsName))
+        cocktail.setValue(description, forKey: #keyPath(Cocktails.cocktailsDescription))
+        cocktail.setValue(image, forKey: #keyPath(Cocktails.cocktailsImage))
+        cocktail.setValue(model, forKey: #keyPath(Cocktails.cocktailsModel))
+        self.cocktailsCoreData.insert(cocktail, at: 0)
+        AppDelegate.shared.coreDataStack.saveContext()
+        DispatchQueue.main.async {
+//            self.tableView.reloadData()
+        }
+    }
+    
+    private func fetchSomething() {
+        let noteFetch: NSFetchRequest<Cocktails> = Cocktails.fetchRequest()
+        let sortByDate = NSSortDescriptor(key: #keyPath(Cocktails.dateAdded), ascending: false)
+        noteFetch.sortDescriptors = [sortByDate]
+        
+        do {
+            let managedContext = AppDelegate.shared.coreDataStack.managedContext
+            let result = try managedContext.fetch(noteFetch)
+            cocktailsCoreData = result
+//            tableView.reloadData()
+        } catch {
+            print("Error is \(error.localizedDescription)")
         }
     }
     
@@ -224,4 +311,66 @@ class ChoosedCocktailViewController: UIViewController {
         setUpSubviews()
         setUpConstraints()
     }
+    
+
+    
+    @objc func likeTap() {
+        if isLiked == false {
+            likedProductIcon.image = UIImage(systemName: "heart")
+            isLiked = true
+        } else {
+            likedProductIcon.image = UIImage (systemName: "heart.fill")
+            isLiked = false
+            }
+     }
+    
+    @objc func openBasketVc() {
+//        dismiss(animated: true)
+        navigationController?.pushViewController(BasketChoosedViewController(), animated: true)
+    }
+    @objc func tappedMe() {
+//        dismiss(animated: true, completion: nil)
+//        let tabBar = CocktailsTabBarController()
+//        tabBar.modalPresentationStyle = .fullScreen
+//        present(tabBar, animated: true, completion: nil)
+//        tabBar.selectedIndex = 3
+        
+        delegate?.addNewDrink(cocktail!)
+        
+        guard let foodname = cocktail?.name,
+              let foodDescription = cocktail?.instructions else { return }
+        
+    }
 }
+
+
+extension Notification.Name {
+    static let reload = Notification.Name("reload")
+}
+
+
+    extension ChoosedCocktailViewController {
+//        func collectionView(
+//            _ collectionView: UICollectionView,
+//            layout collectionViewLayout: UICollectionViewLayout,
+//            sizeForItemAt indexPath: IndexPath
+//        ) -> CGSize {
+//            let cellCustomWidth = (collectionView.bounds.width - 50) / 2
+//            return CGSize(width: cellCustomWidth, height: cellCustomWidth + 11)
+//        }
+        
+        func collectionView(
+            _ collectionView: UICollectionView,
+            didSelectItemAt indexPath: IndexPath
+        ) {
+            let choosedForBasketVC = BasketViewController()
+            let model = filteredDrinks[indexPath.row]
+            let observe = BehaviorRelay<Drinks>(value: model)
+            observe.subscribe(onNext: { drinks in
+                choosedForBasketVC.cocktail = drinks
+                print(choosedForBasketVC.cocktail as Any)
+            })
+//            choosedForBasketVC.delegate = self
+            navigationController?.pushViewController(choosedForBasketVC, animated: true)
+        }
+    }

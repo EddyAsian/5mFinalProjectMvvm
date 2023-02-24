@@ -12,6 +12,13 @@ import FirebaseFirestore
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    lazy var coreDataStack = CoreDataStack(modelName: "Cocktails")
+    
+    static var shared: AppDelegate = {
+        guard let delegate = UIApplication.shared.delegate as? AppDelegate else { fatalError() }
+        return delegate
+    }()
+    
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -36,3 +43,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+extension NSObject {
+    
+    var screenWidth: CGFloat {
+        UIScreen.main.bounds.width
+    }
+    
+    var screenHeight: CGFloat {
+        UIScreen.main.bounds.height
+    }
+}

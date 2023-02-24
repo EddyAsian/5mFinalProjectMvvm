@@ -13,7 +13,7 @@ class CocktailsMenuViewModel {
     
     private init() { }
     
-    let networkManager = NetworkLayer.shared
+    let networkManager = NetworkManager.shared
     var cocktailsArray = [Drinks]()
     
     func fetchCocktailsData() async throws -> [Drinks] {
