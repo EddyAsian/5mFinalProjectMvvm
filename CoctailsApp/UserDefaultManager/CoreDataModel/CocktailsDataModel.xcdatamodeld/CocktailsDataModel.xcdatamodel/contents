@@ -6,6 +6,6 @@
         <attribute name="cocktailsModel" optional="YES" attributeType="Binary"/>
         <attribute name="cocktailsName" optional="YES" attributeType="String"/>
         <attribute name="dateAdded" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="ratingNumber" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="ratingNumber" optional="YES" attributeType="String"/>
     </entity>
 </model>

@@ -17,7 +17,7 @@ extension Cocktails {
     }
 
     @NSManaged public var dateAdded: Date?
-    @NSManaged public var ratingNumber: Int32
+    @NSManaged public var ratingNumber: String?
     @NSManaged public var cocktailsDescription: String?
     @NSManaged public var cocktailsName: String?
     @NSManaged public var cocktailsImage: String?

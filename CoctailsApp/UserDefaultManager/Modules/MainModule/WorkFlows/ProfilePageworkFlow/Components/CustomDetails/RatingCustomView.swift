@@ -75,6 +75,7 @@ class RatingCustomView: UIView {
     }
     
     func display(item: Int) {
+        
         ratingLabel.text = "\(item)"
     }
 }

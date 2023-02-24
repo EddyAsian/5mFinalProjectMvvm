@@ -19,6 +19,9 @@ protocol SelecetProductDelegate: AnyObject {
 
 class ChoosedCocktailViewController: UIViewController {
     
+    
+    static let id = String(describing: ChoosedCocktailViewController.self)
+    
 //    public lazy var viewModel = { DrinkInfoViewModel() }()
     class var identifier: String { String(describing: self) }
     class var nib: UINib { UINib(nibName: identifier, bundle: nil) }
@@ -31,6 +34,10 @@ class ChoosedCocktailViewController: UIViewController {
 //            drinksCollectionView.reloadData()
 //        }
 //    }
+    
+    private var selectedProirity: String?
+    
+    public var addNewNote: ((_ ratingNumber: String) -> Void)?
     
     private var cocktailsCoreData: [Cocktails] = []
     var textToShow = ""
@@ -50,7 +57,7 @@ class ChoosedCocktailViewController: UIViewController {
 //        fatalError("init(coder:) has not been implemented")
 //    }
 //
-
+//    var addNewNote = { rati}
     
     var food: Drinks?
     
@@ -98,7 +105,7 @@ class ChoosedCocktailViewController: UIViewController {
         imageView.tintColor = ColorConstants.likedProductIcon
         let tap = UITapGestureRecognizer(
             target: self,
-            action: #selector(ChoosedCocktailViewController.likeTap)
+            action: #selector(likeTap)
         )
         imageView.addGestureRecognizer(tap)
         imageView.isUserInteractionEnabled = true
@@ -169,10 +176,103 @@ class ChoosedCocktailViewController: UIViewController {
         setUpUI()
 //        saveToDB()
         fetchSomething()
+       
         let backButton = UIBarButtonItem()
         backButton.title = "      "
         backButton.tintColor = .white
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+    }
+    
+    
+    
+    private func saveToDB(_ name: String, _ description: String, _ image: String, _ ratingNumber: String) {
+        let cocktail = Cocktails(context: AppDelegate.shared.coreDataStack.managedContext)
+        cocktail.setValue(Date(), forKey: #keyPath(Cocktails.dateAdded))
+        cocktail.setValue(name, forKey: #keyPath(Cocktails.cocktailsName))
+        cocktail.setValue(description, forKey: #keyPath(Cocktails.cocktailsDescription))
+        cocktail.setValue(image, forKey: #keyPath(Cocktails.cocktailsImage))
+        cocktail.setValue(ratingNumber, forKey: #keyPath(Cocktails.ratingNumber))
+        self.cocktailsCoreData.insert(cocktail, at: 0)
+        AppDelegate.shared.coreDataStack.saveContext()
+        DispatchQueue.main.async {
+//            self.tableView.reloadData()
+        }
+    }
+    
+    private func fetchSomething() {
+        let noteFetch: NSFetchRequest<Cocktails> = Cocktails.fetchRequest()
+        let sortByDate = NSSortDescriptor(key: #keyPath(Cocktails.dateAdded), ascending: false)
+        noteFetch.sortDescriptors = [sortByDate]
+        
+        do {
+            let managedContext = AppDelegate.shared.coreDataStack.managedContext
+            let result = try managedContext.fetch(noteFetch)
+            cocktailsCoreData = result
+//            tableView.reloadData()
+        } catch {
+            print("Error is \(error.localizedDescription)")
+        }
+    }
+    
+    private func setUpSubviews() {
+        view.addSubview(productImage)
+        productImage.addSubview(productsNameView)
+        productsNameView.addSubview(productsNameLabel)
+        view.addSubview(informationView)
+        informationView.addSubview(ratingView)
+        informationView.addSubview(likedProductIcon)
+        informationView.addSubview(descriptionTitleLabel)
+        informationView.addSubview(descriptionLabel)
+        informationView.addSubview(latestReviewsTitleLabel)
+        informationView.addSubview(reviewsViewFirst)
+        informationView.addSubview(reviewsViewSecond)
+        informationView.addSubview(addToBasketButton)
+        informationView.addSubview(backImage)
+    }
+    
+    private func setUpUI() {
+        setUpSubviews()
+        setUpConstraints()
+    }
+    
+    private func doitman() {
+     
+        let rating = ratingView.ratingLabel.text
+        self.addNewNote = { ratingNumber in
+            print(rating)
+        }
+    }
+    
+    @objc func likeTap() {
+        if isLiked == false {
+            likedProductIcon.image = UIImage(systemName: "heart")
+            isLiked = true
+        } else {
+            likedProductIcon.image = UIImage (systemName: "heart.fill")
+            doitman()
+            guard let rating = ratingView.ratingLabel.text else { return  }
+            addNewNote?(rating)
+            isLiked = false
+            }
+     }
+    
+    
+    @objc func openBasketVc() {
+//        dismiss(animated: true)
+        navigationController?.pushViewController(BasketChoosedViewController(), animated: true)
+    }
+    @objc func tappedMe() {
+//        dismiss(animated: true, completion: nil)
+//        let tabBar = CocktailsTabBarController()
+//        tabBar.modalPresentationStyle = .fullScreen
+//        present(tabBar, animated: true, completion: nil)
+//        tabBar.selectedIndex = 3
+        
+        delegate?.addNewDrink(cocktail!)
+        
+        guard let foodname = cocktail?.name,
+              let foodDescription = cocktail?.instructions else { return }
+        
     }
     
     private func setUpConstraints() {
@@ -261,86 +361,6 @@ class ChoosedCocktailViewController: UIViewController {
             maker.width.height.equalTo(105)
         }
      }
-    
-    private func saveToDB(_ name: String, _ description: String, _ image: String, _ model: String) {
-        let cocktail = Cocktails(context: AppDelegate.shared.coreDataStack.managedContext)
-        cocktail.setValue(Date(), forKey: #keyPath(Cocktails.dateAdded))
-        cocktail.setValue(name, forKey: #keyPath(Cocktails.cocktailsName))
-        cocktail.setValue(description, forKey: #keyPath(Cocktails.cocktailsDescription))
-        cocktail.setValue(image, forKey: #keyPath(Cocktails.cocktailsImage))
-        cocktail.setValue(model, forKey: #keyPath(Cocktails.cocktailsModel))
-        self.cocktailsCoreData.insert(cocktail, at: 0)
-        AppDelegate.shared.coreDataStack.saveContext()
-        DispatchQueue.main.async {
-//            self.tableView.reloadData()
-        }
-    }
-    
-    private func fetchSomething() {
-        let noteFetch: NSFetchRequest<Cocktails> = Cocktails.fetchRequest()
-        let sortByDate = NSSortDescriptor(key: #keyPath(Cocktails.dateAdded), ascending: false)
-        noteFetch.sortDescriptors = [sortByDate]
-        
-        do {
-            let managedContext = AppDelegate.shared.coreDataStack.managedContext
-            let result = try managedContext.fetch(noteFetch)
-            cocktailsCoreData = result
-//            tableView.reloadData()
-        } catch {
-            print("Error is \(error.localizedDescription)")
-        }
-    }
-    
-    private func setUpSubviews() {
-        view.addSubview(productImage)
-        productImage.addSubview(productsNameView)
-        productsNameView.addSubview(productsNameLabel)
-        view.addSubview(informationView)
-        informationView.addSubview(ratingView)
-        informationView.addSubview(likedProductIcon)
-        informationView.addSubview(descriptionTitleLabel)
-        informationView.addSubview(descriptionLabel)
-        informationView.addSubview(latestReviewsTitleLabel)
-        informationView.addSubview(reviewsViewFirst)
-        informationView.addSubview(reviewsViewSecond)
-        informationView.addSubview(addToBasketButton)
-        informationView.addSubview(backImage)
-    }
-    
-    private func setUpUI() {
-        setUpSubviews()
-        setUpConstraints()
-    }
-    
-
-    
-    @objc func likeTap() {
-        if isLiked == false {
-            likedProductIcon.image = UIImage(systemName: "heart")
-            isLiked = true
-        } else {
-            likedProductIcon.image = UIImage (systemName: "heart.fill")
-            isLiked = false
-            }
-     }
-    
-    @objc func openBasketVc() {
-//        dismiss(animated: true)
-        navigationController?.pushViewController(BasketChoosedViewController(), animated: true)
-    }
-    @objc func tappedMe() {
-//        dismiss(animated: true, completion: nil)
-//        let tabBar = CocktailsTabBarController()
-//        tabBar.modalPresentationStyle = .fullScreen
-//        present(tabBar, animated: true, completion: nil)
-//        tabBar.selectedIndex = 3
-        
-        delegate?.addNewDrink(cocktail!)
-        
-        guard let foodname = cocktail?.name,
-              let foodDescription = cocktail?.instructions else { return }
-        
-    }
 }
 
 
