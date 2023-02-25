@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navController.viewControllers = [
             CocktailsMenuViewController(),
             ChoosedCocktailViewController(),
-            BasketViewController(),
+            FavouriteDrinksViewController(),
             BasketChoosedViewController()
         ]
         

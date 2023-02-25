@@ -50,30 +50,30 @@ class BasketCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    var productBuyNowButton: UIButton = {
-        var button = UIButton(type: .system)
-        button.backgroundColor = ColorConstants.buyNow
-        button.setTitleColor(.white, for: .normal)
-        button.setTitle("Buy now", for: .normal)
-        button.titleLabel?.textColor = .white
-        button.titleLabel?.font = .systemFont(ofSize: 10, weight: .semibold)
-        button.titleLabel?.textAlignment = .left
-        button.layer.cornerRadius = 7
-        button.layer.shadowOffset = CGSize(width: 0.0, height: 5)
-        button.layer.shadowOpacity = 0.2
-        button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        button.layer.shadowOffset = CGSize(width: 0, height: 4)
-        button.layer.shadowOpacity = 1
-        button.layer.shadowRadius = 4
-        button.layer.masksToBounds = false
-
-        button.addTarget(
-            self,
-            action: #selector(addToCart),
-            for: .touchUpInside
-        )
-        return button
-    }()
+//    var productBuyNowButton: UIButton = {
+//        var button = UIButton(type: .system)
+//        button.backgroundColor = ColorConstants.buyNow
+//        button.setTitleColor(.white, for: .normal)
+//        button.setTitle("Buy now", for: .normal)
+//        button.titleLabel?.textColor = .white
+//        button.titleLabel?.font = .systemFont(ofSize: 10, weight: .semibold)
+//        button.titleLabel?.textAlignment = .left
+//        button.layer.cornerRadius = 7
+//        button.layer.shadowOffset = CGSize(width: 0.0, height: 5)
+//        button.layer.shadowOpacity = 0.2
+//        button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+//        button.layer.shadowOffset = CGSize(width: 0, height: 4)
+//        button.layer.shadowOpacity = 1
+//        button.layer.shadowRadius = 4
+//        button.layer.masksToBounds = false
+//
+//        button.addTarget(
+//            self,
+//            action: #selector(addToCart),
+//            for: .touchUpInside
+//        )
+//        return button
+//    }()
 
     private lazy var stepperControl: StepperView = {
         var stepper = StepperView()
@@ -83,10 +83,10 @@ class BasketCollectionViewCell: UICollectionViewCell {
         return stepper
     }()
     
-    @objc
-    func addToCart() {
-        print("add to cart. buy")
-    }
+//    @objc
+//    func addToCart() {
+//        print("add to cart. buy")
+//    }
 
     private func setUpConstraints() {
         productImage.snp.makeConstraints{ maker in
@@ -110,19 +110,19 @@ class BasketCollectionViewCell: UICollectionViewCell {
             maker.height.equalTo(50)
         }
 
-        productBuyNowButton.snp.makeConstraints { maker in
-            maker.top.equalTo(productLabel.snp.bottom).offset(-10)
-            maker.centerX.equalTo(productLabel)
-            maker.width.equalTo(80)
-            maker.height.equalTo(25)
-        }
+//        productBuyNowButton.snp.makeConstraints { maker in
+//            maker.top.equalTo(productLabel.snp.bottom).offset(-10)
+//            maker.centerX.equalTo(productLabel)
+//            maker.width.equalTo(80)
+//            maker.height.equalTo(25)
+//        }
         
-        stepperControl.snp.makeConstraints { maker in
-            maker.centerX.equalTo(productBuyNowButton).inset(-28)
-            maker.top.equalTo(productLabel.snp.bottom).offset(-10)
-              maker.width.equalTo(78)
-              maker.height.equalTo(22)
-          }
+//        stepperControl.snp.makeConstraints { maker in
+//            maker.centerX.equalTo(productBuyNowButton).inset(-28)
+//            maker.top.equalTo(productLabel.snp.bottom).offset(-10)
+//              maker.width.equalTo(78)
+//              maker.height.equalTo(22)
+//          }
     }
 
     override init(frame: CGRect) {
@@ -140,8 +140,8 @@ class BasketCollectionViewCell: UICollectionViewCell {
         self.addSubview(productImage)
         self.addSubview(descriptionLabel)
         self.addSubview(productLabel)
-        self.addSubview(productBuyNowButton)
-        self.addSubview(stepperControl)
+//        self.addSubview(productBuyNowButton)
+//        self.addSubview(stepperControl)
     }
 
     required init?(coder aDecoder: NSCoder) {

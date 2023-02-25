@@ -1,3 +1,4 @@
+
 //
 //  MainPageViewController.swift
 //  cocktailsApp
@@ -9,33 +10,67 @@ import UIKit
 import SnapKit
 import RxRelay
 
-class CocktailsMenuViewController: UIViewController {
+
+extension UIView {
+    static func identifier() -> String {
+        String(describing: self)
+    }
+}
+
+extension UICollectionView {
+    enum ReusableViewType: String {
+        case UICollectionElementKindSectionHeader
+        case UICollectionElementKindSectionFooter
+    }
+    
+    func registerReusable<Cell: UICollectionViewCell>(CellType: Cell.Type) {
+        register(CellType, forCellWithReuseIdentifier: CellType.identifier())
+    }
+    
+    func dequeueIdentifiableCell<Cell: UICollectionViewCell>(_ type: Cell.Type, for indexPath: IndexPath) -> Cell {
+        let reuseId = Cell.identifier()
+        guard let cell = dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as? Cell else { fatalError() }
+        return cell
+    }
+    
+    func registerReusableView<View: UICollectionReusableView>(ViewType: View.Type, type: ReusableViewType) {
+        register(ViewType, forSupplementaryViewOfKind: type.rawValue, withReuseIdentifier: View.identifier())
+    }
+    
+    func dequeuReusableView<View: UICollectionReusableView>(ViewType: View.Type, type: ReusableViewType, for indexPath: IndexPath) -> View {
+        let reuseId = View.identifier()
+        guard let view = dequeueReusableSupplementaryView(ofKind: type.rawValue,
+                                                          withReuseIdentifier: reuseId,
+                                                          for: indexPath) as? View
+        else { fatalError() }
+        return view
+    }
+}
+
+
+
+class FavouriteDrinksViewController: UIViewController {
     
     private var viewModel: MainViewModelType = MainViewModel()
-    
-    private var choosedForBasketArray: [Drinks] = []
-    
+  
     // For requesting to API to get next letter's drinks
     private var currentLetterUnicodeVoralue: UInt32 = 97
     private var currentLetter = "a"
+  
+    var cocktail: Drinks?
     
-    private var drinks: [Drinks] = [] {
+    private var drinks = [Drinks]() {
         didSet {
             filteredDrinks = drinks
         }
     }
     
-    private var filteredDrinks = [Drinks]() {
-        didSet {
-            updateUIwithSearchResultsState(resultIsEmpty: filteredDrinks.isEmpty)
-            drinksCollectionView.reloadData()
-        }
-    }
     
+
     // MARK: Subviews creating
     private lazy var allDrinksTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Tastiest Cocktails"
+        label.text = "Your Favourite ❤️"
         label.font = UIFont(name: "Avenir Next Bold", size: 26)
         label.textColor = .white
         label.textAlignment = .center
@@ -44,7 +79,7 @@ class CocktailsMenuViewController: UIViewController {
     
     private lazy var pageInfoSubtitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Find the best selling cocktails.\n All drinks are freshly prepared."
+        label.text = "Cehck your choosed drinks\n and we will deliver them."
         label.numberOfLines = 0
         label.font = UIFont(name: "Avenir-Roman", size: 18)
         label.textColor = .white
@@ -68,9 +103,10 @@ class CocktailsMenuViewController: UIViewController {
         searchBar.layer.shadowOpacity = 1
         searchBar.layer.shadowRadius = 4
         searchBar.layer.masksToBounds = false
+        
         return searchBar
     }()
-    
+        
     // Background view for UICollectionView creating
     private lazy var backgroundViewForCollection: UIView = {
         let view = UIView()
@@ -80,23 +116,46 @@ class CocktailsMenuViewController: UIViewController {
         return view
     }()
     
-    // UICollectionView creating
+    
     private lazy var drinksCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 10
+        layout.itemSize = CGSize(width: screenWidth, height: 10)
+                layout.minimumLineSpacing = 6
         layout.scrollDirection = .vertical
+        
         layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         let view = UICollectionView(
             frame: .zero,
             collectionViewLayout: layout
         )
+        
+        view.registerReusable(CellType: BasketCollectionViewCell.self)
         view.backgroundColor = .clear
         view.showsVerticalScrollIndicator = false
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+  
+//    private lazy var drinksCollectionView: UICollectionView = {
+//        let layout = UICollectionViewFlowLayout()
+//        layout.itemSize = CGSize(width: screenWidth, height: 10)
+//        layout.minimumLineSpacing = 2
+////        layout.headerReferenceSize = CGSize(width: screenWidth, height: 40)
+////        layout.footerReferenceSize = CGSize(width: screenWidth, height: 20)
+//        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
+//        view.delegate = self
+//        view.dataSource = self
+//        view.registerReusable(CellType: BasketCollectionViewCell.self)
+////        view.registerReusableView(ViewType: BasketHeaderView.self, type: .UICollectionElementKindSectionHeader)
+////        view.registerReusableView(ViewType: BasketFooterView.self, type: .UICollectionElementKindSectionFooter)
+//        view.backgroundColor = ColorConstants.cellBack
+//        return view
+//    }()
     
-    // No Cocktails found Label creating.
+    
+    
+    // No Cocktails found Label creating. Appears in case if
+    // there is no cocktail found with name that was input.
     private lazy var noCocktailsFoundLabel: UILabel = {
         let label =  UILabel(
             frame: CGRect(
@@ -106,7 +165,7 @@ class CocktailsMenuViewController: UIViewController {
                 height: 50
             )
         )
-        label.text = "Oops, there is No cocktail with this name😊\nPlease, try another drink,\n or text to support and we will add it"
+        label.text = "Oops, there is No cocktail with this name😊\n Maybe you didn't buy it yet?"
         label.font = UIFont(name: "Avenir Next", size: 18)
         label.textColor = .black
         label.textAlignment = .center
@@ -115,28 +174,14 @@ class CocktailsMenuViewController: UIViewController {
         return label
     }()
     
-    private lazy var activityIndicator: UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView()
-        view.hidesWhenStopped = true
-        view.startAnimating()
-        return view
-    }()
-    
-    private lazy var isLoading: Bool = false {
-        didSet {
-            _ = isLoading ? activityIndicator.startAnimating() :activityIndicator.stopAnimating()
-        }
-    }
-    
     override func loadView() {
         super.loadView()
-        view.backgroundColor = ColorConstants.background
+        view.backgroundColor = ColorConstants.tabBarItemLight
         setupSubViews()
-        setUPConstraints()
+        setUpConstraints()
         configureDrinksCollectionView()
         configureSearchDrinkSearchBar()
         getDrinksForLetter(currentLetter)
-        
     }
     
     private func setupSubViews() {
@@ -146,33 +191,6 @@ class CocktailsMenuViewController: UIViewController {
         view.addSubview(backgroundViewForCollection)
         view.addSubview(drinksCollectionView)
         view.addSubview(noCocktailsFoundLabel)
-        view.addSubview(activityIndicator)
-    }
-    
-    // MARK: Call API methods ()
-    private func getDrinksForLetter(_ letter: String) {
-        Task {
-            isLoading = true
-            let drinksFromAPI = try await viewModel.getDrinksForLetter(letter).drinks ?? []
-            drinks.append(contentsOf: drinksFromAPI)
-            isLoading = false
-        }
-    }
-    
-    private func getDrinksForName(_ name: String) {
-        Task {
-            filteredDrinks = try await viewModel.getDrinksByName(name).drinks ?? []
-        }
-    }
-    
-    private func updateUIwithSearchResultsState(resultIsEmpty: Bool) {
-        if filteredDrinks.isEmpty && !drinks.isEmpty {
-            drinksCollectionView.isHidden = true
-            noCocktailsFoundLabel.isHidden = false
-        } else {
-            drinksCollectionView.isHidden = false
-            noCocktailsFoundLabel.isHidden = true
-        }
     }
     
     // MARK: Configuring methods ()
@@ -189,9 +207,41 @@ class CocktailsMenuViewController: UIViewController {
         drinksCollectionView.dataSource = self
     }
     
+    private func updateUIwithSearchResultsState(resultIsEmpty: Bool) {
+        if filteredDrinks.isEmpty && !drinks.isEmpty {
+            drinksCollectionView.isHidden = true
+            noCocktailsFoundLabel.isHidden = false
+        } else {
+            drinksCollectionView.isHidden = false
+            noCocktailsFoundLabel.isHidden = true
+        }
+    }
+
+    private var filteredDrinks = [Drinks]() {
+        didSet {
+            updateUIwithSearchResultsState(resultIsEmpty: filteredDrinks.isEmpty)
+            drinksCollectionView.reloadData()
+        }
+    }
+
+    // MARK: Call API methods ()
+    private func getDrinksForLetter(_ letter: String) {
+        Task {
+            let drinksFromAPI = try await viewModel.getDrinksForLetter(letter).drinks ?? []
+            drinks.append(contentsOf: drinksFromAPI)
+        }
+    }
+
+    private func getDrinksForName(_ name: String) {
+        Task {
+            filteredDrinks = try await viewModel.getDrinksByName(name).drinks ?? []
+        }
+    }
     
-    private func setUPConstraints() {
-        allDrinksTitleLabel.snp.makeConstraints { make in
+    // MARK: updateUI() method
+    private func setUpConstraints() {
+        
+       allDrinksTitleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(55)
             make.centerX.equalToSuperview()
         }
@@ -199,6 +249,7 @@ class CocktailsMenuViewController: UIViewController {
         pageInfoSubtitleLabel.snp.makeConstraints { make in
             make.top.equalTo(allDrinksTitleLabel.snp.bottom).offset(0)
             make.centerX.equalToSuperview()
+//            make.width.equalTo(232)
             make.height.equalTo(77)
         }
         
@@ -214,8 +265,8 @@ class CocktailsMenuViewController: UIViewController {
             make.bottom.equalToSuperview().inset(35)
             make.left.right.bottom.equalToSuperview()
         }
-        
-        drinksCollectionView.snp.makeConstraints { make in
+
+       drinksCollectionView.snp.makeConstraints { make in
             make.top.equalTo(backgroundViewForCollection.snp.top)
             make.left.equalTo(backgroundViewForCollection.snp.left).offset(20)
             make.right.equalTo(backgroundViewForCollection.snp.right).offset(-20)
@@ -226,16 +277,12 @@ class CocktailsMenuViewController: UIViewController {
             make.centerX.equalTo(drinksCollectionView.snp.centerX)
             make.centerY.equalTo(drinksCollectionView.snp.centerY)
         }
-        
-        activityIndicator.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.height.width.equalTo(24)
-        }
     }
 }
-    
 
-extension CocktailsMenuViewController: UICollectionViewDataSource {
+
+
+extension FavouriteDrinksViewController: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
@@ -246,15 +293,15 @@ extension CocktailsMenuViewController: UICollectionViewDataSource {
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         guard let cell = drinksCollectionView.dequeueReusableCell(
-            withReuseIdentifier: MenuCollectionViewCell.reuseID,
+            withReuseIdentifier: BasketCollectionViewCell.reuseID,
             for: indexPath
-        ) as? MenuCollectionViewCell else { return UICollectionViewCell() }
+        ) as? BasketCollectionViewCell else { return UICollectionViewCell() }
         cell.configure(with: filteredDrinks[indexPath.row])
         return cell
     }
 }
 
-extension CocktailsMenuViewController: UICollectionViewDelegateFlowLayout {
+extension FavouriteDrinksViewController: UICollectionViewDelegateFlowLayout {
     private func moveToNextLetter(
         letter: inout String,
         value: inout UInt32
@@ -285,14 +332,14 @@ extension CocktailsMenuViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension CocktailsMenuViewController {
+extension FavouriteDrinksViewController {
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        let cellCustomWidth = (collectionView.bounds.width - 50) / 2
-        return CGSize(width: cellCustomWidth, height: cellCustomWidth + 11)
+        let cellCustomWidth = (collectionView.bounds.width - 100)
+        return CGSize(width: cellCustomWidth, height: cellCustomWidth - 100)
     }
     
     func collectionView(
@@ -306,12 +353,12 @@ extension CocktailsMenuViewController {
             coctailVC.cocktail = drinks
             print(coctailVC.cocktail as Any)
         })
-//        coctailVC.delegate = self
         navigationController?.pushViewController(coctailVC, animated: true)
     }
 }
 
-extension CocktailsMenuViewController: UISearchBarDelegate {
+
+extension FavouriteDrinksViewController: UISearchBarDelegate {
     func searchBar(
         _ searchBar: UISearchBar,
         textDidChange searchText: String
@@ -321,8 +368,5 @@ extension CocktailsMenuViewController: UISearchBarDelegate {
     }
 }
 
-extension CocktailsMenuViewController: SelecetProductDelegate {
-    func addNewDrink(_ drink: Drinks) {
-        choosedForBasketArray.append(drink)
-    }
-}
+
+

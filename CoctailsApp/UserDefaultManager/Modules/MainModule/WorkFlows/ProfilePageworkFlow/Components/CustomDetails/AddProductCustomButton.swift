@@ -101,7 +101,7 @@ class AddProductCustomButton: UIButton, UIGestureRecognizerDelegate {
     }
 
     @objc func tappedMe(_ sender: Any) {
-        NotificationCenter.default.post(Notification(name: NSNotification.Name("RequestViewController"), object: BasketViewController.self))
+        NotificationCenter.default.post(Notification(name: NSNotification.Name("RequestViewController"), object: FavouriteDrinksViewController.self))
     }
 
 }

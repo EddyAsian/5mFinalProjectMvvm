@@ -26,6 +26,7 @@ class CocktailsTabBarController: UITabBarController {
     private let itemIcons: [UIImage] = [
         UIImage(systemName: "person.circle") ?? UIImage(),
         UIImage(systemName: "house.circle") ?? UIImage(),
+        UIImage(systemName: "heart.circle") ?? UIImage(),
         UIImage(systemName: "cart.circle") ?? UIImage()
     ]
     
@@ -36,17 +37,25 @@ class CocktailsTabBarController: UITabBarController {
                 from: AuthorizedProfileVC(),
                 image: generateItemIcon(from: itemIcons[0])
             ),
+            
             createControllers(
-
                 from: CocktailsMenuViewController(),
                 image: generateItemIcon(from: itemIcons[1])
             ),
+            
             createControllers(
-                from: BasketViewController(),
+                from: FavouriteDrinksViewController(),
                 image: generateItemIcon(from: itemIcons[2])
+            ),
+            
+            createControllers(
+                from: BasketChoosedViewController(),
+                image: generateItemIcon(from: itemIcons[3])
             )
         ]
     }
+    
+    
     
     private func setTabBarAppearance () {
         let positionOnX: CGFloat = 10

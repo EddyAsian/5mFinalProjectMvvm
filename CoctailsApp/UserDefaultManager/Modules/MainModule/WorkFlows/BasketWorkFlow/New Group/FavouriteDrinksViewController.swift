@@ -49,7 +49,7 @@ extension UICollectionView {
 
 
 
-class BasketViewController: UIViewController {
+class FavouriteDrinksViewController: UIViewController {
     
     
     var cocktail: Drinks?
@@ -100,7 +100,7 @@ class BasketViewController: UIViewController {
     // MARK: Subviews creating
     private lazy var allDrinksTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Your orders"
+        label.text = "Your Favourite ❤️"
         label.font = UIFont(name: "Avenir Next Bold", size: 26)
         label.textColor = .white
         label.textAlignment = .center
@@ -277,7 +277,7 @@ class BasketViewController: UIViewController {
     
 }
 
-extension BasketViewController: UICollectionViewDataSource {
+extension FavouriteDrinksViewController: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
@@ -296,7 +296,7 @@ extension BasketViewController: UICollectionViewDataSource {
     }
 }
 
-extension BasketViewController: UICollectionViewDelegateFlowLayout {
+extension FavouriteDrinksViewController: UICollectionViewDelegateFlowLayout {
     private func moveToNextLetter(
         letter: inout String,
         value: inout UInt32
@@ -327,7 +327,7 @@ extension BasketViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension BasketViewController {
+extension FavouriteDrinksViewController {
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -353,7 +353,7 @@ extension BasketViewController {
 }
 
 
-extension BasketViewController: UISearchBarDelegate {
+extension FavouriteDrinksViewController: UISearchBarDelegate {
     func searchBar(
         _ searchBar: UISearchBar,
         textDidChange searchText: String

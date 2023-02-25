@@ -19,21 +19,21 @@ protocol SelecetProductDelegate: AnyObject {
 
 class ChoosedCocktailViewController: UIViewController {
     
-    
     static let id = String(describing: ChoosedCocktailViewController.self)
     
-//    public lazy var viewModel = { DrinkInfoViewModel() }()
+    var cocktail: Drinks?
+    
+    //    public lazy var viewModel = { DrinkInfoViewModel() }()
     class var identifier: String { String(describing: self) }
     class var nib: UINib { UINib(nibName: identifier, bundle: nil) }
     
-    
     private var filteredDrinks = [Drinks]()
-//    {
-//        didSet {
-//            updateUIwithSearchResultsState(resultIsEmpty: filteredDrinks.isEmpty)
-//            drinksCollectionView.reloadData()
-//        }
-//    }
+    //    {
+    //        didSet {
+    //            updateUIwithSearchResultsState(resultIsEmpty: filteredDrinks.isEmpty)
+    //            drinksCollectionView.reloadData()
+    //        }
+    //    }
     
     private var selectedProirity: String?
     
@@ -45,21 +45,21 @@ class ChoosedCocktailViewController: UIViewController {
     
     weak var delegate: SelecetProductDelegate?
     
-//    private let info: Drinks
-//
-//    init(dish: Drinks) {
-//
-//        self.info = dish
-//        super.init(nibName: nil, bundle: nil)
-//    }
+    //    private let info: Drinks
+    //
+    //    init(dish: Drinks) {
+    //
+    //        self.info = dish
+    //        super.init(nibName: nil, bundle: nil)
+    //    }
     
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//
-//    var addNewNote = { rati}
+    //    required init?(coder: NSCoder) {
+    //        fatalError("init(coder:) has not been implemented")
+    //    }
+    //
+    //    var addNewNote = { rati}
     
-    var food: Drinks?
+    //    var food: Drinks?
     
     
     lazy var productImage: UIImageView = {
@@ -168,50 +168,21 @@ class ChoosedCocktailViewController: UIViewController {
     }()
     
     
-    
-    var cocktail: Drinks?
-    
     override func loadView() {
         super.loadView()
         setUpUI()
-//        saveToDB()
-        fetchSomething()
-       
+        //        saveRatingToDB(ratingView.ratingLabel.text!)
+        //        fetchSomething()
+        
         let backButton = UIBarButtonItem()
         backButton.title = "      "
         backButton.tintColor = .white
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
     }
     
-    
-    
-    private func saveToDB(_ name: String, _ description: String, _ image: String, _ ratingNumber: String) {
-        let cocktail = Cocktails(context: AppDelegate.shared.coreDataStack.managedContext)
-        cocktail.setValue(Date(), forKey: #keyPath(Cocktails.dateAdded))
-        cocktail.setValue(name, forKey: #keyPath(Cocktails.cocktailsName))
-        cocktail.setValue(description, forKey: #keyPath(Cocktails.cocktailsDescription))
-        cocktail.setValue(image, forKey: #keyPath(Cocktails.cocktailsImage))
-        cocktail.setValue(ratingNumber, forKey: #keyPath(Cocktails.ratingNumber))
-        self.cocktailsCoreData.insert(cocktail, at: 0)
-        AppDelegate.shared.coreDataStack.saveContext()
-        DispatchQueue.main.async {
-//            self.tableView.reloadData()
-        }
-    }
-    
-    private func fetchSomething() {
-        let noteFetch: NSFetchRequest<Cocktails> = Cocktails.fetchRequest()
-        let sortByDate = NSSortDescriptor(key: #keyPath(Cocktails.dateAdded), ascending: false)
-        noteFetch.sortDescriptors = [sortByDate]
-        
-        do {
-            let managedContext = AppDelegate.shared.coreDataStack.managedContext
-            let result = try managedContext.fetch(noteFetch)
-            cocktailsCoreData = result
-//            tableView.reloadData()
-        } catch {
-            print("Error is \(error.localizedDescription)")
-        }
+    private func setUpUI() {
+        setUpSubviews()
+        setUpConstraints()
     }
     
     private func setUpSubviews() {
@@ -230,15 +201,46 @@ class ChoosedCocktailViewController: UIViewController {
         informationView.addSubview(backImage)
     }
     
-    private func setUpUI() {
-        setUpSubviews()
-        setUpConstraints()
+    
+    private func saveRatingToDB(_ ratingNumber: String) {
+        let cocktail = Cocktails(context: AppDelegate.shared.coreDataStack.managedContext)
+        cocktail.setValue(ratingNumber, forKey: #keyPath(Cocktails.ratingNumber))
+    }
+    
+    private func saveToDB(_ name: String, _ description: String, _ image: String, _ ratingNumber: String) {
+        let cocktail = Cocktails(context: AppDelegate.shared.coreDataStack.managedContext)
+        cocktail.setValue(Date(), forKey: #keyPath(Cocktails.dateAdded))
+        cocktail.setValue(name, forKey: #keyPath(Cocktails.cocktailsName))
+        cocktail.setValue(description, forKey: #keyPath(Cocktails.cocktailsDescription))
+        cocktail.setValue(image, forKey: #keyPath(Cocktails.cocktailsImage))
+        cocktail.setValue(ratingNumber, forKey: #keyPath(Cocktails.ratingNumber))
+        self.cocktailsCoreData.insert(cocktail, at: 0)
+        AppDelegate.shared.coreDataStack.saveContext()
+        DispatchQueue.main.async {
+            //            self.ratingView.reloadData()
+        }
+    }
+    
+    private func fetchSomething() {
+        let noteFetch: NSFetchRequest<Cocktails> = Cocktails.fetchRequest()
+        let sortByDate = NSSortDescriptor(key: #keyPath(Cocktails.dateAdded), ascending: false)
+        noteFetch.sortDescriptors = [sortByDate]
+        
+        do {
+            let managedContext = AppDelegate.shared.coreDataStack.managedContext
+            let result = try managedContext.fetch(noteFetch)
+            cocktailsCoreData = result
+            //            tableView.reloadData()
+        } catch {
+            print("Error is \(error.localizedDescription)")
+        }
     }
     
     private func doitman() {
-     
         let rating = ratingView.ratingLabel.text
-        self.addNewNote = { ratingNumber in
+        self.addNewNote = { [weak self] ratingNumber in
+            guard let self else { return }
+            self.saveRatingToDB(ratingNumber)
             print(rating)
         }
     }
@@ -249,24 +251,25 @@ class ChoosedCocktailViewController: UIViewController {
             isLiked = true
         } else {
             likedProductIcon.image = UIImage (systemName: "heart.fill")
-            doitman()
-            guard let rating = ratingView.ratingLabel.text else { return  }
-            addNewNote?(rating)
+//            doitman()
+//            guard let rating = ratingView.ratingLabel.text else { return  }
+//            addNewNote?(rating)
             isLiked = false
-            }
-     }
+        }
+    }
     
     
     @objc func openBasketVc() {
-//        dismiss(animated: true)
+        //        dismiss(animated: true)
         navigationController?.pushViewController(BasketChoosedViewController(), animated: true)
     }
+    
     @objc func tappedMe() {
-//        dismiss(animated: true, completion: nil)
-//        let tabBar = CocktailsTabBarController()
-//        tabBar.modalPresentationStyle = .fullScreen
-//        present(tabBar, animated: true, completion: nil)
-//        tabBar.selectedIndex = 3
+        //        dismiss(animated: true, completion: nil)
+        //        let tabBar = CocktailsTabBarController()
+        //        tabBar.modalPresentationStyle = .fullScreen
+        //        present(tabBar, animated: true, completion: nil)
+        //        tabBar.selectedIndex = 3
         
         delegate?.addNewDrink(cocktail!)
         
@@ -324,7 +327,7 @@ class ChoosedCocktailViewController: UIViewController {
             maker.top.equalTo(descriptionTitleLabel.snp.bottom)
             maker.left.equalTo(descriptionTitleLabel)
             maker.width.equalTo(160)
-//            maker.height.equalTo(100)
+            //            maker.height.equalTo(100)
         }
         
         latestReviewsTitleLabel.snp.makeConstraints { maker in
@@ -360,7 +363,7 @@ class ChoosedCocktailViewController: UIViewController {
             maker.top.equalToSuperview().offset(-438)
             maker.width.height.equalTo(105)
         }
-     }
+    }
 }
 
 
@@ -369,28 +372,28 @@ extension Notification.Name {
 }
 
 
-    extension ChoosedCocktailViewController {
-//        func collectionView(
-//            _ collectionView: UICollectionView,
-//            layout collectionViewLayout: UICollectionViewLayout,
-//            sizeForItemAt indexPath: IndexPath
-//        ) -> CGSize {
-//            let cellCustomWidth = (collectionView.bounds.width - 50) / 2
-//            return CGSize(width: cellCustomWidth, height: cellCustomWidth + 11)
-//        }
-        
-        func collectionView(
-            _ collectionView: UICollectionView,
-            didSelectItemAt indexPath: IndexPath
-        ) {
-            let choosedForBasketVC = BasketViewController()
-            let model = filteredDrinks[indexPath.row]
-            let observe = BehaviorRelay<Drinks>(value: model)
-            observe.subscribe(onNext: { drinks in
-                choosedForBasketVC.cocktail = drinks
-                print(choosedForBasketVC.cocktail as Any)
-            })
-//            choosedForBasketVC.delegate = self
-            navigationController?.pushViewController(choosedForBasketVC, animated: true)
-        }
+extension ChoosedCocktailViewController {
+    //        func collectionView(
+    //            _ collectionView: UICollectionView,
+    //            layout collectionViewLayout: UICollectionViewLayout,
+    //            sizeForItemAt indexPath: IndexPath
+    //        ) -> CGSize {
+    //            let cellCustomWidth = (collectionView.bounds.width - 50) / 2
+    //            return CGSize(width: cellCustomWidth, height: cellCustomWidth + 11)
+    //        }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
+        let choosedForBasketVC = FavouriteDrinksViewController()
+        let model = filteredDrinks[indexPath.row]
+        let observe = BehaviorRelay<Drinks>(value: model)
+        observe.subscribe(onNext: { drinks in
+            choosedForBasketVC.cocktail = drinks
+            print(choosedForBasketVC.cocktail as Any)
+        })
+        //            choosedForBasketVC.delegate = self
+        navigationController?.pushViewController(choosedForBasketVC, animated: true)
     }
+}
