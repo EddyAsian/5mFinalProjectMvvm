@@ -70,6 +70,58 @@ class AddNumberViewController: UIViewController {
         return imageView
     }()
     
+    override func loadView() {
+        super.loadView()
+        view.backgroundColor = ColorConstants.informationView
+        setUpUI()
+        
+    }
+    
+    private func setUpUI() {
+        setUpSubviews()
+        setUpConstraints()
+    }
+    
+    private func setUpSubviews() {
+        view.addSubview(menuPagesHeader)
+        view.addSubview(borderView)
+        view.addSubview(menuPagesDescription)
+        view.addSubview(smsCode)
+        view.addSubview(acceptNumber)
+        view.addSubview(phoneImage)
+    }
+    
+    @objc
+    private func acceptTapped(_ sender: UIButton) {
+        inputPhoneNumber()
+        let authServiceVC = AuthServiceViewController()
+//        dismiss(animated: false)
+        present(authServiceVC, animated: true)
+        AuthManager.shared.authentificateWithPN()
+    }
+    
+    private func showAlert() {
+        let alert = UIAlertController(
+            title: "Incorrect number",
+            message: "Please input in right format",
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(title: "OK", style: .cancel)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+    
+    func inputPhoneNumber() {
+        guard let sms = smsCode.text, sms.count == 13 else {
+            showAlert()
+            return
+        }
+    }
+    
+//    override func viewDidDisappear(_ animated: Bool) {
+//        self.dismiss(animated: false, completion: nil)
+//    }
+    
     private func setUpConstraints() {
         menuPagesHeader.snp.makeConstraints{ maker in
             maker.top.equalToSuperview().offset(100)
@@ -111,59 +163,6 @@ class AddNumberViewController: UIViewController {
             maker.height.equalTo(1200)
         }
     }
-    
-    override func loadView() {
-        super.loadView()
-        view.backgroundColor = ColorConstants.informationView
-        setUpUI()
-        
-    }
-    
-    private func setUpUI() {
-        setUpSubviews()
-        setUpConstraints()
-    }
-    
-    private func setUpSubviews() {
-        view.addSubview(menuPagesHeader)
-        view.addSubview(borderView)
-        view.addSubview(menuPagesDescription)
-        view.addSubview(smsCode)
-        view.addSubview(acceptNumber)
-        view.addSubview(phoneImage)
-    }
-    
-    @objc
-    private func acceptTapped(_ sender: UIButton) {
-        inputPhoneNumber()
-        let authServiceVC = AuthServiceViewController()
-//        dismiss(animated: false)
-        present(authServiceVC, animated: true)
-        AuthManager.shared.authentificateWithPN()
-        
-    }
-    
-    private func showAlert() {
-        let alert = UIAlertController(
-            title: "Такого номера не существует",
-            message: "Напишите в правильном формате",
-            preferredStyle: .alert
-        )
-        let okAction = UIAlertAction(title: "OK", style: .cancel)
-        alert.addAction(okAction)
-        present(alert, animated: true)
-    }
-    
-    func inputPhoneNumber() {
-        guard let sms = smsCode.text, sms.count == 13 else {
-            showAlert()
-            return
-        }
-    }
-    
-//    override func viewDidDisappear(_ animated: Bool) {
-//        self.dismiss(animated: false, completion: nil)
-//    }
 }
 
 

@@ -9,4 +9,5 @@ import Foundation
 
 class Constants {
     static let cornerRadius: CGFloat = 10
+    static let indent: CGFloat = -25
 }

@@ -56,8 +56,9 @@ class ColorConstants: UIColor {
     static var addProduct: UIColor {
         #colorLiteral(red: 0.9579302669, green: 0.2634859383, blue: 0.2137622535, alpha: 1)
     }
+    
     static var description: UIColor {
-        #colorLiteral(red: 0.9636847377, green: 0.02699448727, blue: 0.4116073251, alpha: 1)
+        #colorLiteral(red: 0.919758141, green: 0.345659107, blue: 0.2418164015, alpha: 1)
     }
 }
 

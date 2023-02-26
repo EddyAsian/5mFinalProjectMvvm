@@ -34,7 +34,7 @@ class CocktailsTabBarController: UITabBarController {
         viewControllers =
         [
             createControllers(
-                from: AuthorizedProfileVC(),
+                from: EditProfileVC(),
                 image: generateItemIcon(from: itemIcons[0])
             ),
             

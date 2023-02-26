@@ -47,9 +47,19 @@ extension UICollectionView {
     }
 }
 
+extension NSNotification.Name {
+    static let notificationInfo = NSNotification.Name.init("notificationInfo")
+}
+
+let notifyname = "ABC"
+let notifyimage = "svsvvs"
+let notifyInstr = "wfavav"
+let myDict = ["notifyname": notifyname, "notifyimage": notifyimage, "notifyInstr": notifyInstr]
 
 
 class FavouriteDrinksViewController: UIViewController {
+    
+    
     
     private var viewModel: MainViewModelType = MainViewModel()
   
@@ -57,7 +67,9 @@ class FavouriteDrinksViewController: UIViewController {
     private var currentLetterUnicodeVoralue: UInt32 = 97
     private var currentLetter = "a"
   
-    var cocktail: Drinks?
+//    var cocktail: Drinks?
+    
+    private var notificationArray = [Drinks]()
     
     private var drinks = [Drinks]() {
         didSet {
@@ -65,7 +77,7 @@ class FavouriteDrinksViewController: UIViewController {
         }
     }
     
-    
+  
 
     // MARK: Subviews creating
     private lazy var allDrinksTitleLabel: UILabel = {
@@ -117,7 +129,7 @@ class FavouriteDrinksViewController: UIViewController {
     }()
     
     
-    private lazy var drinksCollectionView: UICollectionView = {
+    private lazy var favouriteDrinksCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: screenWidth, height: 10)
                 layout.minimumLineSpacing = 6
@@ -129,7 +141,7 @@ class FavouriteDrinksViewController: UIViewController {
             collectionViewLayout: layout
         )
         
-        view.registerReusable(CellType: BasketCollectionViewCell.self)
+        view.registerReusable(CellType: FavouriteCVCell.self)
         view.backgroundColor = .clear
         view.showsVerticalScrollIndicator = false
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -161,7 +173,7 @@ class FavouriteDrinksViewController: UIViewController {
             frame: CGRect(
                 x: 0,
                 y: 0,
-                width: drinksCollectionView.bounds.size.width,
+                width: favouriteDrinksCV.bounds.size.width,
                 height: 50
             )
         )
@@ -176,12 +188,15 @@ class FavouriteDrinksViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        view.backgroundColor = ColorConstants.tabBarItemLight
+        view.backgroundColor = ColorConstants.description
         setupSubViews()
         setUpConstraints()
+        favouriteDrinksCV.reloadData()
         configureDrinksCollectionView()
-        configureSearchDrinkSearchBar()
-        getDrinksForLetter(currentLetter)
+//        configureSearchDrinkSearchBar()
+//        getDrinksForLetter(currentLetter)
+//        NotificationCenter.post(name: .notificationInfo, object: self, userInfo: drinks)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "post"), object: nil, userInfo: myDict)
     }
     
     private func setupSubViews() {
@@ -189,7 +204,7 @@ class FavouriteDrinksViewController: UIViewController {
         view.addSubview(pageInfoSubtitleLabel)
         view.addSubview(searchDrinkSearchBar)
         view.addSubview(backgroundViewForCollection)
-        view.addSubview(drinksCollectionView)
+        view.addSubview(favouriteDrinksCV)
         view.addSubview(noCocktailsFoundLabel)
     }
     
@@ -199,28 +214,31 @@ class FavouriteDrinksViewController: UIViewController {
     }
     
     private func configureDrinksCollectionView() {
-        drinksCollectionView.register(
+        favouriteDrinksCV.register(
             MenuCollectionViewCell.self,
             forCellWithReuseIdentifier: MenuCollectionViewCell.reuseID
         )
-        drinksCollectionView.delegate = self
-        drinksCollectionView.dataSource = self
+        favouriteDrinksCV.delegate = self
+        favouriteDrinksCV.dataSource = self
     }
     
     private func updateUIwithSearchResultsState(resultIsEmpty: Bool) {
         if filteredDrinks.isEmpty && !drinks.isEmpty {
-            drinksCollectionView.isHidden = true
+            favouriteDrinksCV.isHidden = true
             noCocktailsFoundLabel.isHidden = false
         } else {
-            drinksCollectionView.isHidden = false
+            favouriteDrinksCV.isHidden = false
             noCocktailsFoundLabel.isHidden = true
         }
     }
 
+//    @objc func didGetnotification(_ notification: Notification) {
+//        favouriteDrinks.
+//    }
     private var filteredDrinks = [Drinks]() {
         didSet {
             updateUIwithSearchResultsState(resultIsEmpty: filteredDrinks.isEmpty)
-            drinksCollectionView.reloadData()
+            favouriteDrinksCV.reloadData()
         }
     }
 
@@ -266,7 +284,7 @@ class FavouriteDrinksViewController: UIViewController {
             make.left.right.bottom.equalToSuperview()
         }
 
-       drinksCollectionView.snp.makeConstraints { make in
+        favouriteDrinksCV.snp.makeConstraints { make in
             make.top.equalTo(backgroundViewForCollection.snp.top)
             make.left.equalTo(backgroundViewForCollection.snp.left).offset(20)
             make.right.equalTo(backgroundViewForCollection.snp.right).offset(-20)
@@ -274,8 +292,8 @@ class FavouriteDrinksViewController: UIViewController {
         }
         
         noCocktailsFoundLabel.snp.makeConstraints { make in
-            make.centerX.equalTo(drinksCollectionView.snp.centerX)
-            make.centerY.equalTo(drinksCollectionView.snp.centerY)
+            make.centerX.equalTo(favouriteDrinksCV.snp.centerX)
+            make.centerY.equalTo(favouriteDrinksCV.snp.centerY)
         }
     }
 }
@@ -286,17 +304,19 @@ extension FavouriteDrinksViewController: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
-    ) -> Int { filteredDrinks.count }
+    ) -> Int {  notificationArray.count }
+   
     
     func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        guard let cell = drinksCollectionView.dequeueReusableCell(
-            withReuseIdentifier: BasketCollectionViewCell.reuseID,
+        guard let cell = favouriteDrinksCV.dequeueReusableCell(
+            withReuseIdentifier: FavouriteCVCell.reuseID,
             for: indexPath
-        ) as? BasketCollectionViewCell else { return UICollectionViewCell() }
-        cell.configure(with: filteredDrinks[indexPath.row])
+        ) as? FavouriteCVCell else { return UICollectionViewCell() }
+        cell.configure(with: notificationArray[indexPath.row])
+//        cell.dispaleo(with: notificationArray[indexPath.row])
         return cell
     }
 }
@@ -322,8 +342,8 @@ extension FavouriteDrinksViewController: UICollectionViewDelegateFlowLayout {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // Check if the user has scrolled to the bottom of the view and it is not
         // searching cocktail process
-        let scrollViewContentHeight = drinksCollectionView.contentSize.height
-        let scrollOffsetThreshold = scrollViewContentHeight - drinksCollectionView.bounds.size.height
+        let scrollViewContentHeight = favouriteDrinksCV.contentSize.height
+        let scrollOffsetThreshold = scrollViewContentHeight - favouriteDrinksCV.bounds.size.height
         
         if scrollView.contentOffset.y > scrollOffsetThreshold,
             searchDrinkSearchBar.text!.isEmpty {
@@ -370,3 +390,14 @@ extension FavouriteDrinksViewController: UISearchBarDelegate {
 
 
 
+
+
+
+
+    
+    
+   
+    
+    
+    
+    

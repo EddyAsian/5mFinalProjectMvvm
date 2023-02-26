@@ -11,5 +11,6 @@ struct UserInfo: Codable {
     let email: String
     let dateOfBirth: String
     let adress: String
+    let loginName: String
     let password: String
 }

@@ -10,11 +10,11 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class BasketCollectionViewCell: UICollectionViewCell {
+class FavouriteCVCell: UICollectionViewCell {
 
     var coctail: Drinks?
 
-    static let reuseID = String(describing: BasketCollectionViewCell.self)
+    static let reuseID = String(describing: FavouriteCVCell.self)
     
     var productImage: UIImageView = {
         var productImage = UIImageView(
@@ -148,6 +148,7 @@ class BasketCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    
     func chooseCollection(_ product: Drinks) {
         coctail = product
         let drinks = Drinks(
@@ -170,6 +171,13 @@ class BasketCollectionViewCell: UICollectionViewCell {
 //        chooseCollection(product)
 //    }
     public func configure(with model: Drinks) {
+//        func showme() {
+//            guard let vc = storyboard?.instantiateViewController(withIdentifier: ChoosedCocktailViewController.id) as? ChoosedCocktailViewController else { fatalError() }
+//            vc.completionHandler = { model in
+//                self.
+//            }
+//        }
+        
         guard let url = URL(string: model.image) else { return }
         productImage.kf.setImage(with: url)
         productLabel.text = model.name

@@ -14,6 +14,7 @@ class BasketChShoppingViewController: UIViewController {
             
         }
     }
+    
     var price: Float = 0.00
     
     fileprivate let shoppingCarCellIdntifier  = "shoppingCarCellIdntifier"
@@ -55,9 +56,9 @@ class BasketChShoppingViewController: UIViewController {
             }
         }
     }
+    
     func layoutUI() {
-        
-         showCartTableView.snp.makeConstraints { (make) -> Void in
+        showCartTableView.snp.makeConstraints { (make) -> Void in
             make.left.top.right.equalTo(0)
             make.bottom.equalTo(-49)
         }
@@ -82,7 +83,6 @@ class BasketChShoppingViewController: UIViewController {
             make.width.equalTo(88)
             make.height.equalTo(30)
         }
-        
     }
     
     @objc func clickBar () {
@@ -95,6 +95,7 @@ class BasketChShoppingViewController: UIViewController {
             message: "We hope you will enjoy our Cocktails 🍸 🥃 🍷",
             preferredStyle: .alert
         )
+        
         let okAction = UIAlertAction(title: "OK", style: .cancel)
         alert.addAction(okAction)
         present(alert, animated: true)
@@ -103,8 +104,6 @@ class BasketChShoppingViewController: UIViewController {
     @objc func acceptTapped() {
         showAlert()
     }
-    
-    
     
     lazy var showCartTableView : UITableView = {
         let tableView = UITableView()
@@ -199,8 +198,7 @@ extension BasketChShoppingViewController : BasketChShoppingCellDelegate {
             data.count -= 1
             label.text = "\(data.count)"
             
-        }else
-        {
+        } else {
             data.count += 1
             label.text = "\(data.count)"
         }

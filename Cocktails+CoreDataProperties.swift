@@ -22,7 +22,6 @@ extension Cocktails {
     @NSManaged public var cocktailsName: String?
     @NSManaged public var cocktailsImage: String?
     @NSManaged public var cocktailsModel: Data?
-
 }
 
 extension Cocktails : Identifiable {

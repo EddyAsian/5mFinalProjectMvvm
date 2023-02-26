@@ -11,7 +11,7 @@ import SnapKit
 let screenSize = UIScreen.main.bounds.size
 
 class BasketChoosedViewController: UIViewController,CAAnimationDelegate {
-
+    
     var drinks: Drinks?
     
     fileprivate var goodArray = [BasketChoosedModel]()
@@ -24,9 +24,45 @@ class BasketChoosedViewController: UIViewController,CAAnimationDelegate {
     
     var layer: CALayer?
     
+    lazy var amontCart : UILabel = {
+        var label = UILabel()
+        label.textColor = UIColor.red
+        label.backgroundColor = UIColor.white
+        label.text = "\(self.goodArray.count)"
+        label.font = UIFont.systemFont(ofSize: 11)
+        label.textAlignment = NSTextAlignment.center
+        label.layer.cornerRadius = 7.5
+        label.layer.masksToBounds = true
+        label.layer.borderWidth = 1
+        label.layer.borderColor = UIColor.red.cgColor
+        label.isHidden = true
+        
+        return label
+    }()
+    
+    lazy var cartTableView : UITableView = {
+        var tableView = UITableView()
+        
+        tableView.rowHeight = 80
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        return tableView
+    }()
+    
+    lazy var cartBtn : UIButton =  {
+        var btn = UIButton()
+        
+        btn.setImage(UIImage(named: "button_cart"), for: UIControl.State())
+        btn.addTarget(self, action: #selector(self.cartClick), for: UIControl.Event.touchUpInside)
+        btn.sizeToFit()
+        
+        return btn
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         for i in 0..<10 {
             let model = BasketChoosedModel()
             model.iconName = "goodicon_\(i)"
@@ -34,8 +70,7 @@ class BasketChoosedViewController: UIViewController,CAAnimationDelegate {
             model.desc = "Cocktail №\(i + 1) 🍹"
             model.newPrice = "\(i * i * 9)"
             model.oldPrice = "\(i * i * 9)"
-        
-          goodArray.append(model)
+            goodArray.append(model)
         }
         
         addUiView()
@@ -43,8 +78,6 @@ class BasketChoosedViewController: UIViewController,CAAnimationDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        
         layoutUI()
     }
     
@@ -76,50 +109,10 @@ class BasketChoosedViewController: UIViewController,CAAnimationDelegate {
     }
     
     @objc fileprivate func cartClick () {
-        
         let controller = BasketChShoppingViewController()
         controller.addGoodArray = addGoodArray
-        
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
-    
-    
-   
-    lazy var amontCart : UILabel = {
-        var label = UILabel()
-        label.textColor = UIColor.red
-        label.backgroundColor = UIColor.white
-        label.text = "\(self.goodArray.count)"
-        label.font = UIFont.systemFont(ofSize: 11)
-        label.textAlignment = NSTextAlignment.center
-        label.layer.cornerRadius = 7.5
-        label.layer.masksToBounds = true
-        label.layer.borderWidth = 1
-        label.layer.borderColor = UIColor.red.cgColor
-        label.isHidden = true
-        
-        return label
-    }()
-   
-    lazy var cartTableView : UITableView = {
-        var tableView = UITableView()
-        
-        tableView.rowHeight = 80
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        return tableView
-    }()
-    
-    lazy var cartBtn : UIButton =  {
-        var btn = UIButton()
-        
-        btn.setImage(UIImage(named: "button_cart"), for: UIControl.State())
-        btn.addTarget(self, action: #selector(self.cartClick), for: UIControl.Event.touchUpInside)
-        btn.sizeToFit()
-        
-        return btn
-    }()
 }
 
 extension BasketChoosedViewController : UITableViewDelegate,UITableViewDataSource{
@@ -129,7 +122,7 @@ extension BasketChoosedViewController : UITableViewDelegate,UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: goodLinstCell) as! BaskedChoosedTableViewCell
         
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
@@ -230,7 +223,7 @@ extension BasketChoosedViewController  {
             goodCountAnimation.duration = 0.25
             amontCart.text = "\(self.addGoodArray.count)"
             amontCart.layer.add(goodCountAnimation, forKey: nil)
-             let cartAnimation = CABasicAnimation(keyPath: "transform.translation.y")
+            let cartAnimation = CABasicAnimation(keyPath: "transform.translation.y")
             cartAnimation.duration = 0.25
             cartAnimation.fromValue = -5
             cartAnimation.toValue = 5

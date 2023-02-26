@@ -44,7 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension NSObject {
-    
     var screenWidth: CGFloat {
         UIScreen.main.bounds.width
     }

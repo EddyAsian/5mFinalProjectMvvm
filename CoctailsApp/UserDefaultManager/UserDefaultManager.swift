@@ -14,6 +14,7 @@ class UserDefaultManager {
         case email
         case dateOfBirth
         case adress
+        case loginName
     }
     
     static let shared = UserDefaultManager()

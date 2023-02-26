@@ -19,6 +19,8 @@ class CocktailsMenuViewController: UIViewController {
     private var currentLetterUnicodeVoralue: UInt32 = 97
     private var currentLetter = "a"
     
+    
+    
     private var drinks: [Drinks] = [] {
         didSet {
             filteredDrinks = drinks
@@ -128,7 +130,7 @@ class CocktailsMenuViewController: UIViewController {
         }
     }
     
-    override func loadView() {
+  override func loadView() {
         super.loadView()
         view.backgroundColor = ColorConstants.background
         setupSubViews()

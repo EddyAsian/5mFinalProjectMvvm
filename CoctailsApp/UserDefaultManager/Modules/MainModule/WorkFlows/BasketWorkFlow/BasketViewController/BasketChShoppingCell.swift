@@ -191,7 +191,7 @@ class BasketChShoppingCell: UITableViewCell {
     fileprivate lazy var subtractButton: UIButton = {
         let btn = UIButton(type: UIButton.ButtonType.custom)
         btn.tag = 10
-        btn.setBackgroundImage(UIImage(named: "jian_icon"), for: UIControl.State())
+        btn.setBackgroundImage(UIImage(named: "iconforBack"), for: UIControl.State())
         btn.addTarget(self, action: #selector(self.subtractClick(_:)), for: UIControl.Event.touchUpInside)
         return btn
     }()
