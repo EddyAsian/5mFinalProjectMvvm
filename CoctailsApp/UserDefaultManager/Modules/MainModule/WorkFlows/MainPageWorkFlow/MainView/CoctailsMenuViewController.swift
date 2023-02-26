@@ -13,7 +13,7 @@ class CocktailsMenuViewController: UIViewController {
     
     private var viewModel: MainViewModelType = MainViewModel()
     
-    private var choosedForBasketArray: [Drinks] = []
+    private var basketArray: [Drinks] = []
     
     // For requesting to API to get next letter's drinks
     private var currentLetterUnicodeVoralue: UInt32 = 97
@@ -303,10 +303,12 @@ extension CocktailsMenuViewController {
     ) {
         let coctailVC = ChoosedCocktailViewController()
         let model = filteredDrinks[indexPath.row]
+        coctailVC.delegate = self
+        
         let observe = BehaviorRelay<Drinks>(value: model)
         observe.subscribe(onNext: { drinks in
             coctailVC.cocktail = drinks
-            print(coctailVC.cocktail as Any)
+            print("I do like RX: \(coctailVC.cocktail as Any)")
         })
 //        coctailVC.delegate = self
         navigationController?.pushViewController(coctailVC, animated: true)
@@ -325,6 +327,12 @@ extension CocktailsMenuViewController: UISearchBarDelegate {
 
 extension CocktailsMenuViewController: SelecetProductDelegate {
     func addNewDrink(_ drink: Drinks) {
-        choosedForBasketArray.append(drink)
+        basketArray.append(drink)
+        print("Added throw delegate and now there are elements in array: \(basketArray)")
+    }
+    
+    func removeLastDrink(_ drink: Drinks) {
+        basketArray.removeLast()
+        print("Removed throw delegate and now there are elements in array: \(basketArray)")
     }
 }

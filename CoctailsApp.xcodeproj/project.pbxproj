@@ -54,6 +54,7 @@
 		D4A8670329A90605009BC639 /* Cocktails+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A8670129A90605009BC639 /* Cocktails+CoreDataProperties.swift */; };
 		D4A8670529A90898009BC639 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A8670429A90898009BC639 /* CoreDataStack.swift */; };
 		D4AADB0329AAE6E90064A2B5 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AADB0229AAE6E90064A2B5 /* WelcomeViewController.swift */; };
+		D4AC79D429AB557800859CDC /* ReusableViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC79D329AB557800859CDC /* ReusableViewType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +108,7 @@
 		D4A8670129A90605009BC639 /* Cocktails+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cocktails+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		D4A8670429A90898009BC639 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		D4AADB0229AAE6E90064A2B5 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		D4AC79D329AB557800859CDC /* ReusableViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewType.swift; sourceTree = "<group>"; };
 		F6CDF999D2F8E8F3015646B3 /* Pods_CoctailsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoctailsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -339,12 +341,12 @@
 			path = MenuCollectionViewCell;
 			sourceTree = "<group>";
 		};
-		D49DFF7C29A75B1900CF65A4 /* BasketCollectionViewCell */ = {
+		D49DFF7C29A75B1900CF65A4 /* FavouriteCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				D49DFF7D29A75B4900CF65A4 /* FavouriteCVCell.swift */,
 			);
-			path = BasketCollectionViewCell;
+			path = FavouriteCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		D49E3AA129A991D700168152 /* FavouriteDrinksWorkFlow */ = {
@@ -358,6 +360,7 @@
 		D49EA2EA29A46300007C450A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D4AC79D229AB556B00859CDC /* ReusableViewType */,
 				D42D24C929A38FEF00008A81 /* UIImageResize */,
 			);
 			path = Extensions;
@@ -436,7 +439,7 @@
 		D49EA2F729A4679B007C450A /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				D49DFF7C29A75B1900CF65A4 /* BasketCollectionViewCell */,
+				D49DFF7C29A75B1900CF65A4 /* FavouriteCollectionViewCell */,
 				D49DFF7B29A75B0200CF65A4 /* MenuCollectionViewCell */,
 				D49C538429A727DE005C6E09 /* StepperView */,
 				D49EA2F529A4667E007C450A /* MainTabBarController */,
@@ -514,6 +517,14 @@
 				D4AADB0229AAE6E90064A2B5 /* WelcomeViewController.swift */,
 			);
 			path = WelcomeViewcontroller;
+			sourceTree = "<group>";
+		};
+		D4AC79D229AB556B00859CDC /* ReusableViewType */ = {
+			isa = PBXGroup;
+			children = (
+				D4AC79D329AB557800859CDC /* ReusableViewType.swift */,
+			);
+			path = ReusableViewType;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -640,6 +651,7 @@
 				288CE6EB2998AAC1006E2FE8 /* MenuCollectionViewCell.swift in Sources */,
 				288CE6ED2998AAF6006E2FE8 /* DrinksDTO.swift in Sources */,
 				D49B7A4729A833F000AFA3BA /* BasketChShoppingViewController.swift in Sources */,
+				D4AC79D429AB557800859CDC /* ReusableViewType.swift in Sources */,
 				D49B7A4529A8339300AFA3BA /* BaskedChoosedTableViewCell.swift in Sources */,
 				D49A35C3299DE2E800436BFF /* UIIColor.swift in Sources */,
 				D49EA30629A5326E007C450A /* DatabaseManager.swift in Sources */,

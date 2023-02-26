@@ -12,30 +12,41 @@ import CoreData
 import RxRelay
 
 
-
 protocol SelecetProductDelegate: AnyObject {
     func addNewDrink(_ drink: Drinks)
+    func removeLastDrink(_ drink: Drinks)
 }
 
 class ChoosedCocktailViewController: UIViewController {
-    
-    
-    var collector: [Any] = []
-    
-    
-    
     
     static let id = String(describing: ChoosedCocktailViewController.self)
     
     var cocktail: Drinks?
     
-//    var completionHandler: ((Drinks?) -> Void)?
+    private var filteredDrinks = [Drinks]()
+    
+    weak var delegate: SelecetProductDelegate?
+    
+    private var selectedProirity: String?
+    
+    public var addNewNote: ((_ ratingNumber: String) -> Void)?
+    
+    private var cocktailsCoreData: [Cocktails] = []
+    
+    var textToShow = ""
+   
+    var isLiked: Bool = false
+    
+    //    var collector: [Any] = []
+        
+    //    var completionHandler: ((Drinks?) -> Void)?
     
     //    public lazy var viewModel = { DrinkInfoViewModel() }()
-    class var identifier: String { String(describing: self) }
-    class var nib: UINib { UINib(nibName: identifier, bundle: nil) }
+//    class var identifier: String { String(describing: self) }
+//
+//    class var nib: UINib { UINib(nibName: identifier, bundle: nil) }
     
-    private var filteredDrinks = [Drinks]()
+   
     //    {
     //        didSet {
     //            updateUIwithSearchResultsState(resultIsEmpty: filteredDrinks.isEmpty)
@@ -43,17 +54,8 @@ class ChoosedCocktailViewController: UIViewController {
     //        }
     //    }
     
-    private var selectedProirity: String?
-    
-    public var addNewNote: ((_ ratingNumber: String) -> Void)?
-    
-    private var cocktailsCoreData: [Cocktails] = []
-    var textToShow = ""
-    var isLiked: Bool = false
-    
-    weak var delegate: SelecetProductDelegate?
-    
-    //    private let info: Drinks
+   
+   //    private let info: Drinks
     //
     //    init(dish: Drinks) {
     //
@@ -183,16 +185,7 @@ class ChoosedCocktailViewController: UIViewController {
         //        saveRatingToDB(ratingView.ratingLabel.text!)
         //        fetchSomething()
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(doThisWhenNotify(notification:)), name: NSNotification.Name(rawValue: "post"), object: nil)
-
-       
-        
-       
-    }
-    
-   
-    func yoy() {
-        
+        //        NotificationCenter.default.addObserver(self, selector: #selector(doThisWhenNotify(notification:)), name: NSNotification.Name(rawValue: "post"), object: nil)
     }
     
     private func customBackButton() {
@@ -223,6 +216,60 @@ class ChoosedCocktailViewController: UIViewController {
         informationView.addSubview(backImage)
     }
     
+    @objc func likeTap() {
+        
+        if isLiked == false {
+            //            favouriteDrinks.append(Drinks)
+            //            saveRatingToDB()
+            likedProductIcon.image = UIImage(systemName: "heart.fill")
+            print("tapped Like")
+            
+            delegate?.addNewDrink(cocktail!)
+            print("I added to array")
+            isLiked = true
+        } else {
+            likedProductIcon.image = UIImage (systemName: "heart")
+            delegate?.removeLastDrink(cocktail!)
+            isLiked = false
+           
+//            filteredDrinks.append(cocktail!)
+            
+            //            func doThisWhenNotify(notification : NSNotification) {
+            //                let info = notification.userInfo
+            //                print("notifyname : ",info?["name"])
+            //                print("notifyimage : ",info?["age"])
+            //                print("notifyInstr : ",info?["email"])
+            //
+            //            }
+            
+            //            NotificationCenter.default.post(name: Notification.Name("model"), object: cocktail)
+            //            completionHandler?(cocktail)
+            //            doitman()
+            //            guard let rating = ratingView.ratingLabel.text else { return  }
+            //            addNewNote?(rating)
+//            isLiked = false
+        }
+    }
+    
+    
+       @objc func openBasketVc() {
+           //        dismiss(animated: true)
+           navigationController?.pushViewController(BasketChoosedViewController(), animated: true)
+       }
+       
+       @objc func tappedMe() {
+           //        dismiss(animated: true, completion: nil)
+           //        let tabBar = CocktailsTabBarController()
+           //        tabBar.modalPresentationStyle = .fullScreen
+           //        present(tabBar, animated: true, completion: nil)
+           //        tabBar.selectedIndex = 3
+           print("tapped add to cart")
+//           delegate?.addNewDrink(cocktail!)
+           
+           guard let foodname = cocktail?.name,
+                 let foodDescription = cocktail?.instructions else { return }
+           
+       }
     
     private func saveRatingToDB(_ ratingNumber: String) {
         let data = Date()
@@ -268,56 +315,7 @@ class ChoosedCocktailViewController: UIViewController {
         }
     }
     
-    @objc func likeTap() {
-        filteredDrinks.append(cocktail!)
-        if isLiked == false {
-//            favouriteDrinks.append(Drinks)
-//            saveRatingToDB()
-            likedProductIcon.image = UIImage(systemName: "heart")
-            isLiked = true
-        } else {
-            likedProductIcon.image = UIImage (systemName: "heart.fill")
-            
-           
-
-//            func doThisWhenNotify(notification : NSNotification) {
-//                let info = notification.userInfo
-//                print("notifyname : ",info?["name"])
-//                print("notifyimage : ",info?["age"])
-//                print("notifyInstr : ",info?["email"])
-//
-//            }
-            
-//            NotificationCenter.default.post(name: Notification.Name("model"), object: cocktail)
-//            completionHandler?(cocktail)
-//            doitman()
-//            guard let rating = ratingView.ratingLabel.text else { return  }
-//            addNewNote?(rating)
-            isLiked = false
-        }
-    }
-    
-    
-    @objc func openBasketVc() {
-        //        dismiss(animated: true)
-        navigationController?.pushViewController(BasketChoosedViewController(), animated: true)
-    }
-    
-    @objc func tappedMe() {
-        //        dismiss(animated: true, completion: nil)
-        //        let tabBar = CocktailsTabBarController()
-        //        tabBar.modalPresentationStyle = .fullScreen
-        //        present(tabBar, animated: true, completion: nil)
-        //        tabBar.selectedIndex = 3
-        
-        delegate?.addNewDrink(cocktail!)
-        
-        guard let foodname = cocktail?.name,
-              let foodDescription = cocktail?.instructions else { return }
-        
-    }
-    
-    private func setUpConstraints() {
+ private func setUpConstraints() {
         productImage.snp.makeConstraints { maker in
             maker.top.equalToSuperview()
             maker.left.equalToSuperview()
@@ -366,7 +364,6 @@ class ChoosedCocktailViewController: UIViewController {
             maker.top.equalTo(descriptionTitleLabel.snp.bottom)
             maker.left.equalTo(descriptionTitleLabel)
             maker.width.equalTo(160)
-            //            maker.height.equalTo(100)
         }
         
         latestReviewsTitleLabel.snp.makeConstraints { maker in
@@ -426,25 +423,25 @@ extension ChoosedCocktailViewController {
         didSelectItemAt indexPath: IndexPath
     ) {
         
-//        print(Drinks[indexPath.item].id)
-//        collector.append(Drinks[indexPath.item])
-//        print("This is your colector \(collector)")
+        //        print(Drinks[indexPath.item].id)
+        //        collector.append(Drinks[indexPath.item])
+        //        print("This is your colector \(collector)")
         
         
-//        let choosedForBasketVC = FavouriteDrinksViewController()
-//        let model = filteredDrinks[indexPath.row]
-//        let observe = BehaviorRelay<Drinks>(value: model)
-//        observe.subscribe(onNext: { drinks in
-//            choosedForBasketVC.cocktail = drinks
-//            print(choosedForBasketVC.cocktail as Any)
-//        })
-//        //            choosedForBasketVC.delegate = self
-//        navigationController?.pushViewController(choosedForBasketVC, animated: true)
+        //        let choosedForBasketVC = FavouriteDrinksViewController()
+        //        let model = filteredDrinks[indexPath.row]
+        //        let observe = BehaviorRelay<Drinks>(value: model)
+        //        observe.subscribe(onNext: { drinks in
+        //            choosedForBasketVC.cocktail = drinks
+        //            print(choosedForBasketVC.cocktail as Any)
+        //        })
+        //        //            choosedForBasketVC.delegate = self
+        //        navigationController?.pushViewController(choosedForBasketVC, animated: true)
     }
 }
 
 
 func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-   
+    
 }
 

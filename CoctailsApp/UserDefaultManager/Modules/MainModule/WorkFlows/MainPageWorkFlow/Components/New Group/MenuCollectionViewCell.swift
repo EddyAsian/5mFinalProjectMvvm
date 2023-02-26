@@ -44,7 +44,7 @@ class MenuCollectionViewCell: UICollectionViewCell {
         var button = UIButton(type: .system)
         button.backgroundColor = ColorConstants.buyNow
         button.setTitleColor(.white, for: .normal)
-        button.setTitle("Buy now", for: .normal)
+        button.setTitle("Add to  🛒", for: .normal)
         button.titleLabel?.textColor = .white
         button.titleLabel?.font = .systemFont(ofSize: 10, weight: .semibold)
         button.titleLabel?.textAlignment = .left

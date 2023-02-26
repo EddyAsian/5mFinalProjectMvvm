@@ -10,64 +10,15 @@ import UIKit
 import SnapKit
 import RxRelay
 
-
-extension UIView {
-    static func identifier() -> String {
-        String(describing: self)
-    }
-}
-
-extension UICollectionView {
-    enum ReusableViewType: String {
-        case UICollectionElementKindSectionHeader
-        case UICollectionElementKindSectionFooter
-    }
-    
-    func registerReusable<Cell: UICollectionViewCell>(CellType: Cell.Type) {
-        register(CellType, forCellWithReuseIdentifier: CellType.identifier())
-    }
-    
-    func dequeueIdentifiableCell<Cell: UICollectionViewCell>(_ type: Cell.Type, for indexPath: IndexPath) -> Cell {
-        let reuseId = Cell.identifier()
-        guard let cell = dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as? Cell else { fatalError() }
-        return cell
-    }
-    
-    func registerReusableView<View: UICollectionReusableView>(ViewType: View.Type, type: ReusableViewType) {
-        register(ViewType, forSupplementaryViewOfKind: type.rawValue, withReuseIdentifier: View.identifier())
-    }
-    
-    func dequeuReusableView<View: UICollectionReusableView>(ViewType: View.Type, type: ReusableViewType, for indexPath: IndexPath) -> View {
-        let reuseId = View.identifier()
-        guard let view = dequeueReusableSupplementaryView(ofKind: type.rawValue,
-                                                          withReuseIdentifier: reuseId,
-                                                          for: indexPath) as? View
-        else { fatalError() }
-        return view
-    }
-}
-
-extension NSNotification.Name {
-    static let notificationInfo = NSNotification.Name.init("notificationInfo")
-}
-
-let notifyname = "ABC"
-let notifyimage = "svsvvs"
-let notifyInstr = "wfavav"
-let myDict = ["notifyname": notifyname, "notifyimage": notifyimage, "notifyInstr": notifyInstr]
-
-
 class FavouriteDrinksViewController: UIViewController {
-    
-    
-    
+   
     private var viewModel: MainViewModelType = MainViewModel()
-  
+    
     // For requesting to API to get next letter's drinks
     private var currentLetterUnicodeVoralue: UInt32 = 97
     private var currentLetter = "a"
-  
-//    var cocktail: Drinks?
+    
+    //    var cocktail: Drinks?
     
     private var notificationArray = [Drinks]()
     
@@ -77,8 +28,6 @@ class FavouriteDrinksViewController: UIViewController {
         }
     }
     
-  
-
     // MARK: Subviews creating
     private lazy var allDrinksTitleLabel: UILabel = {
         let label = UILabel()
@@ -118,7 +67,7 @@ class FavouriteDrinksViewController: UIViewController {
         
         return searchBar
     }()
-        
+    
     // Background view for UICollectionView creating
     private lazy var backgroundViewForCollection: UIView = {
         let view = UIView()
@@ -128,11 +77,10 @@ class FavouriteDrinksViewController: UIViewController {
         return view
     }()
     
-    
     private lazy var favouriteDrinksCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: screenWidth, height: 10)
-                layout.minimumLineSpacing = 6
+        layout.minimumLineSpacing = 6
         layout.scrollDirection = .vertical
         
         layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
@@ -147,22 +95,22 @@ class FavouriteDrinksViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-  
-//    private lazy var drinksCollectionView: UICollectionView = {
-//        let layout = UICollectionViewFlowLayout()
-//        layout.itemSize = CGSize(width: screenWidth, height: 10)
-//        layout.minimumLineSpacing = 2
-////        layout.headerReferenceSize = CGSize(width: screenWidth, height: 40)
-////        layout.footerReferenceSize = CGSize(width: screenWidth, height: 20)
-//        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
-//        view.delegate = self
-//        view.dataSource = self
-//        view.registerReusable(CellType: BasketCollectionViewCell.self)
-////        view.registerReusableView(ViewType: BasketHeaderView.self, type: .UICollectionElementKindSectionHeader)
-////        view.registerReusableView(ViewType: BasketFooterView.self, type: .UICollectionElementKindSectionFooter)
-//        view.backgroundColor = ColorConstants.cellBack
-//        return view
-//    }()
+    
+    //    private lazy var drinksCollectionView: UICollectionView = {
+    //        let layout = UICollectionViewFlowLayout()
+    //        layout.itemSize = CGSize(width: screenWidth, height: 10)
+    //        layout.minimumLineSpacing = 2
+    ////        layout.headerReferenceSize = CGSize(width: screenWidth, height: 40)
+    ////        layout.footerReferenceSize = CGSize(width: screenWidth, height: 20)
+    //        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    //        view.delegate = self
+    //        view.dataSource = self
+    //        view.registerReusable(CellType: BasketCollectionViewCell.self)
+    ////        view.registerReusableView(ViewType: BasketHeaderView.self, type: .UICollectionElementKindSectionHeader)
+    ////        view.registerReusableView(ViewType: BasketFooterView.self, type: .UICollectionElementKindSectionFooter)
+    //        view.backgroundColor = ColorConstants.cellBack
+    //        return view
+    //    }()
     
     
     
@@ -193,9 +141,9 @@ class FavouriteDrinksViewController: UIViewController {
         setUpConstraints()
         favouriteDrinksCV.reloadData()
         configureDrinksCollectionView()
-//        configureSearchDrinkSearchBar()
-//        getDrinksForLetter(currentLetter)
-//        NotificationCenter.post(name: .notificationInfo, object: self, userInfo: drinks)
+        //        configureSearchDrinkSearchBar()
+        //        getDrinksForLetter(currentLetter)
+        //        NotificationCenter.post(name: .notificationInfo, object: self, userInfo: drinks)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "post"), object: nil, userInfo: myDict)
     }
     
@@ -231,17 +179,17 @@ class FavouriteDrinksViewController: UIViewController {
             noCocktailsFoundLabel.isHidden = true
         }
     }
-
-//    @objc func didGetnotification(_ notification: Notification) {
-//        favouriteDrinks.
-//    }
+    
+    //    @objc func didGetnotification(_ notification: Notification) {
+    //        favouriteDrinks.
+    //    }
     private var filteredDrinks = [Drinks]() {
         didSet {
             updateUIwithSearchResultsState(resultIsEmpty: filteredDrinks.isEmpty)
             favouriteDrinksCV.reloadData()
         }
     }
-
+    
     // MARK: Call API methods ()
     private func getDrinksForLetter(_ letter: String) {
         Task {
@@ -249,7 +197,7 @@ class FavouriteDrinksViewController: UIViewController {
             drinks.append(contentsOf: drinksFromAPI)
         }
     }
-
+    
     private func getDrinksForName(_ name: String) {
         Task {
             filteredDrinks = try await viewModel.getDrinksByName(name).drinks ?? []
@@ -259,7 +207,7 @@ class FavouriteDrinksViewController: UIViewController {
     // MARK: updateUI() method
     private func setUpConstraints() {
         
-       allDrinksTitleLabel.snp.makeConstraints { make in
+        allDrinksTitleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(55)
             make.centerX.equalToSuperview()
         }
@@ -267,7 +215,7 @@ class FavouriteDrinksViewController: UIViewController {
         pageInfoSubtitleLabel.snp.makeConstraints { make in
             make.top.equalTo(allDrinksTitleLabel.snp.bottom).offset(0)
             make.centerX.equalToSuperview()
-//            make.width.equalTo(232)
+            //            make.width.equalTo(232)
             make.height.equalTo(77)
         }
         
@@ -283,7 +231,7 @@ class FavouriteDrinksViewController: UIViewController {
             make.bottom.equalToSuperview().inset(35)
             make.left.right.bottom.equalToSuperview()
         }
-
+        
         favouriteDrinksCV.snp.makeConstraints { make in
             make.top.equalTo(backgroundViewForCollection.snp.top)
             make.left.equalTo(backgroundViewForCollection.snp.left).offset(20)
@@ -298,14 +246,12 @@ class FavouriteDrinksViewController: UIViewController {
     }
 }
 
-
-
 extension FavouriteDrinksViewController: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {  notificationArray.count }
-   
+    
     
     func collectionView(
         _ collectionView: UICollectionView,
@@ -316,7 +262,7 @@ extension FavouriteDrinksViewController: UICollectionViewDataSource {
             for: indexPath
         ) as? FavouriteCVCell else { return UICollectionViewCell() }
         cell.configure(with: notificationArray[indexPath.row])
-//        cell.dispaleo(with: notificationArray[indexPath.row])
+        //        cell.dispaleo(with: notificationArray[indexPath.row])
         return cell
     }
 }
@@ -346,7 +292,7 @@ extension FavouriteDrinksViewController: UICollectionViewDelegateFlowLayout {
         let scrollOffsetThreshold = scrollViewContentHeight - favouriteDrinksCV.bounds.size.height
         
         if scrollView.contentOffset.y > scrollOffsetThreshold,
-            searchDrinkSearchBar.text!.isEmpty {
+           searchDrinkSearchBar.text!.isEmpty {
             fetchNextData()
         }
     }
@@ -394,10 +340,10 @@ extension FavouriteDrinksViewController: UISearchBarDelegate {
 
 
 
-    
-    
-   
-    
-    
-    
-    
+
+
+
+
+
+
+

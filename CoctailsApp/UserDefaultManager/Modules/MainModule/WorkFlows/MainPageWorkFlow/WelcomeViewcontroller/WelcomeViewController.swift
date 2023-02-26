@@ -71,7 +71,7 @@ class WelcomeViewController: UIViewController {
     var registerUser: UIButton = {
         var button = UIButton(type: .system)
         button.backgroundColor = .gray
-        button.setTitle("Sign up", for: .normal)
+        button.setTitle("Register", for: .normal)
         button.titleLabel?.textColor = .white
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
