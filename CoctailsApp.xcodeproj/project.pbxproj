@@ -15,7 +15,6 @@
 		288CE6E52998A95B006E2FE8 /* CocktailsTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288CE6E42998A95B006E2FE8 /* CocktailsTabBarController.swift */; };
 		288CE6E72998A9DF006E2FE8 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288CE6E62998A9DF006E2FE8 /* SignUpViewController.swift */; };
 		288CE6E92998A9FF006E2FE8 /* ChoosedCocktailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288CE6E82998A9FF006E2FE8 /* ChoosedCocktailViewController.swift */; };
-		288CE6EB2998AAC1006E2FE8 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288CE6EA2998AAC1006E2FE8 /* MenuCollectionViewCell.swift */; };
 		288CE6ED2998AAF6006E2FE8 /* DrinksDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288CE6EC2998AAF6006E2FE8 /* DrinksDTO.swift */; };
 		288CE6EF2998AB52006E2FE8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288CE6EE2998AB52006E2FE8 /* NetworkManager.swift */; };
 		288CE6F12998ABAB006E2FE8 /* ReviewCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288CE6F02998ABAB006E2FE8 /* ReviewCustomView.swift */; };
@@ -30,7 +29,7 @@
 		D4972B5729A5A4C500E95BD6 /* AddNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4972B5629A5A4C500E95BD6 /* AddNumberViewController.swift */; };
 		D4972B5929A5BD0D00E95BD6 /* UserInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4972B5829A5BD0D00E95BD6 /* UserInfoDTO.swift */; };
 		D49A35C3299DE2E800436BFF /* UIIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A35C2299DE2E800436BFF /* UIIColor.swift */; };
-		D49A3EAF29A13CCA00BF2DA8 /* AuthServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A3EAE29A13CCA00BF2DA8 /* AuthServiceViewController.swift */; };
+		D49A3EAF29A13CCA00BF2DA8 /* AcceptSmsCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A3EAE29A13CCA00BF2DA8 /* AcceptSmsCodeViewController.swift */; };
 		D49AB6B529AAFD8B00BB2126 /* WelcomeInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49AB6B429AAFD8B00BB2126 /* WelcomeInfoDTO.swift */; };
 		D49AD24429A3E1CC00FE7FCC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D49AD24329A3E1CC00FE7FCC /* GoogleService-Info.plist */; };
 		D49B7A2B29A7B00300AFA3BA /* ChoosedForBasketDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B7A2A29A7B00300AFA3BA /* ChoosedForBasketDTO.swift */; };
@@ -56,7 +55,8 @@
 		D4AADB0329AAE6E90064A2B5 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AADB0229AAE6E90064A2B5 /* WelcomeViewController.swift */; };
 		D4AC79D429AB557800859CDC /* ReusableViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC79D329AB557800859CDC /* ReusableViewType.swift */; };
 		D4AC79D729AB695E00859CDC /* FavouriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC79D629AB695E00859CDC /* FavouriteViewModel.swift */; };
-		D4AC79DC29AC272B00859CDC /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC79DB29AC272B00859CDC /* AuthViewModel.swift */; };
+		D4AC79DC29AC272B00859CDC /* AcceptSmsCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC79DB29AC272B00859CDC /* AcceptSmsCodeViewModel.swift */; };
+		D4AC79E129AC593300859CDC /* CocktailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC79E029AC593300859CDC /* CocktailsCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,7 +70,6 @@
 		288CE6E42998A95B006E2FE8 /* CocktailsTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsTabBarController.swift; sourceTree = "<group>"; };
 		288CE6E62998A9DF006E2FE8 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		288CE6E82998A9FF006E2FE8 /* ChoosedCocktailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosedCocktailViewController.swift; sourceTree = "<group>"; };
-		288CE6EA2998AAC1006E2FE8 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuCollectionViewCell.swift; path = "../New Group/MenuCollectionViewCell.swift"; sourceTree = "<group>"; };
 		288CE6EC2998AAF6006E2FE8 /* DrinksDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinksDTO.swift; sourceTree = "<group>"; };
 		288CE6EE2998AB52006E2FE8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		288CE6F02998ABAB006E2FE8 /* ReviewCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCustomView.swift; sourceTree = "<group>"; };
@@ -86,7 +85,7 @@
 		D4972B5629A5A4C500E95BD6 /* AddNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNumberViewController.swift; sourceTree = "<group>"; };
 		D4972B5829A5BD0D00E95BD6 /* UserInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoDTO.swift; sourceTree = "<group>"; };
 		D49A35C2299DE2E800436BFF /* UIIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIIColor.swift; sourceTree = "<group>"; };
-		D49A3EAE29A13CCA00BF2DA8 /* AuthServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceViewController.swift; sourceTree = "<group>"; };
+		D49A3EAE29A13CCA00BF2DA8 /* AcceptSmsCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptSmsCodeViewController.swift; sourceTree = "<group>"; };
 		D49AB6B429AAFD8B00BB2126 /* WelcomeInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeInfoDTO.swift; sourceTree = "<group>"; };
 		D49AD24329A3E1CC00FE7FCC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D49B7A2A29A7B00300AFA3BA /* ChoosedForBasketDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosedForBasketDTO.swift; sourceTree = "<group>"; };
@@ -112,7 +111,8 @@
 		D4AADB0229AAE6E90064A2B5 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		D4AC79D329AB557800859CDC /* ReusableViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewType.swift; sourceTree = "<group>"; };
 		D4AC79D629AB695E00859CDC /* FavouriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewModel.swift; sourceTree = "<group>"; };
-		D4AC79DB29AC272B00859CDC /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		D4AC79DB29AC272B00859CDC /* AcceptSmsCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptSmsCodeViewModel.swift; sourceTree = "<group>"; };
+		D4AC79E029AC593300859CDC /* CocktailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsCollectionViewCell.swift; sourceTree = "<group>"; };
 		F6CDF999D2F8E8F3015646B3 /* Pods_CoctailsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoctailsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -275,14 +275,13 @@
 			path = UIColor;
 			sourceTree = "<group>";
 		};
-		D49A3EAD29A13CA300BF2DA8 /* AuthServiceViewController */ = {
+		D49A3EAD29A13CA300BF2DA8 /* AcceptSmsCodeViewController */ = {
 			isa = PBXGroup;
 			children = (
-				D49A3EAE29A13CCA00BF2DA8 /* AuthServiceViewController.swift */,
-				D4972B5629A5A4C500E95BD6 /* AddNumberViewController.swift */,
-				D4AC79DB29AC272B00859CDC /* AuthViewModel.swift */,
+				D49A3EAE29A13CCA00BF2DA8 /* AcceptSmsCodeViewController.swift */,
+				D4AC79DB29AC272B00859CDC /* AcceptSmsCodeViewModel.swift */,
 			);
-			path = AuthServiceViewController;
+			path = AcceptSmsCodeViewController;
 			sourceTree = "<group>";
 		};
 		D49B7A3F29A8333700AFA3BA /* BasketViewController */ = {
@@ -336,14 +335,6 @@
 				D49DFF7929A754CB00CF65A4 /* EditProfileVC.swift */,
 			);
 			path = EditProfileVc;
-			sourceTree = "<group>";
-		};
-		D49DFF7B29A75B0200CF65A4 /* MenuCollectionViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				288CE6EA2998AAC1006E2FE8 /* MenuCollectionViewCell.swift */,
-			);
-			path = MenuCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		D49DFF7C29A75B1900CF65A4 /* FavouriteCollectionViewCell */ = {
@@ -446,7 +437,6 @@
 			children = (
 				D4AC79D529AB692D00859CDC /* FavouriteViewModel */,
 				D49DFF7C29A75B1900CF65A4 /* FavouriteCollectionViewCell */,
-				D49DFF7B29A75B0200CF65A4 /* MenuCollectionViewCell */,
 				D49C538429A727DE005C6E09 /* StepperView */,
 				D49EA2F529A4667E007C450A /* MainTabBarController */,
 			);
@@ -456,6 +446,7 @@
 		D49EA2F829A467F2007C450A /* MainView */ = {
 			isa = PBXGroup;
 			children = (
+				D4AC79DE29AC57B700859CDC /* Components */,
 				288CE6D22998A7EF006E2FE8 /* CoctailsMenuViewController.swift */,
 			);
 			path = MainView;
@@ -543,10 +534,35 @@
 		D4AC79DA29AC26B300859CDC /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				D4AC79DD29AC3FD700859CDC /* AddNumberViewController */,
 				28C4AE8A29991187008299C3 /* SignUpViewPage */,
-				D49A3EAD29A13CA300BF2DA8 /* AuthServiceViewController */,
+				D49A3EAD29A13CA300BF2DA8 /* AcceptSmsCodeViewController */,
 			);
 			path = SignUp;
+			sourceTree = "<group>";
+		};
+		D4AC79DD29AC3FD700859CDC /* AddNumberViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D4972B5629A5A4C500E95BD6 /* AddNumberViewController.swift */,
+			);
+			path = AddNumberViewController;
+			sourceTree = "<group>";
+		};
+		D4AC79DE29AC57B700859CDC /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D4AC79DF29AC590800859CDC /* CocktailsCollectionViewCell */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		D4AC79DF29AC590800859CDC /* CocktailsCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				D4AC79E029AC593300859CDC /* CocktailsCollectionViewCell.swift */,
+			);
+			path = CocktailsCollectionViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -670,7 +686,6 @@
 				D49EA30329A48B56007C450A /* AuthManager.swift in Sources */,
 				28C4AE8F299911EA008299C3 /* CoctailsViewModel.swift in Sources */,
 				288CE6E92998A9FF006E2FE8 /* ChoosedCocktailViewController.swift in Sources */,
-				288CE6EB2998AAC1006E2FE8 /* MenuCollectionViewCell.swift in Sources */,
 				288CE6ED2998AAF6006E2FE8 /* DrinksDTO.swift in Sources */,
 				D49B7A4729A833F000AFA3BA /* BasketFinalBuyViewController.swift in Sources */,
 				D4AC79D429AB557800859CDC /* ReusableViewType.swift in Sources */,
@@ -695,16 +710,17 @@
 				D49B7A4129A8335600AFA3BA /* BasketChoosedModel.swift in Sources */,
 				D49DFF7A29A754CB00CF65A4 /* EditProfileVC.swift in Sources */,
 				D4A8670529A90898009BC639 /* CoreDataStack.swift in Sources */,
-				D49A3EAF29A13CCA00BF2DA8 /* AuthServiceViewController.swift in Sources */,
+				D49A3EAF29A13CCA00BF2DA8 /* AcceptSmsCodeViewController.swift in Sources */,
 				D49B7A2B29A7B00300AFA3BA /* ChoosedForBasketDTO.swift in Sources */,
 				D4A866FB29A900FF009BC639 /* CocktailsDataModel.xcdatamodeld in Sources */,
 				288CE6D12998A7EF006E2FE8 /* SceneDelegate.swift in Sources */,
 				D49B7A4929A8341000AFA3BA /* BasketChShoppingCell.swift in Sources */,
 				D49AB6B529AAFD8B00BB2126 /* WelcomeInfoDTO.swift in Sources */,
+				D4AC79E129AC593300859CDC /* CocktailsCollectionViewCell.swift in Sources */,
 				D49DFF7E29A75B4900CF65A4 /* FavouriteCVCell.swift in Sources */,
 				D49EA2FE29A46AA0007C450A /* View+Extension.swift in Sources */,
 				D4A8670329A90605009BC639 /* Cocktails+CoreDataProperties.swift in Sources */,
-				D4AC79DC29AC272B00859CDC /* AuthViewModel.swift in Sources */,
+				D4AC79DC29AC272B00859CDC /* AcceptSmsCodeViewModel.swift in Sources */,
 				D49B7A4329A8337D00AFA3BA /* BasketChoosedViewController.swift in Sources */,
 				D4AC79D729AB695E00859CDC /* FavouriteViewModel.swift in Sources */,
 				D42D24CB29A3900E00008A81 /* UIImageResize.swift in Sources */,

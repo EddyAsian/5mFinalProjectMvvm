@@ -12,11 +12,54 @@ import Firebase
 import KeychainSwift
 import FirebaseAuth
 
-class AuthServiceViewController: UIViewController {
+class AcceptSmsCodeViewController: UIViewController {
     
     class var identifier: String { String(describing: self) }
     
     private lazy var viewModel: SignInViewModel = { SignInViewModel() }()
+    
+    private func initViewModel() {
+        viewModel.showAlert = { [weak self] title, message, completion in
+            DispatchQueue.main.async {
+                self?.showAlert(
+                    title: title,
+                    message: message,
+                    completion: completion
+                )
+            }
+        }
+        
+        viewModel.goToMainPage = { [weak self] in
+            DispatchQueue.main.async {
+                self?.dismiss(animated: true)
+                
+                
+                let tabBar = CocktailsTabBarController()
+                        tabBar.modalPresentationStyle = .fullScreen
+                //        navigationController?.pushViewController(tabBar, animated: true)
+                self!.present(tabBar, animated: true, completion: nil)
+                        tabBar.selectedIndex = 1
+                
+                
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                let vc = storyboard.instantiateViewController(
+//                    withIdentifier: CocktailsTabBarController.identifier
+//                )
+//                self?.navigationController?.pushViewController(vc, animated: true)
+//                vc.modalPresentationStyle = .fullScreen
+//                self?.present(vc, animated: true)
+            }
+        }
+    }
+    
+    private func showAlert(title: String, message: String, completion: (() -> Void)? ) {
+        let alert = UIAlertController(
+            title: title, message:
+                message, preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true, completion: completion)
+    }
     
     lazy var menuPagesHeader: UILabel = {
         var menuPagesHeader = UILabel()
@@ -72,6 +115,60 @@ class AuthServiceViewController: UIViewController {
         return button
     }()
     
+    override func loadView() {
+        super.loadView()
+        view.backgroundColor = ColorConstants.informationView
+        initViewModel()
+        setUpUI()
+        smsCodeTextField.delegate = self
+        
+//        dismiss(animated: false)
+    }
+    
+    private func setUpUI() {
+        setUpSubviews()
+        setUpConstraints()
+    }
+    
+    private func setUpSubviews() {
+        view.addSubview(menuPagesHeader)
+        view.addSubview(borderView)
+        view.addSubview(menuPagesDescription)
+        view.addSubview(smsCodeTextField)
+        view.addSubview(signInButton)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
+    @objc
+    private func confirmTapped(_ sender: UIButton) {
+//         AuthManager.shared.verifyPhoneAuthTapped()
+        viewModel.verifyCodeAndTryToSignIn(smsCode: smsCodeTextField.text)
+        
+//        let tabBar = CocktailsTabBarController()
+//        tabBar.modalPresentationStyle = .fullScreen
+////        navigationController?.pushViewController(tabBar, animated: true)
+//        present(tabBar, animated: true, completion: nil)
+//        tabBar.selectedIndex = 1
+    }
+//    override func viewDidDisappear(_ animated: Bool) {
+//        self.dismiss(animated: false, completion: nil)
+//    }
+    
+//    private func showAlert() {
+//        let alert = UIAlertController(
+//            title: "Error",
+//            message: "You must input something",
+//            preferredStyle: .alert
+//        )
+//        let okAction = UIAlertAction(title: "OK", style: .cancel)
+//        alert.addAction(okAction)
+//        present(alert, animated: true)
+//    }
+    
     private func setUpConstraints() {
         menuPagesHeader.snp.makeConstraints{ maker in
             maker.top.equalToSuperview().offset(100)
@@ -106,60 +203,9 @@ class AuthServiceViewController: UIViewController {
             maker.height.equalTo(30)
         }
     }
-    
-    override func loadView() {
-        super.loadView()
-        view.backgroundColor = ColorConstants.informationView
-        setUpUI()
-        smsCodeTextField.delegate = self
-//        dismiss(animated: false)
-    }
-    
-    private func setUpUI() {
-        setUpSubviews()
-        setUpConstraints()
-    }
-    
-    private func setUpSubviews() {
-        view.addSubview(menuPagesHeader)
-        view.addSubview(borderView)
-        view.addSubview(menuPagesDescription)
-        view.addSubview(smsCodeTextField)
-        view.addSubview(signInButton)
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        view.endEditing(true)
-    }
-    
-    @objc
-    private func confirmTapped(_ sender: UIButton) {
-//         AuthManager.shared.verifyPhoneAuthTapped()
-        viewModel.verifyCodeAndTryToSignIn(smsCode: smsCodeTextField.text)
-        let tabBar = CocktailsTabBarController()
-        tabBar.modalPresentationStyle = .fullScreen
-//        navigationController?.pushViewController(tabBar, animated: true)
-        present(tabBar, animated: true, completion: nil)
-        tabBar.selectedIndex = 1
-    }
-//    override func viewDidDisappear(_ animated: Bool) {
-//        self.dismiss(animated: false, completion: nil)
-//    }
-    
-//    private func showAlert() {
-//        let alert = UIAlertController(
-//            title: "Error",
-//            message: "You must input something",
-//            preferredStyle: .alert
-//        )
-//        let okAction = UIAlertAction(title: "OK", style: .cancel)
-//        alert.addAction(okAction)
-//        present(alert, animated: true)
-//    }
 }
 
-extension AuthServiceViewController: UITextFieldDelegate {
+extension AcceptSmsCodeViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let text = textField.text, !text.isEmpty else { return }
         switch textField {

@@ -8,6 +8,8 @@
 import UIKit
 
 class CocktailsTabBarController: UITabBarController {
+   
+    class var identifier: String { String(describing: self) }
     
     private func createControllers(
         from baseVC: UIViewController,

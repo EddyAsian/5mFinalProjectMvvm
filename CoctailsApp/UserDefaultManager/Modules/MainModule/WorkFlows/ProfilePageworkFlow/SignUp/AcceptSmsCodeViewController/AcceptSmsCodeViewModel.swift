@@ -46,14 +46,14 @@ final class SignInViewModel {
     public func verifyCodeAndTryToSignIn(smsCode: String?) {
         guard
             let smsCode = smsCode, !smsCode.isEmpty
-        else {
-            showAlert?(
-                "Error!",
-                "The sms-code field must be filled!",
-                nil
-            )
-            return
-        }
+        else { return }
+//            showAlert?(
+//                "Error!",
+//                "The sms-code field must be filled!",
+//                nil
+//            )
+//            return
+//        }
         
         authManager.tryToSignIn(smsCode: smsCode) { [weak self] result in
             switch result {

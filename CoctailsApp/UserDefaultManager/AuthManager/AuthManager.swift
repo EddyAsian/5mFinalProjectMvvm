@@ -73,6 +73,14 @@
 //}
 
 
+//
+//  AuthManager.swift
+//  cocktailsProject
+//
+//  Created by ibaikaa on 24/2/23.
+//
+
+
 
 
 import Foundation
@@ -119,40 +127,40 @@ final class AuthManager {
                 return
             }
             
-//            if let user = self.auth.currentUser {
-//                do {
-//                    try KeychainManager.shared.save(credential.provider, forKey: AuthKeys.credentialProvider)
-//                    try KeychainManager.shared.save(user.phoneNumber, forKey: AuthKeys.phoneNumber)
-//                    try KeychainManager.shared.save(user.uid, forKey: AuthKeys.uid)
-//
-//                    // Вообще, не рекомендуется хранить приватные данные в юзер-дефолтс, но дз есть дз
-//                    try UserDefaultsManager.shared.save(credential.provider, for: AuthKeys.credentialProvider)
-//                    try UserDefaultsManager.shared.save(user.phoneNumber, for: AuthKeys.phoneNumber)
-//                    try UserDefaultsManager.shared.save(user.uid, for: AuthKeys.uid)
-//
-//                    completion(.success(()))
-//                } catch {
-//                    completion(.failure(error))
-//                }
-//            }
+            if let user = self.auth.currentUser {
+                do {
+                    try KeychainManager.shared.save(credential.provider, forKey: AuthKeys.credentialProvider)
+                    try KeychainManager.shared.save(user.phoneNumber, forKey: AuthKeys.phoneNumber)
+                    try KeychainManager.shared.save(user.uid, forKey: AuthKeys.uid)
+                    
+                    // тут данные не шифруются - небезопасно
+                    try UserDefaultsManager.shared.save(credential.provider, for: AuthKeys.credentialProvider)
+                    try UserDefaultsManager.shared.save(user.phoneNumber, for: AuthKeys.phoneNumber)
+                    try UserDefaultsManager.shared.save(user.uid, for: AuthKeys.uid)
+                    
+                    completion(.success(()))
+                } catch {
+                    completion(.failure(error))
+                }
+            }
         }
     }
     
-//    func signOut(completion: @escaping (Result<Void, Error>) -> Void) {
-//        do {
-//            try auth.signOut()
-//
-//            try KeychainManager.shared.delete(forKey: AuthKeys.credentialProvider)
-//            try KeychainManager.shared.delete(forKey: AuthKeys.phoneNumber)
-//            try KeychainManager.shared.delete(forKey: AuthKeys.uid)
-//
-//            UserDefaultsManager.shared.delete(for: AuthKeys.credentialProvider)
-//            UserDefaultsManager.shared.delete(for: AuthKeys.phoneNumber)
-//            UserDefaultsManager.shared.delete(for: AuthKeys.uid)
-//
-//            completion(.success(()))
-//        } catch let error {
-//            completion(.failure(error))
-//        }
-//    }
+    func signOut(completion: @escaping (Result<Void, Error>) -> Void) {
+        do {
+            try auth.signOut()
+            
+            try KeychainManager.shared.delete(forKey: AuthKeys.credentialProvider)
+            try KeychainManager.shared.delete(forKey: AuthKeys.phoneNumber)
+            try KeychainManager.shared.delete(forKey: AuthKeys.uid)
+            
+            UserDefaultsManager.shared.delete(for: AuthKeys.credentialProvider)
+            UserDefaultsManager.shared.delete(for: AuthKeys.phoneNumber)
+            UserDefaultsManager.shared.delete(for: AuthKeys.uid)
+            
+            completion(.success(()))
+        } catch let error {
+            completion(.failure(error))
+        }
+    }
 }

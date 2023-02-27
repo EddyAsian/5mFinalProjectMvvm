@@ -138,6 +138,7 @@ class EditProfileVC: UIViewController {
         view.backgroundColor = ColorConstants.profileBack
         setUpUI()
         getKeychain()
+//       passwordInformation.driver.hideDeviceKeyboard()
        usernameLabel.text = loginName.text
     }
     
@@ -176,28 +177,28 @@ class EditProfileVC: UIViewController {
         present(addNumberVc, animated: true)
     }
   
-     func saveUserDefaultManager() {
-        guard let email = emailInformation.text,
-              let dateOfBirth = dateOfBirthInformation.text,
-              let adress = adressInformation.text,
-              let loginName = loginName.text,
-              let password = passwordInformation.text else {
-            return
-        }
-        let model = UserInfo(email: email, dateOfBirth: dateOfBirth, adress: adress, loginName: loginName, password: password)
-        UserDefaultManager.shared.save(model, for: .adress)
-        UserDefaultManager.shared.save(model, for: .email)
-        UserDefaultManager.shared.save(model, for: .dateOfBirth)
-        
-        let readAdress = UserDefaultManager.shared.string(for: .adress)
-        print("Adress is saved to UserDefault: \(readAdress)")
-        
-        let readEmail = UserDefaultManager.shared.string(for: .email)
-        print("Email is saved to UserDefault: \(readEmail)")
-        
-        let readDataOfBirth = UserDefaultManager.shared.string(for: .dateOfBirth)
-        print("Date of Birth is saved to UserDefault: \(readDataOfBirth)")
-    }
+//     func saveUserDefaultManager() {
+//        guard let email = emailInformation.text,
+//              let dateOfBirth = dateOfBirthInformation.text,
+//              let adress = adressInformation.text,
+//              let loginName = loginName.text,
+//              let password = passwordInformation.text else {
+//            return
+//        }
+//        let model = UserInfo(email: email, dateOfBirth: dateOfBirth, adress: adress, loginName: loginName, password: password)
+//        UserDefaultManager.shared.save(model, for: .adress)
+//        UserDefaultManager.shared.save(model, for: .email)
+//        UserDefaultManager.shared.save(model, for: .dateOfBirth)
+//
+//        let readAdress = UserDefaultManager.shared.string(for: .adress)
+//        print("Adress is saved to UserDefault: \(readAdress)")
+//
+//        let readEmail = UserDefaultManager.shared.string(for: .email)
+//        print("Email is saved to UserDefault: \(readEmail)")
+//
+//        let readDataOfBirth = UserDefaultManager.shared.string(for: .dateOfBirth)
+//        print("Date of Birth is saved to UserDefault: \(readDataOfBirth)")
+//    }
     
     // MARK: -  переделать! как выше
     func saveKeyChainManager() {
@@ -376,7 +377,6 @@ class EditProfileVC: UIViewController {
             maker.height.equalTo(20)
         }
     }
-    
 }
 
 

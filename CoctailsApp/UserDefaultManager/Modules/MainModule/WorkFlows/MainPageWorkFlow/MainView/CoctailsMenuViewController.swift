@@ -100,7 +100,7 @@ class CocktailsMenuViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 10
         layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         let view = UICollectionView(
             frame: .zero,
             collectionViewLayout: layout
@@ -249,8 +249,8 @@ class CocktailsMenuViewController: UIViewController {
         
         drinksCollectionView.snp.makeConstraints { make in
             make.top.equalTo(backgroundViewForCollection.snp.top)
-            make.left.equalTo(backgroundViewForCollection.snp.left).offset(20)
-            make.right.equalTo(backgroundViewForCollection.snp.right).offset(-20)
+            make.left.equalTo(backgroundViewForCollection.snp.left).offset(10)
+            make.right.equalTo(backgroundViewForCollection.snp.right).offset(-10)
             make.bottom.equalTo(backgroundViewForCollection.snp.bottom)
         }
         

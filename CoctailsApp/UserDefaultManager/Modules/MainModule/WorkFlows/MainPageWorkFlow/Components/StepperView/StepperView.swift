@@ -49,6 +49,7 @@ class StepperView: UIControl {
         let button = UIButton()
         button.addTarget(self, action: #selector(decrease), for: [.touchDragExit, .touchCancel, .touchUpInside, .touchUpOutside])
         button.setTitle("  -  ", for: .normal)
+        button.titleLabel?.textAlignment = .center
         return button
     }()
     
@@ -56,6 +57,7 @@ class StepperView: UIControl {
         let button = UIButton()
         button.addTarget(self, action: #selector(add), for: [.touchDragExit, .touchCancel, .touchUpInside, .touchUpOutside])
         button.setTitle("  +  ", for: .normal)
+        button.titleLabel?.textAlignment = .center
         return button
     }()
     
@@ -72,7 +74,7 @@ class StepperView: UIControl {
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.2
         label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        label.textColor = UIColor.black
+        label.textColor = UIColor.purple
         return label
     }()
     
@@ -214,195 +216,3 @@ class StepperView: UIControl {
         sharedInit()
     }
 }
-
-
-
-
-
-//
-//import UIKit
-//
-//class BasketViewController: UIViewController {
-//    enum TypeSelected {
-//        case takeaway
-//        case intheCafe
-//    }
-//
-//    private let titleLabel: UILabel = {
-//        let label = UILabel()
-//        label.font = UIFont.systemFont(ofSize: 34, weight: .bold)
-//        label.textColor = .black
-//        label.text = "ЙОЙО"
-//        return label
-//    }()
-//
-//    private lazy var historyOfOrdersButton: UIButton = {
-//        let button = UIButton()
-//        button.setTitle("История", for: .normal)
-//        button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-//        button.setTitleColor(.orange, for: .normal)
-//        button.addTarget(self, action: #selector(historyTapped), for: .touchUpInside)
-//        return button
-//    }()
-//
-//    private lazy var collectionView: UICollectionView = {
-//        let layout = UICollectionViewFlowLayout()
-//        layout.itemSize = CGSize(width: screenWidth, height: 90)
-//        layout.minimumLineSpacing = 10
-//        layout.headerReferenceSize = CGSize(width: screenWidth, height: 130)
-//        layout.footerReferenceSize = CGSize(width: screenWidth, height: 240)
-//        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
-//        view.delegate = self
-//        view.dataSource = self
-//        view.registerReusable(CellType: OrderCell.self)
-//        view.registerReusableView(ViewType: BasketHeaderView.self, type: .UICollectionElementKindSectionHeader)
-//        view.registerReusableView(ViewType: BasketFooterView.self, type: .UICollectionElementKindSectionFooter)
-//        view.backgroundColor = Asset.clientBackround.color
-//        return view
-//    }()
-//
-//    private let emptyView: UIImageView = {
-//        let view = UIImageView()
-//        let image = Asset.animal.image
-//        view.image = image
-//        return view
-//    }()
-//    UIImage(named: "qwe")
-//    private var sum = 0
-//
-//    // MARK: - injection
-//    private var viewModel: BasketViewModelType
-//
-//    init(vm: BasketViewModelType) {
-//        viewModel = vm
-//        super.init(nibName: nil, bundle: nil)
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        setUp()
-//    }
-//
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        collectionView.reloadData()
-//    }
-//
-//    private func setUp() {
-//        setUpSubviews()
-//        setUpConstaints()
-//    }
-//
-//    private func setUpSubviews() {
-//        view.addSubview(titleLabel)
-//        view.addSubview(historyOfOrdersButton)
-//        view.addSubview(collectionView)
-//    }
-//
-//    private func setUpConstaints () {
-//        titleLabel.snp.makeConstraints { make in
-//            make.top.equalTo(view.safeAreaLayoutGuide).offset(5)
-//            make.leading.equalToSuperview().offset(16)
-//            make.trailing.equalToSuperview().offset(-16)
-//            make.height.equalTo(35)
-//        }
-//        historyOfOrdersButton.snp.makeConstraints { make in
-//            make.top.equalTo(titleLabel).offset(14)
-//            make.trailing.equalToSuperview().offset(-16)
-//            make.height.equalTo(20)
-//            make.width.equalTo(85)
-//        }
-//        collectionView.snp.makeConstraints { make in
-//            make.top.equalTo(titleLabel.snp.bottom).offset(5)
-//            make.bottom.trailing.leading.equalToSuperview()
-//        }
-//    }
-//    // MARK: - OBJC functions
-//    @objc
-//    private func historyTapped() {
-//        let historyVC = DIService.shared.getVc(HistoryOrderViewController.self)
-//        navigationController?.pushViewController(historyVC, animated: true)
-//    }
-//
-//    private func orderInfo(sum: Int) {
-//        self.sum = sum
-//    }
-//
-//    // MARK: - Handlers
-//    private func handleOrder() {
-//        let dish = viewModel.getDishes()
-//
-//        let orderDetails = [
-//            ListOrderDetailsDto(
-//                calcTotal: Int(dish.first?.sum ?? 0.0),
-//            chosenGeneralAdditional: nil,
-//                id: dish.first?.dishId ?? 0,
-//                name: dish.first?.dishName ?? "",
-//                price: Int(dish.first?.dishPrice ?? 0.0),
-//                quantity: dish.first?.quanitity ?? 0),
-//
-//            ListOrderDetailsDto(
-//            calcTotal: Int(dish.last?.sum ?? 0.0),
-//            chosenGeneralAdditional: nil,
-//            id: dish.last?.dishId ?? 0,
-//            name: dish.last?.dishName ?? "",
-//            price: Int(dish.last?.dishPrice ?? 0.0),
-//            quantity: dish.last?.quanitity ?? 0)
-//        ]
-//
-//        let order = OrderDTO(branchId: 0,
-//                             listOrderDetailsDto: orderDetails,
-//                             orderTime: Date(),
-//                             orderType: "IN",
-//                             tableId: 0)
-//    }
-//}
-//
-//// MARK: - Datasource Delegate
-//extension BasketViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return viewModel.getDishes().count
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueIdentifiableCell(OrderCell.self, for: indexPath)
-//        cell.orderCount = orderInfo
-//        cell.display(dish: viewModel.getDishes()[indexPath.row])
-//        return cell
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        switch kind {
-//        case UICollectionView.elementKindSectionHeader:
-//            let view = collectionView.dequeuReusableView(ViewType: BasketHeaderView.self, type: .UICollectionElementKindSectionHeader, for: indexPath)
-//            return view
-//        case UICollectionView.elementKindSectionFooter:
-//            let view = collectionView.dequeuReusableView(ViewType: BasketFooterView.self, type: .UICollectionElementKindSectionFooter, for: indexPath)
-//            view.delegate = self
-//            return view
-//        default:
-//            let view = collectionView.dequeuReusableView(ViewType: BasketFooterView.self, type: .UICollectionElementKindSectionFooter, for: indexPath)
-//            return view
-//        }
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        collectionView.deselectItem(at: indexPath, animated: true)
-//    }
-//}
-//
-//extension BasketViewController: BasketFooterViewDelegate {
-//    func addMoreTap() {
-//        tabBarController?.selectedIndex = 0
-//    }
-//
-//    func orderTap() {
-//        handleOrder()
-//    }
-//}
-
-
