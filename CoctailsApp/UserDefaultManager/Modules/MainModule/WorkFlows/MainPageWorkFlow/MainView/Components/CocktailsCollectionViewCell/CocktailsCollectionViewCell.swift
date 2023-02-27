@@ -129,20 +129,20 @@ class MenuCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func chooseCollection(_ product: Drinks) {
-        coctail = product
-        let drinks = Drinks(
-            name: product.name,
-            image: product.image,
-            instructions: product.instructions
-           )
-
-        DatabaseManager.shared.setCocktailsToDataBase(
-            collection: "User",
-            document: "List of Cocktails",
-            withData: drinks.dictionary
-        )
-    }
+//    func chooseCollection(_ product: Drinks) {
+//        coctail = product
+//        let drinks = Drinks(
+//            name: product.name,
+//            image: product.image,
+//            instructions: product.instructions
+//           )
+//
+//        DatabaseManager.shared.setCocktailsToDataBase(
+//            collection: "User",
+//            document: "List of Cocktails",
+//            withData: drinks.dictionary
+//        )
+//    }
 
 //    func displayInfo(product: Drinks) {
 //        coctail = product

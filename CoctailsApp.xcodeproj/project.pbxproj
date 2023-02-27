@@ -57,6 +57,8 @@
 		D4AC79D729AB695E00859CDC /* FavouriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC79D629AB695E00859CDC /* FavouriteViewModel.swift */; };
 		D4AC79DC29AC272B00859CDC /* AcceptSmsCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC79DB29AC272B00859CDC /* AcceptSmsCodeViewModel.swift */; };
 		D4AC79E129AC593300859CDC /* CocktailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC79E029AC593300859CDC /* CocktailsCollectionViewCell.swift */; };
+		D4AC79E429AC609000859CDC /* PostNewDrinkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC79E329AC609000859CDC /* PostNewDrinkVC.swift */; };
+		D4AC79E829AC60D400859CDC /* PostNewDrinkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC79E729AC60D400859CDC /* PostNewDrinkViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +115,8 @@
 		D4AC79D629AB695E00859CDC /* FavouriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewModel.swift; sourceTree = "<group>"; };
 		D4AC79DB29AC272B00859CDC /* AcceptSmsCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptSmsCodeViewModel.swift; sourceTree = "<group>"; };
 		D4AC79E029AC593300859CDC /* CocktailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsCollectionViewCell.swift; sourceTree = "<group>"; };
+		D4AC79E329AC609000859CDC /* PostNewDrinkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostNewDrinkVC.swift; sourceTree = "<group>"; };
+		D4AC79E729AC60D400859CDC /* PostNewDrinkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostNewDrinkViewModel.swift; sourceTree = "<group>"; };
 		F6CDF999D2F8E8F3015646B3 /* Pods_CoctailsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoctailsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -534,6 +538,7 @@
 		D4AC79DA29AC26B300859CDC /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				D4AC79E229AC605500859CDC /* PostNewDrink */,
 				D4AC79DD29AC3FD700859CDC /* AddNumberViewController */,
 				28C4AE8A29991187008299C3 /* SignUpViewPage */,
 				D49A3EAD29A13CA300BF2DA8 /* AcceptSmsCodeViewController */,
@@ -563,6 +568,31 @@
 				D4AC79E029AC593300859CDC /* CocktailsCollectionViewCell.swift */,
 			);
 			path = CocktailsCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		D4AC79E229AC605500859CDC /* PostNewDrink */ = {
+			isa = PBXGroup;
+			children = (
+				D4AC79E629AC60BC00859CDC /* PostNewDrinkViewModel */,
+				D4AC79E529AC609C00859CDC /* PostNewDrinkViewController */,
+			);
+			path = PostNewDrink;
+			sourceTree = "<group>";
+		};
+		D4AC79E529AC609C00859CDC /* PostNewDrinkViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D4AC79E329AC609000859CDC /* PostNewDrinkVC.swift */,
+			);
+			path = PostNewDrinkViewController;
+			sourceTree = "<group>";
+		};
+		D4AC79E629AC60BC00859CDC /* PostNewDrinkViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D4AC79E729AC60D400859CDC /* PostNewDrinkViewModel.swift */,
+			);
+			path = PostNewDrinkViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -690,6 +720,7 @@
 				D49B7A4729A833F000AFA3BA /* BasketFinalBuyViewController.swift in Sources */,
 				D4AC79D429AB557800859CDC /* ReusableViewType.swift in Sources */,
 				D49B7A4529A8339300AFA3BA /* BaskedChoosedTableViewCell.swift in Sources */,
+				D4AC79E829AC60D400859CDC /* PostNewDrinkViewModel.swift in Sources */,
 				D49A35C3299DE2E800436BFF /* UIIColor.swift in Sources */,
 				D49EA30629A5326E007C450A /* DatabaseManager.swift in Sources */,
 				D49E3AA329A991FA00168152 /* FavouriteDrinksViewController.swift in Sources */,
@@ -707,6 +738,7 @@
 				28C4AE822998EDAD008299C3 /* AddProductCustomButton.swift in Sources */,
 				D42D24C629A1CDB800008A81 /* UserDefaultManager.swift in Sources */,
 				288CE6CF2998A7EF006E2FE8 /* AppDelegate.swift in Sources */,
+				D4AC79E429AC609000859CDC /* PostNewDrinkVC.swift in Sources */,
 				D49B7A4129A8335600AFA3BA /* BasketChoosedModel.swift in Sources */,
 				D49DFF7A29A754CB00CF65A4 /* EditProfileVC.swift in Sources */,
 				D4A8670529A90898009BC639 /* CoreDataStack.swift in Sources */,

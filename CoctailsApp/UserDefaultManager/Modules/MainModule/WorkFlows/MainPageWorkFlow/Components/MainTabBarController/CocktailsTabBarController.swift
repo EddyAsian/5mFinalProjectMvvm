@@ -28,6 +28,7 @@ class CocktailsTabBarController: UITabBarController {
     private let itemIcons: [UIImage] = [
         UIImage(systemName: "person.circle") ?? UIImage(),
         UIImage(systemName: "house.circle") ?? UIImage(),
+        UIImage(systemName: "square.and.arrow.up.circle") ?? UIImage(),
         UIImage(systemName: "heart.circle") ?? UIImage(),
         UIImage(systemName: "cart.circle") ?? UIImage()
     ]
@@ -46,13 +47,18 @@ class CocktailsTabBarController: UITabBarController {
             ),
             
             createControllers(
-                from: FavouriteDrinksViewController(),
+                from: AddDrinkViewController(),
                 image: generateItemIcon(from: itemIcons[2])
             ),
             
             createControllers(
-                from: BasketChoosedViewController(),
+                from: FavouriteDrinksViewController(),
                 image: generateItemIcon(from: itemIcons[3])
+            ),
+            
+            createControllers(
+                from: BasketChoosedViewController(),
+                image: generateItemIcon(from: itemIcons[4])
             )
         ]
     }
