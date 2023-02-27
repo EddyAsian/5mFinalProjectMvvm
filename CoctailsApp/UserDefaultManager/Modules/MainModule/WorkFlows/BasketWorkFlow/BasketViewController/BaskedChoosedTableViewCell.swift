@@ -15,6 +15,8 @@ protocol BasketChoosedTableViewCellDelegate :NSObjectProtocol {
 }
 
 class BaskedChoosedTableViewCell: UITableViewCell {
+    
+    weak var delegate: BasketChoosedTableViewCellDelegate?
 
     var goodModel : BasketChoosedModel? {
        didSet {
@@ -36,9 +38,7 @@ class BaskedChoosedTableViewCell: UITableViewCell {
         }
     }
    
-    weak var delegate: BasketChoosedTableViewCellDelegate?
-    
-    var collBackIconView: UIImageView?
+     var collBackIconView: UIImageView?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -48,6 +48,7 @@ class BaskedChoosedTableViewCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     func prepareUI () {
         contentView.addSubview(iconView)
         contentView.addSubview(titleLabel)

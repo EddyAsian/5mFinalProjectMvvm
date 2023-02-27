@@ -7,9 +7,9 @@
 
 import UIKit
 
-class BasketChShoppingViewController: UIViewController {
+class BasketFinalBuyViewController: UIViewController {
     
-     var addGoodArray: [BasketChoosedModel]? {
+    var addGoodArray: [BasketChoosedModel]? {
         didSet {
             
         }
@@ -18,92 +18,6 @@ class BasketChShoppingViewController: UIViewController {
     var price: Float = 0.00
     
     fileprivate let shoppingCarCellIdntifier  = "shoppingCarCellIdntifier"
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.view.backgroundColor = UIColor.orange
-        
-        presentingUI()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        layoutUI()
-        
-        reCalculateGoodCount()
-    }
-    
-    func presentingUI() {
-        title = "Order list:"
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItem.Style.plain, target: self, action: #selector(clickBar))
-        view.backgroundColor = UIColor.white
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.orange
-        showCartTableView.rowHeight = 80
-        
-        showCartTableView.register(BasketChShoppingCell.self, forCellReuseIdentifier: shoppingCarCellIdntifier)
-        
-        view.addSubview(showCartTableView)
-        view.addSubview(bottomView)
-        bottomView.addSubview(selectButton)
-        bottomView.addSubview(totalPriceLabel)
-        bottomView.addSubview(buyButton)
-        
-        for model in addGoodArray! {
-            if model.selected != true {
-                selectButton.isSelected = false
-                break
-            }
-        }
-    }
-    
-    func layoutUI() {
-        showCartTableView.snp.makeConstraints { (make) -> Void in
-            make.left.top.right.equalTo(0)
-            make.bottom.equalTo(-49)
-        }
-        bottomView.snp.makeConstraints { (make) -> Void in
-            make.left.bottom.right.equalTo(0)
-            make.height.equalTo(49)
-        }
-        
-        selectButton.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(15)
-            make.centerY.equalTo(bottomView.snp.centerY)
-        }
-        
-        totalPriceLabel.snp.makeConstraints { (make) -> Void in
-            make.center.equalTo(bottomView.snp.center)
-            make.top.equalToSuperview().offset(-20)
-        }
-        
-        buyButton.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(-20)
-            make.top.equalTo(5)
-            make.width.equalTo(88)
-            make.height.equalTo(30)
-        }
-    }
-    
-    @objc func clickBar () {
-        dismiss(animated: true)
-    }
-    
-    private func showAlert() {
-        let alert = UIAlertController(
-            title: "Success",
-            message: "We hope you will enjoy our Cocktails 🍸 🥃 🍷",
-            preferredStyle: .alert
-        )
-        
-        let okAction = UIAlertAction(title: "OK", style: .cancel)
-        alert.addAction(okAction)
-        present(alert, animated: true)
-    }
-    
-    @objc func acceptTapped() {
-        showAlert()
-    }
     
     lazy var showCartTableView : UITableView = {
         let tableView = UITableView()
@@ -156,10 +70,93 @@ class BasketChShoppingViewController: UIViewController {
         )
         return button
     }()
- }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = UIColor.orange
+        presentingUI()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        layoutUI()
+        reCalculateGoodCount()
+    }
+    
+    func presentingUI() {
+        title = "Order list:"
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItem.Style.plain, target: self, action: #selector(clickBar))
+        view.backgroundColor = UIColor.white
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.orange
+        showCartTableView.rowHeight = 80
+        
+        showCartTableView.register(BasketChShoppingCell.self, forCellReuseIdentifier: shoppingCarCellIdntifier)
+        
+        view.addSubview(showCartTableView)
+        view.addSubview(bottomView)
+        bottomView.addSubview(selectButton)
+        bottomView.addSubview(totalPriceLabel)
+        bottomView.addSubview(buyButton)
+        
+        for model in addGoodArray! {
+            if model.selected != true {
+                selectButton.isSelected = false
+                break
+            }
+        }
+    }
+    
+    @objc func clickBar () {
+        dismiss(animated: true)
+    }
+    
+    @objc func acceptTapped() {
+        showAlert()
+    }
+    
+    private func showAlert() {
+        let alert = UIAlertController(
+            title: "Success",
+            message: "We hope you will enjoy our Cocktails 🍸 🥃 🍷",
+            preferredStyle: .alert
+        )
+        
+        let okAction = UIAlertAction(title: "OK", style: .cancel)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+    
+    func layoutUI() {
+        showCartTableView.snp.makeConstraints { (make) -> Void in
+            make.left.top.right.equalTo(0)
+            make.bottom.equalTo(-49)
+        }
+        bottomView.snp.makeConstraints { (make) -> Void in
+            make.left.right.bottom.equalTo(-10)
+            make.height.equalTo(49)
+//            make.width.equalTo(340)
+        }
+        
+        selectButton.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(35)
+            make.centerY.equalTo(bottomView.snp.centerY)
+        }
+        
+        totalPriceLabel.snp.makeConstraints { (make) -> Void in
+            make.center.equalTo(bottomView.snp.center)
+            make.top.equalToSuperview().offset(-20)
+        }
+        
+        buyButton.snp.makeConstraints { (make) -> Void in
+            make.right.equalTo(-20)
+            make.top.equalTo(5)
+            make.width.equalTo(88)
+            make.height.equalTo(30)
+        }
+    }
+}
 
-
-extension BasketChShoppingViewController : UITableViewDelegate,UITableViewDataSource{
+extension BasketFinalBuyViewController : UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return addGoodArray!.count ?? 0
@@ -179,7 +176,7 @@ extension BasketChShoppingViewController : UITableViewDelegate,UITableViewDataSo
     
 }
 
-extension BasketChShoppingViewController : BasketChShoppingCellDelegate {
+extension BasketFinalBuyViewController : BasketChShoppingCellDelegate {
     
     func shopping(_ shopping: BasketChShoppingCell, button: UIButton, label: UILabel) {
         
@@ -205,39 +202,36 @@ extension BasketChShoppingViewController : BasketChShoppingCellDelegate {
         reCalculateGoodCount()
     }
     
-   func shoppingCalculate() {
+    func shoppingCalculate() {
         reCalculateGoodCount()
     }
 }
 
-extension BasketChShoppingViewController {
-    
+extension BasketFinalBuyViewController {
     fileprivate func reCalculateGoodCount() {
         for model in addGoodArray! {
             if model.selected == true {
                 price += Float(model.count) * (model.newPrice! as NSString).floatValue
             }
-            
         }
         
         let  attributeText = NSMutableAttributedString(string: "TOTAL: \(self.price)0")
+        attributeText.setAttributes(
+            [NSAttributedString.Key.foregroundColor:UIColor.red],
+            range: NSMakeRange(5, attributeText.length - 5)
+        )
         
-        attributeText.setAttributes([NSAttributedString.Key.foregroundColor:UIColor.red], range: NSMakeRange(5, attributeText.length - 5))
         totalPriceLabel.attributedText = attributeText
         price = 0
-        
         showCartTableView.reloadData()
     }
     
-     @objc fileprivate func didSelectButton(_ btn:UIButton) {
-        
+    @objc fileprivate func didSelectButton(_ btn:UIButton) {
         btn.isSelected = !btn.isSelected
-        
         for model in addGoodArray! {
             model.selected = btn.isSelected
         }
         reCalculateGoodCount()
-        
         showCartTableView.reloadData()
     }
 }

@@ -12,7 +12,29 @@ import RxRelay
 
 class FavouriteDrinksViewController: UIViewController {
    
+    let notificationCenter = NotificationCenter.default
+    
     private var viewModel: MainViewModelType = MainViewModel()
+    
+    var favouriteArray: [Drinks]? {
+        didSet {
+            
+        }
+    }
+    
+//    private var basketArray: [Drinks] = [] {
+//        didSet {
+//            notifyArray = basketArray
+//        }
+//    }
+//
+//    private var notifyArray = [Drinks]() {
+//        didSet {
+//
+//        }
+//    }
+    
+//    var favouriteViewModel: FavouriteViewModel!
     
     // For requesting to API to get next letter's drinks
     private var currentLetterUnicodeVoralue: UInt32 = 97
@@ -20,11 +42,18 @@ class FavouriteDrinksViewController: UIViewController {
     
     //    var cocktail: Drinks?
     
-    private var notificationArray = [Drinks]()
+    private var notificationArray: [Drinks] = []
     
     private var drinks = [Drinks]() {
         didSet {
             filteredDrinks = drinks
+        }
+    }
+    
+    private var filteredDrinks = [Drinks]() {
+        didSet {
+            updateUIwithSearchResultsState(resultIsEmpty: filteredDrinks.isEmpty)
+            favouriteDrinksCV.reloadData()
         }
     }
     
@@ -96,6 +125,24 @@ class FavouriteDrinksViewController: UIViewController {
         return view
     }()
     
+    private lazy var noCocktailsFoundLabel: UILabel = {
+        let label =  UILabel(
+            frame: CGRect(
+                x: 0,
+                y: 0,
+                width: favouriteDrinksCV.bounds.size.width,
+                height: 50
+            )
+        )
+        label.text = "Oops, there is No cocktail with this name😊\n Maybe you didn't buy it yet?"
+        label.font = UIFont(name: "Avenir Next", size: 18)
+        label.textColor = .black
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.isHidden = true
+        return label
+    }()
+    
     //    private lazy var drinksCollectionView: UICollectionView = {
     //        let layout = UICollectionViewFlowLayout()
     //        layout.itemSize = CGSize(width: screenWidth, height: 10)
@@ -116,23 +163,6 @@ class FavouriteDrinksViewController: UIViewController {
     
     // No Cocktails found Label creating. Appears in case if
     // there is no cocktail found with name that was input.
-    private lazy var noCocktailsFoundLabel: UILabel = {
-        let label =  UILabel(
-            frame: CGRect(
-                x: 0,
-                y: 0,
-                width: favouriteDrinksCV.bounds.size.width,
-                height: 50
-            )
-        )
-        label.text = "Oops, there is No cocktail with this name😊\n Maybe you didn't buy it yet?"
-        label.font = UIFont(name: "Avenir Next", size: 18)
-        label.textColor = .black
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        label.isHidden = true
-        return label
-    }()
     
     override func loadView() {
         super.loadView()
@@ -141,11 +171,26 @@ class FavouriteDrinksViewController: UIViewController {
         setUpConstraints()
         favouriteDrinksCV.reloadData()
         configureDrinksCollectionView()
+        print(notificationArray)
         //        configureSearchDrinkSearchBar()
         //        getDrinksForLetter(currentLetter)
         //        NotificationCenter.post(name: .notificationInfo, object: self, userInfo: drinks)
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "post"), object: nil, userInfo: myDict)
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "post"), object: nil, userInfo: myDict)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        notificationCenter.addObserver(self, selector: #selector(getArray(notification:)), name: .changeArrayNotification, object: nil)
+    }
+    
+    deinit {
+        notificationCenter.removeObserver(self)
+    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        let drinksArray = favouriteViewModel.drinksArray
+//    }
     
     private func setupSubViews() {
         view.addSubview(allDrinksTitleLabel)
@@ -180,16 +225,16 @@ class FavouriteDrinksViewController: UIViewController {
         }
     }
     
+    @objc func getArray(notification: Notification) {
+        let dictionary = notification.userInfo as! [Drinks]
+        notificationArray = dictionary
+//        favouriteDrinksCV.reloadData()
+    }
+    
     //    @objc func didGetnotification(_ notification: Notification) {
     //        favouriteDrinks.
     //    }
-    private var filteredDrinks = [Drinks]() {
-        didSet {
-            updateUIwithSearchResultsState(resultIsEmpty: filteredDrinks.isEmpty)
-            favouriteDrinksCV.reloadData()
-        }
-    }
-    
+  
     // MARK: Call API methods ()
     private func getDrinksForLetter(_ letter: String) {
         Task {
@@ -250,7 +295,7 @@ extension FavouriteDrinksViewController: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
-    ) -> Int {  notificationArray.count }
+    ) -> Int {  favouriteArray?.count ?? 0 }
     
     
     func collectionView(
@@ -261,7 +306,9 @@ extension FavouriteDrinksViewController: UICollectionViewDataSource {
             withReuseIdentifier: FavouriteCVCell.reuseID,
             for: indexPath
         ) as? FavouriteCVCell else { return UICollectionViewCell() }
-        cell.configure(with: notificationArray[indexPath.row])
+        cell.coctail = favouriteArray![indexPath.row]
+        cell.delete(self)
+//        cell.configure(with: notificationArray[indexPath.row])
         //        cell.dispaleo(with: notificationArray[indexPath.row])
         return cell
     }
@@ -334,6 +381,13 @@ extension FavouriteDrinksViewController: UISearchBarDelegate {
     }
 }
 
+//extension FavouriteDrinksViewController {
+//    func addObserver() {
+//        NotificationCenter.default.addObserver(forName: notification, object: nil, queue: .main) { [weak self] notification in
+//            self?.notifyArray
+//        }
+//    }
+//}
 
 
 

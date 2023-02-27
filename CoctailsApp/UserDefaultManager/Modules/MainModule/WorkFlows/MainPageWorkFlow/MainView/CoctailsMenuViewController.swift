@@ -9,11 +9,24 @@ import UIKit
 import SnapKit
 import RxRelay
 
+extension NSNotification.Name {
+    static let changeArrayNotification = NSNotification.Name.init("changeArrayNotification")
+}
+
+let notificationName = "com.hungry"
+let notification = Notification.Name(notificationName)
+
+
 class CocktailsMenuViewController: UIViewController {
+    
+//    let notificationCenter = NotificationCenter.default
+    
+    private var basketArray: [Drinks] = []
     
     private var viewModel: MainViewModelType = MainViewModel()
     
-    private var basketArray: [Drinks] = []
+//    NotificationCenter.default.post(name: notification, object: nil)
+  
     
     // For requesting to API to get next letter's drinks
     private var currentLetterUnicodeVoralue: UInt32 = 97
@@ -141,6 +154,23 @@ class CocktailsMenuViewController: UIViewController {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+//        let dictionary = [basketArray]
+//        notificationCenter.post(name: .changeArrayNotification , object: self, userInfo: dictionary)
+        
+     
+        
+    }
+    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//
+//        let dictionary = ["model": basketArray]
+//        notificationCenter.post(name: .changeArrayNotification , object: self, userInfo: dictionary)
+//    }
+//
     private func setupSubViews() {
         view.addSubview(allDrinksTitleLabel)
         view.addSubview(pageInfoSubtitleLabel)

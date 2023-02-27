@@ -14,6 +14,10 @@ import FirebaseAuth
 
 class AuthServiceViewController: UIViewController {
     
+    class var identifier: String { String(describing: self) }
+    
+    private lazy var viewModel: SignInViewModel = { SignInViewModel() }()
+    
     lazy var menuPagesHeader: UILabel = {
         var menuPagesHeader = UILabel()
         menuPagesHeader.text = "3-Step Verification"
@@ -40,7 +44,7 @@ class AuthServiceViewController: UIViewController {
         return menuPagesDescription
     }()
     
-    lazy var codeInformation: UITextField = {
+    lazy var smsCodeTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Code from SMS:    XXXXXX"
         textField.font = UIFont(name: "Avenir Next", size: 17)
@@ -50,9 +54,9 @@ class AuthServiceViewController: UIViewController {
         return textField
     }()
     
-    var confirmCode: UIButton = {
+    var signInButton: UIButton = {
         var button = UIButton(type: .system)
-        button.backgroundColor = ColorConstants.tabBarItemAccent
+        button.backgroundColor = .gray
         button.setTitle("Confirm", for: .normal)
         button.titleLabel?.textColor = .white
         button.setTitleColor(.white, for: .normal)
@@ -60,6 +64,7 @@ class AuthServiceViewController: UIViewController {
         button.layer.cornerRadius = Constants.cornerRadius
         button.layer.shadowOffset = CGSize(width: 0.0, height: 5)
         button.layer.shadowOpacity = 0.2
+        button.isEnabled = false
         button.addTarget(
             self, action: #selector(confirmTapped),
             for: .touchUpInside
@@ -87,15 +92,15 @@ class AuthServiceViewController: UIViewController {
             maker.height.equalTo(150)
         }
         
-        codeInformation.snp.makeConstraints{ maker in
+        smsCodeTextField.snp.makeConstraints{ maker in
             maker.top.equalTo(menuPagesDescription.snp.bottom).offset(100)
             maker.left.equalToSuperview().offset(30)
             maker.width.equalTo(310)
             maker.height.equalTo(45)
         }
         
-        confirmCode.snp.makeConstraints { maker in
-            maker.top.equalTo(codeInformation.snp.bottom).offset(50)
+        signInButton.snp.makeConstraints { maker in
+            maker.top.equalTo(smsCodeTextField.snp.bottom).offset(50)
             maker.centerX.equalToSuperview()
             maker.width.equalTo(170)
             maker.height.equalTo(30)
@@ -106,6 +111,7 @@ class AuthServiceViewController: UIViewController {
         super.loadView()
         view.backgroundColor = ColorConstants.informationView
         setUpUI()
+        smsCodeTextField.delegate = self
 //        dismiss(animated: false)
     }
     
@@ -118,14 +124,19 @@ class AuthServiceViewController: UIViewController {
         view.addSubview(menuPagesHeader)
         view.addSubview(borderView)
         view.addSubview(menuPagesDescription)
-        view.addSubview(codeInformation)
-        view.addSubview(confirmCode)
+        view.addSubview(smsCodeTextField)
+        view.addSubview(signInButton)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
     }
     
     @objc
     private func confirmTapped(_ sender: UIButton) {
-         AuthManager.shared.verifyPhoneAuthTapped()
-        
+//         AuthManager.shared.verifyPhoneAuthTapped()
+        viewModel.verifyCodeAndTryToSignIn(smsCode: smsCodeTextField.text)
         let tabBar = CocktailsTabBarController()
         tabBar.modalPresentationStyle = .fullScreen
 //        navigationController?.pushViewController(tabBar, animated: true)
@@ -135,9 +146,30 @@ class AuthServiceViewController: UIViewController {
 //    override func viewDidDisappear(_ animated: Bool) {
 //        self.dismiss(animated: false, completion: nil)
 //    }
+    
+//    private func showAlert() {
+//        let alert = UIAlertController(
+//            title: "Error",
+//            message: "You must input something",
+//            preferredStyle: .alert
+//        )
+//        let okAction = UIAlertAction(title: "OK", style: .cancel)
+//        alert.addAction(okAction)
+//        present(alert, animated: true)
+//    }
 }
 
-
+extension AuthServiceViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let text = textField.text, !text.isEmpty else { return }
+        switch textField {
+        case smsCodeTextField:
+            signInButton.backgroundColor = ColorConstants.tabBarItemAccent
+            signInButton.isEnabled = true
+        default: ()
+        }
+    }
+ }
 
 
 

@@ -138,6 +138,7 @@ class EditProfileVC: UIViewController {
         view.backgroundColor = ColorConstants.profileBack
         setUpUI()
         getKeychain()
+       usernameLabel.text = loginName.text
     }
     
     private func setUpUI() {
@@ -159,7 +160,23 @@ class EditProfileVC: UIViewController {
         view.addSubview(logout)
     }
     
-    func saveUserDefaultManager() {
+    @objc
+    private func saveChangesTapped(_ sender: UIButton) {
+        addNewUser()
+        clearKeychain()
+        saveKeyChainManager()
+        saveAlert()
+    }
+    
+    @objc
+    private func logoutTapped(_ sender: UIButton) {
+        dismiss(animated: true)
+        let addNumberVc = WelcomeViewController()
+        addNumberVc.modalPresentationStyle = .fullScreen
+        present(addNumberVc, animated: true)
+    }
+  
+     func saveUserDefaultManager() {
         guard let email = emailInformation.text,
               let dateOfBirth = dateOfBirthInformation.text,
               let adress = adressInformation.text,
@@ -216,23 +233,6 @@ class EditProfileVC: UIViewController {
         print("Cleared keychain and added New User")
     }
 
-    
-    @objc
-    private func saveChangesTapped(_ sender: UIButton) {
-        addNewUser()
-        clearKeychain()
-        saveKeyChainManager()
-        saveAlert()
-    }
-    
-    @objc
-    private func logoutTapped(_ sender: UIButton) {
-        dismiss(animated: true)
-        let addNumberVc = WelcomeViewController()
-        addNumberVc.modalPresentationStyle = .fullScreen
-        present(addNumberVc, animated: true)
-    }
-    
     private func getKeychain() {
         if let getEmail = keychain.get(Keys.email) {
             emailInformation.text = getEmail

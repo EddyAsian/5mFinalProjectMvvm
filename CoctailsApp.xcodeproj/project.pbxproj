@@ -37,7 +37,7 @@
 		D49B7A4129A8335600AFA3BA /* BasketChoosedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B7A4029A8335600AFA3BA /* BasketChoosedModel.swift */; };
 		D49B7A4329A8337D00AFA3BA /* BasketChoosedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B7A4229A8337D00AFA3BA /* BasketChoosedViewController.swift */; };
 		D49B7A4529A8339300AFA3BA /* BaskedChoosedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B7A4429A8339300AFA3BA /* BaskedChoosedTableViewCell.swift */; };
-		D49B7A4729A833F000AFA3BA /* BasketChShoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B7A4629A833F000AFA3BA /* BasketChShoppingViewController.swift */; };
+		D49B7A4729A833F000AFA3BA /* BasketFinalBuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B7A4629A833F000AFA3BA /* BasketFinalBuyViewController.swift */; };
 		D49B7A4929A8341000AFA3BA /* BasketChShoppingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B7A4829A8341000AFA3BA /* BasketChShoppingCell.swift */; };
 		D49B7A4B29A8342100AFA3BA /* BasketChPriceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B7A4A29A8342000AFA3BA /* BasketChPriceLabel.swift */; };
 		D49C538629A727F8005C6E09 /* StepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C538529A727F8005C6E09 /* StepperView.swift */; };
@@ -55,6 +55,8 @@
 		D4A8670529A90898009BC639 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A8670429A90898009BC639 /* CoreDataStack.swift */; };
 		D4AADB0329AAE6E90064A2B5 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AADB0229AAE6E90064A2B5 /* WelcomeViewController.swift */; };
 		D4AC79D429AB557800859CDC /* ReusableViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC79D329AB557800859CDC /* ReusableViewType.swift */; };
+		D4AC79D729AB695E00859CDC /* FavouriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC79D629AB695E00859CDC /* FavouriteViewModel.swift */; };
+		D4AC79DC29AC272B00859CDC /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC79DB29AC272B00859CDC /* AuthViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,7 +93,7 @@
 		D49B7A4029A8335600AFA3BA /* BasketChoosedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketChoosedModel.swift; sourceTree = "<group>"; };
 		D49B7A4229A8337D00AFA3BA /* BasketChoosedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketChoosedViewController.swift; sourceTree = "<group>"; };
 		D49B7A4429A8339300AFA3BA /* BaskedChoosedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaskedChoosedTableViewCell.swift; sourceTree = "<group>"; };
-		D49B7A4629A833F000AFA3BA /* BasketChShoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketChShoppingViewController.swift; sourceTree = "<group>"; };
+		D49B7A4629A833F000AFA3BA /* BasketFinalBuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketFinalBuyViewController.swift; sourceTree = "<group>"; };
 		D49B7A4829A8341000AFA3BA /* BasketChShoppingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketChShoppingCell.swift; sourceTree = "<group>"; };
 		D49B7A4A29A8342000AFA3BA /* BasketChPriceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketChPriceLabel.swift; sourceTree = "<group>"; };
 		D49C538529A727F8005C6E09 /* StepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperView.swift; sourceTree = "<group>"; };
@@ -109,6 +111,8 @@
 		D4A8670429A90898009BC639 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		D4AADB0229AAE6E90064A2B5 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		D4AC79D329AB557800859CDC /* ReusableViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewType.swift; sourceTree = "<group>"; };
+		D4AC79D629AB695E00859CDC /* FavouriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewModel.swift; sourceTree = "<group>"; };
+		D4AC79DB29AC272B00859CDC /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		F6CDF999D2F8E8F3015646B3 /* Pods_CoctailsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoctailsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -276,6 +280,7 @@
 			children = (
 				D49A3EAE29A13CCA00BF2DA8 /* AuthServiceViewController.swift */,
 				D4972B5629A5A4C500E95BD6 /* AddNumberViewController.swift */,
+				D4AC79DB29AC272B00859CDC /* AuthViewModel.swift */,
 			);
 			path = AuthServiceViewController;
 			sourceTree = "<group>";
@@ -286,7 +291,7 @@
 				D49B7A4029A8335600AFA3BA /* BasketChoosedModel.swift */,
 				D49B7A4229A8337D00AFA3BA /* BasketChoosedViewController.swift */,
 				D49B7A4429A8339300AFA3BA /* BaskedChoosedTableViewCell.swift */,
-				D49B7A4629A833F000AFA3BA /* BasketChShoppingViewController.swift */,
+				D49B7A4629A833F000AFA3BA /* BasketFinalBuyViewController.swift */,
 				D49B7A4829A8341000AFA3BA /* BasketChShoppingCell.swift */,
 				D49B7A4A29A8342000AFA3BA /* BasketChPriceLabel.swift */,
 			);
@@ -439,6 +444,7 @@
 		D49EA2F729A4679B007C450A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				D4AC79D529AB692D00859CDC /* FavouriteViewModel */,
 				D49DFF7C29A75B1900CF65A4 /* FavouriteCollectionViewCell */,
 				D49DFF7B29A75B0200CF65A4 /* MenuCollectionViewCell */,
 				D49C538429A727DE005C6E09 /* StepperView */,
@@ -466,11 +472,10 @@
 		D49EA2FA29A468F4007C450A /* ProfilePageworkFlow */ = {
 			isa = PBXGroup;
 			children = (
+				D4AC79DA29AC26B300859CDC /* SignUp */,
 				D495D5C529A54F4900EFA606 /* Components */,
 				28C4AE842998F2D7008299C3 /* Model */,
-				D49A3EAD29A13CA300BF2DA8 /* AuthServiceViewController */,
 				28C4AE8D299911B0008299C3 /* CocktailInfoPage */,
-				28C4AE8A29991187008299C3 /* SignUpViewPage */,
 			);
 			path = ProfilePageworkFlow;
 			sourceTree = "<group>";
@@ -525,6 +530,23 @@
 				D4AC79D329AB557800859CDC /* ReusableViewType.swift */,
 			);
 			path = ReusableViewType;
+			sourceTree = "<group>";
+		};
+		D4AC79D529AB692D00859CDC /* FavouriteViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D4AC79D629AB695E00859CDC /* FavouriteViewModel.swift */,
+			);
+			path = FavouriteViewModel;
+			sourceTree = "<group>";
+		};
+		D4AC79DA29AC26B300859CDC /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				28C4AE8A29991187008299C3 /* SignUpViewPage */,
+				D49A3EAD29A13CA300BF2DA8 /* AuthServiceViewController */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -650,7 +672,7 @@
 				288CE6E92998A9FF006E2FE8 /* ChoosedCocktailViewController.swift in Sources */,
 				288CE6EB2998AAC1006E2FE8 /* MenuCollectionViewCell.swift in Sources */,
 				288CE6ED2998AAF6006E2FE8 /* DrinksDTO.swift in Sources */,
-				D49B7A4729A833F000AFA3BA /* BasketChShoppingViewController.swift in Sources */,
+				D49B7A4729A833F000AFA3BA /* BasketFinalBuyViewController.swift in Sources */,
 				D4AC79D429AB557800859CDC /* ReusableViewType.swift in Sources */,
 				D49B7A4529A8339300AFA3BA /* BaskedChoosedTableViewCell.swift in Sources */,
 				D49A35C3299DE2E800436BFF /* UIIColor.swift in Sources */,
@@ -682,7 +704,9 @@
 				D49DFF7E29A75B4900CF65A4 /* FavouriteCVCell.swift in Sources */,
 				D49EA2FE29A46AA0007C450A /* View+Extension.swift in Sources */,
 				D4A8670329A90605009BC639 /* Cocktails+CoreDataProperties.swift in Sources */,
+				D4AC79DC29AC272B00859CDC /* AuthViewModel.swift in Sources */,
 				D49B7A4329A8337D00AFA3BA /* BasketChoosedViewController.swift in Sources */,
+				D4AC79D729AB695E00859CDC /* FavouriteViewModel.swift in Sources */,
 				D42D24CB29A3900E00008A81 /* UIImageResize.swift in Sources */,
 				D49EA2FC29A4698F007C450A /* KeyChainManager.swift in Sources */,
 				288CE6F32998ABC3006E2FE8 /* RatingCustomView.swift in Sources */,

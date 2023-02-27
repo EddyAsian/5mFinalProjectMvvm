@@ -19,7 +19,12 @@ protocol SelecetProductDelegate: AnyObject {
 
 class ChoosedCocktailViewController: UIViewController {
     
+//    var favouriteViewModel: FavouriteViewModel!
+    
+   
     static let id = String(describing: ChoosedCocktailViewController.self)
+    
+//    let drinksArray = favouriteViewModel.drinksArray?
     
     var cocktail: Drinks?
     
@@ -188,6 +193,7 @@ class ChoosedCocktailViewController: UIViewController {
         //        NotificationCenter.default.addObserver(self, selector: #selector(doThisWhenNotify(notification:)), name: NSNotification.Name(rawValue: "post"), object: nil)
     }
     
+    
     private func customBackButton() {
         let backButton = UIBarButtonItem()
         backButton.title = "      "
@@ -221,6 +227,7 @@ class ChoosedCocktailViewController: UIViewController {
         if isLiked == false {
             //            favouriteDrinks.append(Drinks)
             //            saveRatingToDB()
+           
             likedProductIcon.image = UIImage(systemName: "heart.fill")
             print("tapped Like")
             

@@ -102,7 +102,7 @@ class SignUpViewController: UIViewController {
     var registerUser: UIButton = {
         var button = UIButton(type: .system)
         button.backgroundColor = ColorConstants.tabBarItemAccent
-        button.setTitle("Send code", for: .normal)
+        button.setTitle("Accept", for: .normal)
         button.titleLabel?.textColor = .white
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
