@@ -22,7 +22,6 @@
 		28C4AE822998EDAD008299C3 /* AddProductCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C4AE812998EDAD008299C3 /* AddProductCustomButton.swift */; };
 		28C4AE8929991180008299C3 /* CoctailsMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C4AE8829991180008299C3 /* CoctailsMenuViewModel.swift */; };
 		28C4AE8C299911A2008299C3 /* SighUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C4AE8B299911A2008299C3 /* SighUpViewModel.swift */; };
-		28C4AE8F299911EA008299C3 /* CoctailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C4AE8E299911EA008299C3 /* CoctailsViewModel.swift */; };
 		97CBEA007A42FE89574D9F6F /* Pods_CoctailsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6CDF999D2F8E8F3015646B3 /* Pods_CoctailsApp.framework */; };
 		D42D24C629A1CDB800008A81 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42D24C529A1CDB800008A81 /* UserDefaultManager.swift */; };
 		D42D24CB29A3900E00008A81 /* UIImageResize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42D24CA29A3900E00008A81 /* UIImageResize.swift */; };
@@ -48,6 +47,8 @@
 		D49EA30129A476B8007C450A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49EA30029A476B8007C450A /* Constants.swift */; };
 		D49EA30329A48B56007C450A /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49EA30229A48B56007C450A /* AuthManager.swift */; };
 		D49EA30629A5326E007C450A /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49EA30529A5326E007C450A /* DatabaseManager.swift */; };
+		D4A06A1C29ACDC9E000C3A09 /* ChoosedCocktailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A06A1B29ACDC9E000C3A09 /* ChoosedCocktailViewModel.swift */; };
+		D4A06A2029ACE4C4000C3A09 /* CocktailsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A06A1F29ACE4C4000C3A09 /* CocktailsCellViewModel.swift */; };
 		D4A866FB29A900FF009BC639 /* CocktailsDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D4A866F929A900FF009BC639 /* CocktailsDataModel.xcdatamodeld */; };
 		D4A8670229A90605009BC639 /* Cocktails+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A8670029A90605009BC639 /* Cocktails+CoreDataClass.swift */; };
 		D4A8670329A90605009BC639 /* Cocktails+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A8670129A90605009BC639 /* Cocktails+CoreDataProperties.swift */; };
@@ -79,7 +80,6 @@
 		28C4AE812998EDAD008299C3 /* AddProductCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductCustomButton.swift; sourceTree = "<group>"; };
 		28C4AE8829991180008299C3 /* CoctailsMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoctailsMenuViewModel.swift; sourceTree = "<group>"; };
 		28C4AE8B299911A2008299C3 /* SighUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SighUpViewModel.swift; sourceTree = "<group>"; };
-		28C4AE8E299911EA008299C3 /* CoctailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoctailsViewModel.swift; sourceTree = "<group>"; };
 		554590F3EB0B8068FFB0FE7E /* Pods-CoctailsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoctailsApp.release.xcconfig"; path = "Target Support Files/Pods-CoctailsApp/Pods-CoctailsApp.release.xcconfig"; sourceTree = "<group>"; };
 		D3ADBEC4314104752136CBB9 /* Pods-CoctailsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoctailsApp.debug.xcconfig"; path = "Target Support Files/Pods-CoctailsApp/Pods-CoctailsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D42D24C529A1CDB800008A81 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
@@ -106,6 +106,8 @@
 		D49EA30029A476B8007C450A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D49EA30229A48B56007C450A /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		D49EA30529A5326E007C450A /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		D4A06A1B29ACDC9E000C3A09 /* ChoosedCocktailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosedCocktailViewModel.swift; sourceTree = "<group>"; };
+		D4A06A1F29ACE4C4000C3A09 /* CocktailsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsCellViewModel.swift; sourceTree = "<group>"; };
 		D4A866FA29A900FF009BC639 /* CocktailsDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CocktailsDataModel.xcdatamodel; sourceTree = "<group>"; };
 		D4A8670029A90605009BC639 /* Cocktails+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cocktails+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		D4A8670129A90605009BC639 /* Cocktails+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cocktails+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
@@ -135,6 +137,7 @@
 		288CE6C22998A7EF006E2FE8 = {
 			isa = PBXGroup;
 			children = (
+				D49AD24329A3E1CC00FE7FCC /* GoogleService-Info.plist */,
 				288CE6CD2998A7EF006E2FE8 /* CoctailsApp */,
 				288CE6CC2998A7EF006E2FE8 /* Products */,
 				8824E7E0BE1A75443376DCB3 /* Pods */,
@@ -153,11 +156,11 @@
 		288CE6CD2998A7EF006E2FE8 /* CoctailsApp */ = {
 			isa = PBXGroup;
 			children = (
-				D49AD24329A3E1CC00FE7FCC /* GoogleService-Info.plist */,
 				288CE6E22998A8A2006E2FE8 /* Application */,
+				D49EA2EF29A46452007C450A /* Managers */,
+				D49EA2F229A465A8007C450A /* Modules */,
 				D49EA2FF29A47684007C450A /* Constants */,
 				D49EA2EA29A46300007C450A /* Extensions */,
-				D49EA2EF29A46452007C450A /* Managers */,
 				288CE6E32998A8D9006E2FE8 /* Resources */,
 			);
 			path = CoctailsApp;
@@ -229,13 +232,12 @@
 			path = SignUpViewPage;
 			sourceTree = "<group>";
 		};
-		28C4AE8D299911B0008299C3 /* CocktailInfoPage */ = {
+		28C4AE8D299911B0008299C3 /* ChoosedCocktailsViewController */ = {
 			isa = PBXGroup;
 			children = (
 				288CE6E82998A9FF006E2FE8 /* ChoosedCocktailViewController.swift */,
-				28C4AE8E299911EA008299C3 /* CoctailsViewModel.swift */,
 			);
-			path = CocktailInfoPage;
+			path = ChoosedCocktailsViewController;
 			sourceTree = "<group>";
 		};
 		8824E7E0BE1A75443376DCB3 /* Pods */ = {
@@ -261,14 +263,6 @@
 				D42D24CA29A3900E00008A81 /* UIImageResize.swift */,
 			);
 			path = UIImageResize;
-			sourceTree = "<group>";
-		};
-		D495D5C529A54F4900EFA606 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				28C4AE832998F2A7008299C3 /* CustomDetails */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		D49A3EAC29A1261000BF2DA8 /* UIColor */ = {
@@ -352,7 +346,9 @@
 		D49E3AA129A991D700168152 /* FavouriteDrinksWorkFlow */ = {
 			isa = PBXGroup;
 			children = (
-				D49E3AA229A991FA00168152 /* FavouriteDrinksViewController.swift */,
+				D4AC79D529AB692D00859CDC /* FavouriteViewModel */,
+				D4AC79EA29AC7FBA00859CDC /* FavouriteDrinksViewController */,
+				D4AC79E929AC7FA900859CDC /* Components */,
 			);
 			path = FavouriteDrinksWorkFlow;
 			sourceTree = "<group>";
@@ -375,7 +371,6 @@
 				D49BE03A29A1ADD800680AAE /* KeyChainManager */,
 				28C4AE862998F2F7008299C3 /* NetworkManager */,
 				D49EA2F029A464C1007C450A /* AuthManager */,
-				D49EA2F229A465A8007C450A /* Modules */,
 			);
 			name = Managers;
 			path = UserDefaultManager;
@@ -430,7 +425,6 @@
 			children = (
 				D4AADB0129AAE6C90064A2B5 /* WelcomeViewcontroller */,
 				D49EA2F829A467F2007C450A /* MainView */,
-				D49EA2F929A46838007C450A /* MainViewModel */,
 				D49EA2F729A4679B007C450A /* Components */,
 			);
 			path = MainPageWorkFlow;
@@ -439,8 +433,6 @@
 		D49EA2F729A4679B007C450A /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				D4AC79D529AB692D00859CDC /* FavouriteViewModel */,
-				D49DFF7C29A75B1900CF65A4 /* FavouriteCollectionViewCell */,
 				D49C538429A727DE005C6E09 /* StepperView */,
 				D49EA2F529A4667E007C450A /* MainTabBarController */,
 			);
@@ -450,8 +442,9 @@
 		D49EA2F829A467F2007C450A /* MainView */ = {
 			isa = PBXGroup;
 			children = (
+				D4A06A1929ACCB7C000C3A09 /* CoctailsMenuViewController */,
+				D49EA2F929A46838007C450A /* MainViewModel */,
 				D4AC79DE29AC57B700859CDC /* Components */,
-				288CE6D22998A7EF006E2FE8 /* CoctailsMenuViewController.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -460,6 +453,7 @@
 			isa = PBXGroup;
 			children = (
 				28C4AE8829991180008299C3 /* CoctailsMenuViewModel.swift */,
+				D4A06A1F29ACE4C4000C3A09 /* CocktailsCellViewModel.swift */,
 			);
 			path = MainViewModel;
 			sourceTree = "<group>";
@@ -467,10 +461,10 @@
 		D49EA2FA29A468F4007C450A /* ProfilePageworkFlow */ = {
 			isa = PBXGroup;
 			children = (
+				D4A06A1A29ACDC6B000C3A09 /* ChoosedCocktailViewModel */,
+				28C4AE8D299911B0008299C3 /* ChoosedCocktailsViewController */,
 				D4AC79DA29AC26B300859CDC /* SignUp */,
-				D495D5C529A54F4900EFA606 /* Components */,
 				28C4AE842998F2D7008299C3 /* Model */,
-				28C4AE8D299911B0008299C3 /* CocktailInfoPage */,
 			);
 			path = ProfilePageworkFlow;
 			sourceTree = "<group>";
@@ -490,6 +484,22 @@
 				D49EA30529A5326E007C450A /* DatabaseManager.swift */,
 			);
 			path = DatabaseManager;
+			sourceTree = "<group>";
+		};
+		D4A06A1929ACCB7C000C3A09 /* CoctailsMenuViewController */ = {
+			isa = PBXGroup;
+			children = (
+				288CE6D22998A7EF006E2FE8 /* CoctailsMenuViewController.swift */,
+			);
+			path = CoctailsMenuViewController;
+			sourceTree = "<group>";
+		};
+		D4A06A1A29ACDC6B000C3A09 /* ChoosedCocktailViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D4A06A1B29ACDC9E000C3A09 /* ChoosedCocktailViewModel.swift */,
+			);
+			path = ChoosedCocktailViewModel;
 			sourceTree = "<group>";
 		};
 		D4A15D9229A8FF8600DADC57 /* CoreDataModel */ = {
@@ -558,6 +568,7 @@
 			isa = PBXGroup;
 			children = (
 				D4AC79DF29AC590800859CDC /* CocktailsCollectionViewCell */,
+				28C4AE832998F2A7008299C3 /* CustomDetails */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -593,6 +604,22 @@
 				D4AC79E729AC60D400859CDC /* PostNewDrinkViewModel.swift */,
 			);
 			path = PostNewDrinkViewModel;
+			sourceTree = "<group>";
+		};
+		D4AC79E929AC7FA900859CDC /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D49DFF7C29A75B1900CF65A4 /* FavouriteCollectionViewCell */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		D4AC79EA29AC7FBA00859CDC /* FavouriteDrinksViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D49E3AA229A991FA00168152 /* FavouriteDrinksViewController.swift */,
+			);
+			path = FavouriteDrinksViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -714,7 +741,6 @@
 				288CE6EF2998AB52006E2FE8 /* NetworkManager.swift in Sources */,
 				D49C538629A727F8005C6E09 /* StepperView.swift in Sources */,
 				D49EA30329A48B56007C450A /* AuthManager.swift in Sources */,
-				28C4AE8F299911EA008299C3 /* CoctailsViewModel.swift in Sources */,
 				288CE6E92998A9FF006E2FE8 /* ChoosedCocktailViewController.swift in Sources */,
 				288CE6ED2998AAF6006E2FE8 /* DrinksDTO.swift in Sources */,
 				D49B7A4729A833F000AFA3BA /* BasketFinalBuyViewController.swift in Sources */,
@@ -726,6 +752,7 @@
 				D49E3AA329A991FA00168152 /* FavouriteDrinksViewController.swift in Sources */,
 				D49EA30129A476B8007C450A /* Constants.swift in Sources */,
 				288CE6D32998A7EF006E2FE8 /* CoctailsMenuViewController.swift in Sources */,
+				D4A06A1C29ACDC9E000C3A09 /* ChoosedCocktailViewModel.swift in Sources */,
 				28C4AE8929991180008299C3 /* CoctailsMenuViewModel.swift in Sources */,
 				D4AADB0329AAE6E90064A2B5 /* WelcomeViewController.swift in Sources */,
 				D4972B5729A5A4C500E95BD6 /* AddNumberViewController.swift in Sources */,
@@ -745,6 +772,7 @@
 				D49A3EAF29A13CCA00BF2DA8 /* AcceptSmsCodeViewController.swift in Sources */,
 				D49B7A2B29A7B00300AFA3BA /* ChoosedForBasketDTO.swift in Sources */,
 				D4A866FB29A900FF009BC639 /* CocktailsDataModel.xcdatamodeld in Sources */,
+				D4A06A2029ACE4C4000C3A09 /* CocktailsCellViewModel.swift in Sources */,
 				288CE6D12998A7EF006E2FE8 /* SceneDelegate.swift in Sources */,
 				D49B7A4929A8341000AFA3BA /* BasketChShoppingCell.swift in Sources */,
 				D49AB6B529AAFD8B00BB2126 /* WelcomeInfoDTO.swift in Sources */,
