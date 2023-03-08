@@ -13,6 +13,14 @@ class MenuCollectionViewCell: UICollectionViewCell {
     
 //    var coctail: Drinks?
     
+    
+
+    
+    
+    
+    
+    
+    
     class var identifier: String { String(describing: self) }
 //    class var nib: UINib { UINib(nibName: identifier, bundle: nil) }
     
@@ -101,11 +109,7 @@ class MenuCollectionViewCell: UICollectionViewCell {
         print("add to cart. buy")
     }
     
-    public func configure(with model: Drinks) {
-        guard let url = URL(string: model.image) else { return }
-        productImage.kf.setImage(with: url)
-        productLabel.text = model.name
-    }
+  
     
     public var cellViewModel: CocktailsCellViewModel? {
         didSet {

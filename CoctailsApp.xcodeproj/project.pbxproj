@@ -55,7 +55,7 @@
 		D4A8670529A90898009BC639 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A8670429A90898009BC639 /* CoreDataStack.swift */; };
 		D4AADB0329AAE6E90064A2B5 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AADB0229AAE6E90064A2B5 /* WelcomeViewController.swift */; };
 		D4AC79D429AB557800859CDC /* ReusableViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC79D329AB557800859CDC /* ReusableViewType.swift */; };
-		D4AC79D729AB695E00859CDC /* FavouriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC79D629AB695E00859CDC /* FavouriteViewModel.swift */; };
+		D4AC79D729AB695E00859CDC /* FavouriteDrinksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC79D629AB695E00859CDC /* FavouriteDrinksViewModel.swift */; };
 		D4AC79DC29AC272B00859CDC /* AcceptSmsCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC79DB29AC272B00859CDC /* AcceptSmsCodeViewModel.swift */; };
 		D4AC79E129AC593300859CDC /* CocktailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC79E029AC593300859CDC /* CocktailsCollectionViewCell.swift */; };
 		D4AC79E429AC609000859CDC /* PostNewDrinkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC79E329AC609000859CDC /* PostNewDrinkVC.swift */; };
@@ -114,7 +114,7 @@
 		D4A8670429A90898009BC639 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		D4AADB0229AAE6E90064A2B5 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		D4AC79D329AB557800859CDC /* ReusableViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewType.swift; sourceTree = "<group>"; };
-		D4AC79D629AB695E00859CDC /* FavouriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewModel.swift; sourceTree = "<group>"; };
+		D4AC79D629AB695E00859CDC /* FavouriteDrinksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteDrinksViewModel.swift; sourceTree = "<group>"; };
 		D4AC79DB29AC272B00859CDC /* AcceptSmsCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptSmsCodeViewModel.swift; sourceTree = "<group>"; };
 		D4AC79E029AC593300859CDC /* CocktailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsCollectionViewCell.swift; sourceTree = "<group>"; };
 		D4AC79E329AC609000859CDC /* PostNewDrinkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostNewDrinkVC.swift; sourceTree = "<group>"; };
@@ -540,7 +540,7 @@
 		D4AC79D529AB692D00859CDC /* FavouriteViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				D4AC79D629AB695E00859CDC /* FavouriteViewModel.swift */,
+				D4AC79D629AB695E00859CDC /* FavouriteDrinksViewModel.swift */,
 			);
 			path = FavouriteViewModel;
 			sourceTree = "<group>";
@@ -782,7 +782,7 @@
 				D4A8670329A90605009BC639 /* Cocktails+CoreDataProperties.swift in Sources */,
 				D4AC79DC29AC272B00859CDC /* AcceptSmsCodeViewModel.swift in Sources */,
 				D49B7A4329A8337D00AFA3BA /* BasketChoosedViewController.swift in Sources */,
-				D4AC79D729AB695E00859CDC /* FavouriteViewModel.swift in Sources */,
+				D4AC79D729AB695E00859CDC /* FavouriteDrinksViewModel.swift in Sources */,
 				D42D24CB29A3900E00008A81 /* UIImageResize.swift in Sources */,
 				D49EA2FC29A4698F007C450A /* KeyChainManager.swift in Sources */,
 				288CE6F32998ABC3006E2FE8 /* RatingCustomView.swift in Sources */,

@@ -266,6 +266,8 @@ class ChoosedCocktailViewController: UIViewController {
 //            delegate?.addNewDrink(cocktail!)
             print("I added to array")
             isLiked = true
+            let vc = FavouriteDrinksViewController()
+//            vc.viewModel.cocktail = viewModel.filteredDrinks.append(cocktail!)
         } else {
             likedProductIcon.image = UIImage (systemName: "heart")
             print("I removed from array")

@@ -16,6 +16,12 @@ final class ChoosedCocktailViewModel {
         self.drink = data
     }
     
+//    public var filteredDrinks = [Drinks]() {
+//        didSet {
+//            dataFoundWithName?(!filteredDrinks.isEmpty)
+//        }
+//    }
+    
     public func setImageToImageView(imageView: UIImageView) {
         guard let url = URL(string: drink.image) else {
             print("DrinkCellViewModel. Error. URL is nil. \(drink.image)")
