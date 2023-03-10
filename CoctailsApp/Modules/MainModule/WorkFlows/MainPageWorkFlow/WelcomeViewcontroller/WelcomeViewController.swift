@@ -143,17 +143,9 @@ class WelcomeViewController: UIViewController {
     
     @objc
     private func sighUpTapped(_ sender: UIButton) {
-        //            addNewUser()
-        //            clearKeychain()
-        //            saveKeyChainManager()
-        //            let addNumberVc = AddNumberViewController()
-        //            dismiss(animated: false)
-        //            present(addNumberVc, animated: true)
         dismiss(animated: true)
         let authServiceVC = SignUpViewController()
-        //        dismiss(animated: false)
         present(authServiceVC, animated: true)
-        //        AuthManager.shared.authentificateWithPN()
     }
     
     private func getKeychain() {
@@ -161,50 +153,6 @@ class WelcomeViewController: UIViewController {
             loginName.text = getloginName
         }
     }
-    
-    //        func saveUserDefaultManager() {
-    //            let loginName = loginName.text,
-    //            let password = passwordLabel.text else {
-    //                return
-    //            }
-    //            let model = WelcomeInfo(loginName: loginName, password: password)
-    //            UserDefaultManager.shared.save(model, for: .adress)
-    //            UserDefaultManager.shared.save(model, for: .email)
-    //            UserDefaultManager.shared.save(model, for: .dateOfBirth)
-    //
-    //            let readAdress = UserDefaultManager.shared.string(for: .adress)
-    //            print("Adress is saved to UserDefault: \(readAdress)")
-    //
-    //            let readEmail = UserDefaultManager.shared.string(for: .email)
-    //            print("Email is saved to UserDefault: \(readEmail)")
-    //
-    //            let readDataOfBirth = UserDefaultManager.shared.string(for: .dateOfBirth)
-    //            print("Date of Birth is saved to UserDefault: \(readDataOfBirth)")
-    //        }
-    
-    //    private func showAlert() {
-    //        let alert = UIAlertController(
-    //            title: "It's not enough",
-    //            message: "Please, fill up all 3 fields ",
-    //            preferredStyle: .alert
-    //        )
-    //        let okAction = UIAlertAction(title: "OK", style: .cancel)
-    //        alert.addAction(okAction)
-    //        present(alert, animated: true)
-    //    }
-    
-    //        func addNewUser() {
-    //            guard !emailInformation.text!.isEmpty,
-    //                  !dateOfBirthInformation.text!.isEmpty,
-    //                  !adressInformation.text!.isEmpty else {
-    //                showAlert()
-    //                return
-    //            }
-    //        }
-    
-    //    override func viewDidDisappear(_ animated: Bool) {
-    //        self.dismiss(animated: false, completion: nil)
-    //    }
     
     private func showPasswordAlert() {
         let alert = UIAlertController(
@@ -246,7 +194,7 @@ class WelcomeViewController: UIViewController {
             maker.height.equalTo(110)
         }
         
-        loginName.snp.makeConstraints{ maker in
+        loginName.snp.makeConstraints { maker in
             maker.bottom.equalTo(passwordLabel.snp.top).offset(Constants.indent)
             maker.centerX.equalToSuperview()
             maker.width.equalTo(340)
@@ -277,35 +225,3 @@ class WelcomeViewController: UIViewController {
         }
     }
 }
-
-
-
-
-//    @objc
-//    private func logInUserTapped(_ sender: UIButton) {
-//
-//        if passwordLabel.text == keychain.get(Keys.password) {
-//            dismiss(animated: false)
-//            let tabBar = CocktailsTabBarController()
-//            tabBar.modalPresentationStyle = .fullScreen
-//    //        navigationController?.pushViewController(tabBar, animated: true)
-//            present(tabBar, animated: true, completion: nil)
-//            tabBar.selectedIndex = 1
-//        } else {
-//            showPasswordAlert()
-//        }
-//     }
-
-//    private func getKeychain() {
-//        if let getEmail = keychain.get(Keys.email) {
-//            emailInformation.text = getEmail
-//        }
-//
-//        if let getDateOfBirth = keychain.get(Keys.dateOfBirth) {
-//            dateOfBirthInformation.text = getDateOfBirth
-//        }
-//
-//        if let getAdress = keychain.get(Keys.adress) {
-//            adressInformation.text = getAdress
-//        }
-//    }

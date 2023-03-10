@@ -11,18 +11,7 @@ import Kingfisher
 
 class MenuCollectionViewCell: UICollectionViewCell {
     
-//    var coctail: Drinks?
-    
-    
-
-    
-    
-    
-    
-    
-    
     class var identifier: String { String(describing: self) }
-//    class var nib: UINib { UINib(nibName: identifier, bundle: nil) }
     
     var productImage: UIImageView = {
         var productImage = UIImageView(
@@ -53,7 +42,7 @@ class MenuCollectionViewCell: UICollectionViewCell {
         var button = UIButton(type: .system)
         button.backgroundColor = ColorConstants.buyNow
         button.setTitleColor(.white, for: .normal)
-        button.setTitle("Buy now", for: .normal)
+        button.setTitle("Add to  🛒", for: .normal)
         button.titleLabel?.textColor = .white
         button.titleLabel?.font = .systemFont(ofSize: 10, weight: .semibold)
         button.titleLabel?.textAlignment = .left
@@ -106,10 +95,10 @@ class MenuCollectionViewCell: UICollectionViewCell {
     
     @objc
     func addToCart() {
-        print("add to cart. buy")
+        print("added to cart Buy")
     }
     
-  
+    
     
     public var cellViewModel: CocktailsCellViewModel? {
         didSet {
@@ -117,36 +106,6 @@ class MenuCollectionViewCell: UICollectionViewCell {
             cellViewModel?.setImageToImageView(imageView: productImage)
         }
     }
-    
-    //    func chooseCollection(_ product: Drinks) {
-    //        coctail = product
-    //        let drinks = Drinks(
-    //            name: product.name,
-    //            image: product.image,
-    //            instructions: product.instructions
-    //           )
-    //
-    //        DatabaseManager.shared.setCocktailsToDataBase(
-    //            collection: "User",
-    //            document: "List of Cocktails",
-    //            withData: drinks.dictionary
-    //        )
-    //    }
-    
-    //    func displayInfo(product: Drinks) {
-    //        coctail = product
-    //        productLabel.text = product.name
-    //        productImage.kf.setImage(with: URL(string: product.image))
-    //        chooseCollection(product)
-    //    }
-    
-    
-    //    func displayInfo(product: Drinks) {
-    //        coctail = product
-    //        productLabel.text = product.name
-    //        productImage.kf.setImage(with: URL(string: product.image))
-    //        chooseCollection(product)
-    //    }
     
     private func setUpConstraints() {
         productImage.snp.makeConstraints{ maker in

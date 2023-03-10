@@ -18,94 +18,24 @@ protocol SelecetProductDelegate: AnyObject {
 }
 
 class ChoosedCocktailViewController: UIViewController {
-   
-    var cocktail: Drinks?
     
     public lazy var viewModel = { ChoosedCocktailViewModel() }()
+    class var identifier: String { String(describing: self) }
     
     var isLiked: Bool = false
-    
-    private func initViewModel() {
-        viewModel.setImageToImageView(imageView: productImage)
-        productsNameLabel.text = viewModel.drink.name
-        descriptionTitleLabel.text = viewModel.drink.instructions
-//        descriptionLabel.numberOfLines = 3
-    }
-    
-    
+    var cocktail: Drinks?
     public var dataFoundWithName:((Bool) -> Void)?
-    
-    //    var favouriteViewModel: FavouriteViewModel!
-    
-    class var identifier: String { String(describing: self) }
-//    static let id = String(describing: ChoosedCocktailViewController.self)
-    
-    //    let drinksArray = favouriteViewModel.drinksArray?
-    
     weak var delegate: SelecetProductDelegate?
-    
-    var modelOfAlldrinks: Drinks?
-    
-//    private var filteredDrinks = [Drinks]()
-    
-    //    let checkedBox = UIImage(systemName: "heart.fill") as! UIImage
-    //    let uncheckedBox = UIImage(systemName: "heart") as! UIImage
-    
-//    public var filteredDrinks = [Drinks]() {
-//        didSet {
-//            dataFoundWithName?(!filteredDrinks.isEmpty)
-//        }
-//    }
-    
-    
     private var selectedProirity: String?
-    
     public var addNewNote: ((_ ratingNumber: String) -> Void)?
-    
     private var cocktailsCoreData: [Cocktails] = []
     
     var textToShow = ""
-    
-    //    var isLiked: Bool = false
-    
-    //    var collector: [Any] = []
-    
-    //    var completionHandler: ((Drinks?) -> Void)?
-    
-    //    public lazy var viewModel = { DrinkInfoViewModel() }()
-    //    class var identifier: String { String(describing: self) }
-    //
-    //    class var nib: UINib { UINib(nibName: identifier, bundle: nil) }
-    
-    
-    //    {
-    //        didSet {
-    //            updateUIwithSearchResultsState(resultIsEmpty: filteredDrinks.isEmpty)
-    //            drinksCollectionView.reloadData()
-    //        }
-    //    }
-    
-    
-    //    private let info: Drinks
-    //
-    //    init(dish: Drinks) {
-    //
-    //        self.info = dish
-    //        super.init(nibName: nil, bundle: nil)
-    //    }
-    
-    //    required init?(coder: NSCoder) {
-    //        fatalError("init(coder:) has not been implemented")
-    //    }
-    //
-    //    var addNewNote = { rati}
-    
-    //    var food: Drinks?
-    
+    var modelOfAlldrinks: Drinks?
     
     lazy var productImage: UIImageView = {
         var imageView = UIImageView()
-//        imageView.kf.setImage(with: URL(string: modelOfAlldrinks!.image))
+        //        imageView.kf.setImage(with: URL(string: modelOfAlldrinks!.image))
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -119,7 +49,7 @@ class ChoosedCocktailViewController: UIViewController {
     
     lazy var productsNameLabel: UILabel = {
         var label = UILabel()
-//        label.text = String(describing: modelOfAlldrinks!.name)
+        //        label.text = String(describing: modelOfAlldrinks!.name)
         label.font = UIFont(name: "Avenir Heavy", size: 18)
         label.textColor = .white
         return label
@@ -156,7 +86,7 @@ class ChoosedCocktailViewController: UIViewController {
     lazy var descriptionTitleLabel: UILabel = {
         var label = UILabel()
         label.text = "Description long text"
-        label.font = UIFont(name: "Avenir Heavy", size: 14)
+        label.font = UIFont(name: "Avenir Heavy", size: 12)
         label.textColor = ColorConstants.description
         label.numberOfLines = 0
         return label
@@ -164,10 +94,10 @@ class ChoosedCocktailViewController: UIViewController {
     
     lazy var descriptionLabel: UILabel = {
         var label = UILabel()
-//        label.text = String(describing: modelOfAlldrinks!.instructions)
+        //        label.text = String(describing: modelOfAlldrinks!.instructions)
         label.font = UIFont(name: "Avenir Next", size: 14)
         label.textColor = .black
-//        label.numberOfLines = 0
+        //        label.numberOfLines = 0
         return label
     }()
     
@@ -209,6 +139,55 @@ class ChoosedCocktailViewController: UIViewController {
         return imageView
     }()
     
+    //    var favouriteViewModel: FavouriteViewModel!
+    //    static let id = String(describing: ChoosedCocktailViewController.self)
+    //    let drinksArray = favouriteViewModel.drinksArray?
+    //    private var filteredDrinks = [Drinks]()
+    
+    //    let checkedBox = UIImage(systemName: "heart.fill") as! UIImage
+    //    let uncheckedBox = UIImage(systemName: "heart") as! UIImage
+    
+    //    public var filteredDrinks = [Drinks]() {
+    //        didSet {
+    //            dataFoundWithName?(!filteredDrinks.isEmpty)
+    //        }
+    //    }
+    
+    //    var isLiked: Bool = false
+    
+    //    var collector: [Any] = []
+    
+    //    var completionHandler: ((Drinks?) -> Void)?
+    
+    //    public lazy var viewModel = { DrinkInfoViewModel() }()
+    //    class var identifier: String { String(describing: self) }
+    //
+    //    class var nib: UINib { UINib(nibName: identifier, bundle: nil) }
+    
+    
+    //    {
+    //        didSet {
+    //            updateUIwithSearchResultsState(resultIsEmpty: filteredDrinks.isEmpty)
+    //            drinksCollectionView.reloadData()
+    //        }
+    //    }
+    
+    
+    //    private let info: Drinks
+    //
+    //    init(dish: Drinks) {
+    //
+    //        self.info = dish
+    //        super.init(nibName: nil, bundle: nil)
+    //    }
+    
+    //    required init?(coder: NSCoder) {
+    //        fatalError("init(coder:) has not been implemented")
+    //    }
+    //
+    //    var addNewNote = { rati}
+    
+    //    var food: Drinks?
     
     override func loadView() {
         super.loadView()
@@ -222,7 +201,11 @@ class ChoosedCocktailViewController: UIViewController {
         //        NotificationCenter.default.addObserver(self, selector: #selector(doThisWhenNotify(notification:)), name: NSNotification.Name(rawValue: "post"), object: nil)
     }
     
-    
+    private func initViewModel() {
+        viewModel.setImageToImageView(imageView: productImage)
+        productsNameLabel.text = viewModel.drink.name
+        descriptionTitleLabel.text = viewModel.drink.instructions
+    }
     
     private func customBackButton() {
         let backButton = UIBarButtonItem()
@@ -253,25 +236,22 @@ class ChoosedCocktailViewController: UIViewController {
     }
     
     @objc func likeTap() {
-        
-        
-        
         if isLiked == false {
             //            favouriteDrinks.append(Drinks)
             //            saveRatingToDB()
-           
+            
             likedProductIcon.image = UIImage(systemName: "heart.fill")
             
             
-//            delegate?.addNewDrink(cocktail!)
-            print("I added to array")
+            //            delegate?.addNewDrink(cocktail!)
+            print("I added to favourite array")
             isLiked = true
             let vc = FavouriteDrinksViewController()
-//            vc.viewModel.cocktail = viewModel.filteredDrinks.append(cocktail!)
+            //            vc.viewModel.cocktail = viewModel.filteredDrinks.append(cocktail!)
         } else {
             likedProductIcon.image = UIImage (systemName: "heart")
-            print("I removed from array")
-//            delegate?.removeLastDrink(cocktail!)
+            print("I removed from favourite array")
+            //            delegate?.removeLastDrink(cocktail!)
             isLiked = false
             //            isLiked = false
             
@@ -294,198 +274,196 @@ class ChoosedCocktailViewController: UIViewController {
             
         }
     }
-        
-        @objc func openBasketVc() {
-            //        dismiss(animated: true)
-            navigationController?.pushViewController(BasketChoosedViewController(), animated: true)
-        }
-        
-//        @objc func tappedMe() {
-//            //        dismiss(animated: true, completion: nil)
-//            //        let tabBar = CocktailsTabBarController()
-//            //        tabBar.modalPresentationStyle = .fullScreen
-//            //        present(tabBar, animated: true, completion: nil)
-//            //        tabBar.selectedIndex = 3
-//            print("tapped add to cart")
-//            //           delegate?.addNewDrink(cocktail!)
-//
-//            guard let foodname = modelOfAlldrinks?.name,
-//                  let foodDescription = modelOfAlldrinks?.instructions else { return }
-//
-//        }
-        
-        private func saveRatingToDB(_ ratingNumber: String) {
-            let data = Date()
-            let cocktail = Cocktails(context: AppDelegate.shared.coreDataStack.managedContext)
-            cocktail.setValue("39", forKey: #keyPath(Cocktails.ratingNumber))
-        }
-        
-        private func saveToDB(_ name: String, _ description: String, _ image: String, _ ratingNumber: String) {
-            let cocktail = Cocktails(context: AppDelegate.shared.coreDataStack.managedContext)
-            cocktail.setValue(Date(), forKey: #keyPath(Cocktails.dateAdded))
-            cocktail.setValue(name, forKey: #keyPath(Cocktails.cocktailsName))
-            cocktail.setValue(description, forKey: #keyPath(Cocktails.cocktailsDescription))
-            cocktail.setValue(image, forKey: #keyPath(Cocktails.cocktailsImage))
-            cocktail.setValue(ratingNumber, forKey: #keyPath(Cocktails.ratingNumber))
-            self.cocktailsCoreData.insert(cocktail, at: 0)
-            AppDelegate.shared.coreDataStack.saveContext()
-            DispatchQueue.main.async {
-                //            self.ratingView.reloadData()
-            }
-        }
-        
-        private func fetchSomething() {
-            let noteFetch: NSFetchRequest<Cocktails> = Cocktails.fetchRequest()
-            let sortByDate = NSSortDescriptor(key: #keyPath(Cocktails.dateAdded), ascending: false)
-            noteFetch.sortDescriptors = [sortByDate]
-            
-            do {
-                let managedContext = AppDelegate.shared.coreDataStack.managedContext
-                let result = try managedContext.fetch(noteFetch)
-                cocktailsCoreData = result
-                //            tableView.reloadData()
-            } catch {
-                print("Error is \(error.localizedDescription)")
-            }
-        }
-        
-        private func doitman() {
-            let rating = ratingView.ratingLabel.text
-            self.addNewNote = { [weak self] ratingNumber in
-                guard let self else { return }
-                self.saveRatingToDB(ratingNumber)
-                print(rating)
-            }
-        }
-        
-        private func setUpConstraints() {
-            productImage.snp.makeConstraints { maker in
-                maker.top.equalToSuperview()
-                maker.left.equalToSuperview()
-                maker.right.equalToSuperview()
-                maker.height.equalTo(500)
-            }
-            
-            productsNameView.snp.makeConstraints { maker in
-                maker.top.equalToSuperview().offset(80)
-                maker.left.equalToSuperview().offset(250)
-                maker.width.equalTo(135)
-                maker.height.equalTo(35)
-            }
-            
-            productsNameLabel.snp.makeConstraints { maker in
-                maker.centerX.centerY.equalToSuperview()
-            }
-            
-            informationView.snp.makeConstraints { maker in
-                maker.top.equalTo(productImage.snp.bottom).inset(30)
-                maker.left.right.equalToSuperview()
-                maker.bottom.equalToSuperview()
-            }
-            
-            ratingView.snp.makeConstraints { maker in
-                maker.top.equalToSuperview().offset(-25)
-                maker.left.equalToSuperview().offset(15)
-                maker.width.equalTo(170)
-                maker.height.equalTo(50)
-            }
-            
-            likedProductIcon.snp.makeConstraints { maker in
-                maker.top.equalToSuperview().offset(-25)
-                maker.left.equalTo(informationView.snp.right).inset(70)
-                maker.width.height.equalTo(45)
-            }
-            
-            descriptionTitleLabel.snp.makeConstraints { maker in
-                maker.top.equalTo(ratingView.snp.bottom).offset(15)
-                maker.left.equalToSuperview().offset(25)
-                maker.width.equalTo(170)
-                maker.height.equalTo(160)
-            }
-            
-            descriptionLabel.snp.makeConstraints { maker in
-                maker.top.equalTo(descriptionTitleLabel.snp.bottom)
-                maker.left.equalTo(descriptionTitleLabel)
-                maker.width.equalTo(160)
-            }
-            
-            latestReviewsTitleLabel.snp.makeConstraints { maker in
-                maker.top.equalTo(likedProductIcon.snp.bottom).offset(10)
-                maker.right.equalTo(likedProductIcon)
-                maker.width.equalTo(140)
-                maker.height.equalTo(20)
-            }
-            
-            reviewsViewFirst.snp.makeConstraints { maker in
-                maker.top.equalTo(latestReviewsTitleLabel.snp.bottom)
-                maker.right.equalTo(likedProductIcon)
-                maker.width.equalTo(140)
-                maker.height.equalTo(60)
-            }
-            
-            reviewsViewSecond.snp.makeConstraints { maker in
-                maker.top.equalTo(reviewsViewFirst.snp.bottom).offset(10)
-                maker.right.equalTo(likedProductIcon)
-                maker.width.equalTo(140)
-                maker.height.equalTo(60)
-            }
-            
-            addToBasketButton.snp.makeConstraints { maker in
-                maker.bottom.equalToSuperview().inset(100)
-                maker.centerX.equalToSuperview()
-                maker.width.equalTo(320)
-                maker.height.equalTo(60)
-            }
-            
-            backImage.snp.makeConstraints { maker in
-                maker.left.equalToSuperview().inset(0)
-                maker.top.equalToSuperview().offset(-438)
-                maker.width.height.equalTo(105)
-            }
+    
+    @objc func openBasketVc() {
+        //        dismiss(animated: true)
+        navigationController?.pushViewController(BasketChoosedViewController(), animated: true)
+    }
+    
+    //        @objc func tappedMe() {
+    //            //        dismiss(animated: true, completion: nil)
+    //            //        let tabBar = CocktailsTabBarController()
+    //            //        tabBar.modalPresentationStyle = .fullScreen
+    //            //        present(tabBar, animated: true, completion: nil)
+    //            //        tabBar.selectedIndex = 3
+    //            print("tapped add to cart")
+    //            //           delegate?.addNewDrink(cocktail!)
+    //
+    //            guard let foodname = modelOfAlldrinks?.name,
+    //                  let foodDescription = modelOfAlldrinks?.instructions else { return }
+    //
+    //        }
+    
+    private func saveRatingToDB(_ ratingNumber: String) {
+        let data = Date()
+        let cocktail = Cocktails(context: AppDelegate.shared.coreDataStack.managedContext)
+        cocktail.setValue("39", forKey: #keyPath(Cocktails.ratingNumber))
+    }
+    
+    private func saveToDB(_ name: String, _ description: String, _ image: String, _ ratingNumber: String) {
+        let cocktail = Cocktails(context: AppDelegate.shared.coreDataStack.managedContext)
+        cocktail.setValue(Date(), forKey: #keyPath(Cocktails.dateAdded))
+        cocktail.setValue(name, forKey: #keyPath(Cocktails.cocktailsName))
+        cocktail.setValue(description, forKey: #keyPath(Cocktails.cocktailsDescription))
+        cocktail.setValue(image, forKey: #keyPath(Cocktails.cocktailsImage))
+        cocktail.setValue(ratingNumber, forKey: #keyPath(Cocktails.ratingNumber))
+        self.cocktailsCoreData.insert(cocktail, at: 0)
+        AppDelegate.shared.coreDataStack.saveContext()
+        DispatchQueue.main.async {
+            //            self.ratingView.reloadData()
         }
     }
     
+    private func fetchSomething() {
+        let noteFetch: NSFetchRequest<Cocktails> = Cocktails.fetchRequest()
+        let sortByDate = NSSortDescriptor(key: #keyPath(Cocktails.dateAdded), ascending: false)
+        noteFetch.sortDescriptors = [sortByDate]
+        
+        do {
+            let managedContext = AppDelegate.shared.coreDataStack.managedContext
+            let result = try managedContext.fetch(noteFetch)
+            cocktailsCoreData = result
+        } catch {
+            print("Error is \(error.localizedDescription)")
+        }
+    }
     
-    //extension Notification.Name {
-    //    static let reload = Notification.Name("reload")
-    //}
+    private func doitman() {
+        let rating = ratingView.ratingLabel.text
+        self.addNewNote = { [weak self] ratingNumber in
+            guard let self else { return }
+            self.saveRatingToDB(ratingNumber)
+            print(rating)
+        }
+    }
+    
+    private func setUpConstraints() {
+        productImage.snp.makeConstraints { maker in
+            maker.top.equalToSuperview()
+            maker.left.equalToSuperview()
+            maker.right.equalToSuperview()
+            maker.height.equalTo(500)
+        }
+        
+        productsNameView.snp.makeConstraints { maker in
+            maker.top.equalToSuperview().offset(80)
+            maker.left.equalToSuperview().offset(250)
+            maker.width.equalTo(135)
+            maker.height.equalTo(35)
+        }
+        
+        productsNameLabel.snp.makeConstraints { maker in
+            maker.centerX.centerY.equalToSuperview()
+        }
+        
+        informationView.snp.makeConstraints { maker in
+            maker.top.equalTo(productImage.snp.bottom).inset(30)
+            maker.left.right.equalToSuperview()
+            maker.bottom.equalToSuperview()
+        }
+        
+        ratingView.snp.makeConstraints { maker in
+            maker.top.equalToSuperview().offset(-25)
+            maker.left.equalToSuperview().offset(15)
+            maker.width.equalTo(170)
+            maker.height.equalTo(50)
+        }
+        
+        likedProductIcon.snp.makeConstraints { maker in
+            maker.top.equalToSuperview().offset(-25)
+            maker.left.equalTo(informationView.snp.right).inset(70)
+            maker.width.height.equalTo(45)
+        }
+        
+        descriptionTitleLabel.snp.makeConstraints { maker in
+            maker.top.equalTo(ratingView.snp.bottom).offset(10)
+            maker.left.equalToSuperview().offset(25)
+            maker.width.equalTo(180)
+            maker.height.equalTo(170)
+        }
+        
+        descriptionLabel.snp.makeConstraints { maker in
+            maker.top.equalTo(descriptionTitleLabel.snp.bottom)
+            maker.left.equalTo(descriptionTitleLabel)
+            maker.width.equalTo(160)
+        }
+        
+        latestReviewsTitleLabel.snp.makeConstraints { maker in
+            maker.top.equalTo(likedProductIcon.snp.bottom).offset(10)
+            maker.right.equalTo(likedProductIcon)
+            maker.width.equalTo(140)
+            maker.height.equalTo(20)
+        }
+        
+        reviewsViewFirst.snp.makeConstraints { maker in
+            maker.top.equalTo(latestReviewsTitleLabel.snp.bottom)
+            maker.right.equalTo(likedProductIcon)
+            maker.width.equalTo(140)
+            maker.height.equalTo(60)
+        }
+        
+        reviewsViewSecond.snp.makeConstraints { maker in
+            maker.top.equalTo(reviewsViewFirst.snp.bottom).offset(10)
+            maker.right.equalTo(likedProductIcon)
+            maker.width.equalTo(140)
+            maker.height.equalTo(60)
+        }
+        
+        addToBasketButton.snp.makeConstraints { maker in
+            maker.bottom.equalToSuperview().inset(100)
+            maker.centerX.equalToSuperview()
+            maker.width.equalTo(320)
+            maker.height.equalTo(60)
+        }
+        
+        backImage.snp.makeConstraints { maker in
+            maker.left.equalToSuperview().inset(0)
+            maker.top.equalToSuperview().offset(-438)
+            maker.width.height.equalTo(105)
+        }
+    }
+}
 
+
+//extension Notification.Name {
+//    static let reload = Notification.Name("reload")
+//}
+
+
+extension ChoosedCocktailViewController {
+    //        func collectionView(
+    //            _ collectionView: UICollectionView,
+    //            layout collectionViewLayout: UICollectionViewLayout,
+    //            sizeForItemAt indexPath: IndexPath
+    //        ) -> CGSize {
+    //            let cellCustomWidth = (collectionView.bounds.width - 50) / 2
+    //            return CGSize(width: cellCustomWidth, height: cellCustomWidth + 11)
+    //        }
     
-    extension ChoosedCocktailViewController {
-        //        func collectionView(
-        //            _ collectionView: UICollectionView,
-        //            layout collectionViewLayout: UICollectionViewLayout,
-        //            sizeForItemAt indexPath: IndexPath
-        //        ) -> CGSize {
-        //            let cellCustomWidth = (collectionView.bounds.width - 50) / 2
-        //            return CGSize(width: cellCustomWidth, height: cellCustomWidth + 11)
-        //        }
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
         
-        func collectionView(
-            _ collectionView: UICollectionView,
-            didSelectItemAt indexPath: IndexPath
-        ) {
-            
-            //        print(Drinks[indexPath.item].id)
-            //        collector.append(Drinks[indexPath.item])
-            //        print("This is your colector \(collector)")
-            
-            
-            //        let choosedForBasketVC = FavouriteDrinksViewController()
-            //        let model = filteredDrinks[indexPath.row]
-            //        let observe = BehaviorRelay<Drinks>(value: model)
-            //        observe.subscribe(onNext: { drinks in
-            //            choosedForBasketVC.cocktail = drinks
-            //            print(choosedForBasketVC.cocktail as Any)
-            //        })
-            //        //            choosedForBasketVC.delegate = self
-            //        navigationController?.pushViewController(choosedForBasketVC, animated: true)
-        }
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //        print(Drinks[indexPath.item].id)
+        //        collector.append(Drinks[indexPath.item])
+        //        print("This is your colector \(collector)")
         
+        
+        //        let choosedForBasketVC = FavouriteDrinksViewController()
+        //        let model = filteredDrinks[indexPath.row]
+        //        let observe = BehaviorRelay<Drinks>(value: model)
+        //        observe.subscribe(onNext: { drinks in
+        //            choosedForBasketVC.cocktail = drinks
+        //            print(choosedForBasketVC.cocktail as Any)
+        //        })
+        //        //            choosedForBasketVC.delegate = self
+        //        navigationController?.pushViewController(choosedForBasketVC, animated: true)
     }
+}
+
+func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
+}
+
 

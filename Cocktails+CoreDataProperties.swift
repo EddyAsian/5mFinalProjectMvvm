@@ -11,11 +11,11 @@ import CoreData
 
 
 extension Cocktails {
-
+    
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Cocktails> {
         return NSFetchRequest<Cocktails>(entityName: "Cocktails")
     }
-
+    
     @NSManaged public var dateAdded: Date?
     @NSManaged public var ratingNumber: String?
     @NSManaged public var cocktailsDescription: String?
@@ -25,5 +25,5 @@ extension Cocktails {
 }
 
 extension Cocktails : Identifiable {
-
+    
 }

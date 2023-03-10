@@ -215,14 +215,6 @@
 			path = DTOs;
 			sourceTree = "<group>";
 		};
-		28C4AE862998F2F7008299C3 /* NetworkManager */ = {
-			isa = PBXGroup;
-			children = (
-				288CE6EE2998AB52006E2FE8 /* NetworkManager.swift */,
-			);
-			path = NetworkManager;
-			sourceTree = "<group>";
-		};
 		28C4AE8A29991187008299C3 /* SignUpViewPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,22 +287,6 @@
 			path = BasketViewController;
 			sourceTree = "<group>";
 		};
-		D49BE03729A1A00D00680AAE /* UserDefaultManager */ = {
-			isa = PBXGroup;
-			children = (
-				D42D24C529A1CDB800008A81 /* UserDefaultManager.swift */,
-			);
-			name = UserDefaultManager;
-			sourceTree = "<group>";
-		};
-		D49BE03A29A1ADD800680AAE /* KeyChainManager */ = {
-			isa = PBXGroup;
-			children = (
-				D49EA2FB29A4698F007C450A /* KeyChainManager.swift */,
-			);
-			path = KeyChainManager;
-			sourceTree = "<group>";
-		};
 		D49C538129A721EE005C6E09 /* BasketWorkFlow */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,23 +341,15 @@
 		D49EA2EF29A46452007C450A /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				D4A15D9229A8FF8600DADC57 /* CoreDataModel */,
-				D49EA30429A5324A007C450A /* DatabaseManager */,
-				D49BE03729A1A00D00680AAE /* UserDefaultManager */,
-				D49BE03A29A1ADD800680AAE /* KeyChainManager */,
-				28C4AE862998F2F7008299C3 /* NetworkManager */,
-				D49EA2F029A464C1007C450A /* AuthManager */,
+				D49EA30529A5326E007C450A /* DatabaseManager.swift */,
+				D42D24C529A1CDB800008A81 /* UserDefaultManager.swift */,
+				D49EA2FB29A4698F007C450A /* KeyChainManager.swift */,
+				288CE6EE2998AB52006E2FE8 /* NetworkManager.swift */,
+				D49EA30229A48B56007C450A /* AuthManager.swift */,
+				D4A15D9229A8FF8600DADC57 /* CoreDataModelManager */,
 			);
 			name = Managers;
 			path = UserDefaultManager;
-			sourceTree = "<group>";
-		};
-		D49EA2F029A464C1007C450A /* AuthManager */ = {
-			isa = PBXGroup;
-			children = (
-				D49EA30229A48B56007C450A /* AuthManager.swift */,
-			);
-			path = AuthManager;
 			sourceTree = "<group>";
 		};
 		D49EA2F229A465A8007C450A /* Modules */ = {
@@ -478,14 +446,6 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
-		D49EA30429A5324A007C450A /* DatabaseManager */ = {
-			isa = PBXGroup;
-			children = (
-				D49EA30529A5326E007C450A /* DatabaseManager.swift */,
-			);
-			path = DatabaseManager;
-			sourceTree = "<group>";
-		};
 		D4A06A1929ACCB7C000C3A09 /* CoctailsMenuViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -502,7 +462,7 @@
 			path = ChoosedCocktailViewModel;
 			sourceTree = "<group>";
 		};
-		D4A15D9229A8FF8600DADC57 /* CoreDataModel */ = {
+		D4A15D9229A8FF8600DADC57 /* CoreDataModelManager */ = {
 			isa = PBXGroup;
 			children = (
 				D4A866F929A900FF009BC639 /* CocktailsDataModel.xcdatamodeld */,
@@ -510,7 +470,7 @@
 				D4A8670129A90605009BC639 /* Cocktails+CoreDataProperties.swift */,
 				D4A8670429A90898009BC639 /* CoreDataStack.swift */,
 			);
-			path = CoreDataModel;
+			path = CoreDataModelManager;
 			sourceTree = "<group>";
 		};
 		D4A86FD429AAB8100084232F /* Layer */ = {

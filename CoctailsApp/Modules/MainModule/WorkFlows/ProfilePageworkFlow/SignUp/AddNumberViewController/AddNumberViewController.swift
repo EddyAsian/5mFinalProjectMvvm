@@ -6,14 +6,10 @@
 
 import UIKit
 import SnapKit
-//import RxSwift
-//import RxRelay
 
 class AddNumberViewController: UIViewController {
     
     private lazy var viewModel: SignInViewModel = { SignInViewModel() }()
-    
-    
     
     lazy var menuPagesHeader: UILabel = {
         var menuPagesHeader = UILabel()
@@ -80,8 +76,6 @@ class AddNumberViewController: UIViewController {
         view.backgroundColor = ColorConstants.informationView
         setUpUI()
         phoneNumberTextField.delegate = self
-//        acceptNumber.delegate = self
-        
     }
     
     private func setUpUI() {
@@ -107,11 +101,8 @@ class AddNumberViewController: UIViewController {
     private func sendCode(_ sender: UIButton) {
         inputPhoneNumber()
         viewModel.getSMSCode(phoneNumber: phoneNumberTextField.text)
-//        smsCodeTextField.isEnabled = true
         let authServiceVC = AcceptSmsCodeViewController()
-//        dismiss(animated: false)
         present(authServiceVC, animated: true)
-//        AuthManager.shared.authentificateWithPN()
     }
     
     private func showAlert() {
@@ -132,10 +123,6 @@ class AddNumberViewController: UIViewController {
             return
         }
     }
-    
-//    override func viewDidDisappear(_ animated: Bool) {
-//        self.dismiss(animated: false, completion: nil)
-//    }
     
     private func setUpConstraints() {
         menuPagesHeader.snp.makeConstraints{ maker in
@@ -186,8 +173,7 @@ extension AddNumberViewController: UITextFieldDelegate {
         switch textField {
         case phoneNumberTextField:
             getCodeButton.backgroundColor = ColorConstants.tabBarItemAccent
-           getCodeButton.isEnabled = true
-            
+            getCodeButton.isEnabled = true
         default: ()
         }
     }

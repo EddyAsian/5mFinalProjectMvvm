@@ -8,7 +8,7 @@
 import UIKit
 
 class BasketChPriceLabel: UILabel {
-
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         

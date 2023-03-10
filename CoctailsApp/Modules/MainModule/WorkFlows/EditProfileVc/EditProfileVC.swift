@@ -138,7 +138,6 @@ class EditProfileVC: UIViewController {
         view.backgroundColor = ColorConstants.profileBack
         setUpUI()
         getKeychain()
-//       passwordInformation.driver.hideDeviceKeyboard()
        usernameLabel.text = loginName.text
     }
     
@@ -295,10 +294,7 @@ class EditProfileVC: UIViewController {
             return
         }
     }
-//    override func viewDidDisappear(_ animated: Bool) {
-//        self.dismiss(animated: false, completion: nil)
-//    }
-    
+
     private func setUpConstraints() {
         borderView.snp.makeConstraints{ maker in
             maker.top.equalToSuperview().offset(120)

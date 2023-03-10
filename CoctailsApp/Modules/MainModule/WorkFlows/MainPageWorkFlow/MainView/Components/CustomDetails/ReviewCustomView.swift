@@ -62,6 +62,11 @@ class ReviewCustomView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func setUpUI() {
+        setUpSubviews()
+        setUpConstraints()
+    }
+    
     private func setUpSubviews() {
         self.addSubview(borderLine)
         self.addSubview(starRatingsView)
@@ -99,10 +104,5 @@ class ReviewCustomView: UIView {
             maker.left.equalTo(commentLabel)
             maker.right.equalTo(commentLabel.snp.right)
         }
-    }
-    
-    private func setUpUI() {
-        setUpSubviews()
-        setUpConstraints()
     }
 }

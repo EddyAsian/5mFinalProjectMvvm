@@ -8,7 +8,7 @@
 import UIKit
 
 class CocktailsTabBarController: UITabBarController {
-   
+    
     class var identifier: String { String(describing: self) }
     
     private func createControllers(
@@ -63,8 +63,6 @@ class CocktailsTabBarController: UITabBarController {
         ]
     }
     
-    
-    
     private func setTabBarAppearance () {
         let positionOnX: CGFloat = 10
         let positionOnY: CGFloat = 10
@@ -93,4 +91,4 @@ class CocktailsTabBarController: UITabBarController {
         setTabBarAppearance()
         setupVC()
     }
- }
+}

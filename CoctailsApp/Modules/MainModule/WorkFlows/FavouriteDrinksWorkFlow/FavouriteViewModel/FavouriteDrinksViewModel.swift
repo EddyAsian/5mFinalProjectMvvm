@@ -8,23 +8,22 @@
 import Foundation
 
 class FavouriteDrinksViewModel {
+    
     enum ArrivedData {
         case drinksByLetter
         case drinksByName
     }
+    
     private var networkManager: NetworkManager
     
+    public var reloadDrinksCollectionView: (() -> Void)?
+    public var showErrorAlert: ((String) -> Void)?
+    public var dataFoundWithName:((Bool) -> Void)?
     
-    
-    
+    //MARK: — delete
     public var goodArray = [Drinks]()
     
-    
-    
-    
-    
-    
-    
+    //MARK: — delete
     public var drink: Drinks!
     
     private var currentLetter: String
@@ -34,15 +33,11 @@ class FavouriteDrinksViewModel {
             currentLetter = String(scalar)
         }
     }
-
+    
     init () {
         self.networkManager = NetworkManager.shared
         currentLetter = "a"
     }
-    
-    public var reloadDrinksCollectionView: (() -> Void)?
-    public var showErrorAlert: ((String) -> Void)?
-    public var dataFoundWithName:((Bool) -> Void)?
     
     public var drinks = [Drinks]() {
         didSet {
@@ -131,6 +126,5 @@ class FavouriteDrinksViewModel {
             }
         }
     }
-    
 }
 

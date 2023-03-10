@@ -47,13 +47,6 @@ final class SignInViewModel {
         guard
             let smsCode = smsCode, !smsCode.isEmpty
         else { return }
-//            showAlert?(
-//                "Error!",
-//                "The sms-code field must be filled!",
-//                nil
-//            )
-//            return
-//        }
         
         authManager.tryToSignIn(smsCode: smsCode) { [weak self] result in
             switch result {
@@ -63,7 +56,7 @@ final class SignInViewModel {
                     "Succesfully signed up with phone number. Getting you to the main page.",
                     self?.goToMainPage
                 )
-
+                
             case .failure(let error):
                 self?.showAlert?(
                     "Error",

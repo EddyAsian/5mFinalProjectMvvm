@@ -8,10 +8,12 @@
 import Foundation
 
 class CocktailsMenuViewModel {
+    
     enum ArrivedData {
         case drinksByLetter
         case drinksByName
     }
+    
     private var networkManager: NetworkManager
     
     private var currentLetter: String
@@ -21,7 +23,7 @@ class CocktailsMenuViewModel {
             currentLetter = String(scalar)
         }
     }
-
+    
     init () {
         self.networkManager = NetworkManager.shared
         currentLetter = "a"
@@ -55,6 +57,12 @@ class CocktailsMenuViewModel {
         }
     }
     
+    private func createCellModel(drink: Drinks) -> CocktailsCellViewModel {
+        let name = drink.name
+        let image = drink.image
+        return CocktailsCellViewModel(drinkName: name, image: image)
+    }
+    
     public func getDrinksWithLetter() {
         Task {
             do {
@@ -82,12 +90,6 @@ class CocktailsMenuViewModel {
             filteredDrinks = drinks
             filteredDrinksCellViewModels = viewModels
         }
-    }
-    
-    private func createCellModel(drink: Drinks) -> CocktailsCellViewModel {
-        let name = drink.name
-        let image = drink.image
-        return CocktailsCellViewModel(drinkName: name, image: image)
     }
     
     public func getCellViewModel(at indexPath: IndexPath) -> CocktailsCellViewModel {
@@ -118,5 +120,4 @@ class CocktailsMenuViewModel {
             }
         }
     }
-    
 }

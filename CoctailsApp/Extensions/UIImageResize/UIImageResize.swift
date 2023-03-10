@@ -8,7 +8,6 @@
 import UIKit
 
 extension UIImage {
-    
     func resizeImage(to targetSize: CGSize) -> UIImage {
         let widthRatio = targetSize.width / size.width
         let heightRatio = targetSize.height / size.height
@@ -17,18 +16,15 @@ extension UIImage {
             width: size.width * scaleFactor,
             height: size.height * scaleFactor
         )
-        
         let renderer = UIGraphicsImageRenderer(
             size: scaledImageSize
         )
-        
         let scaledImage = renderer.image { _ in
             self.draw(in: CGRect(
                 origin: .zero,
                 size: scaledImageSize
             ))
         }
-        
         return scaledImage
     }
 }

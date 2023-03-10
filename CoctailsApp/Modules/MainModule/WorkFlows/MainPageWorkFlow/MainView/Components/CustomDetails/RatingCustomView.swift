@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class RatingCustomView: UIView {
-   lazy var profileImageView: UIImageView = {
+    lazy var profileImageView: UIImageView = {
         var imageView = UIImageView()
         imageView.image = UIImage(systemName: "person")
         return imageView
@@ -48,6 +48,16 @@ class RatingCustomView: UIView {
         self.addSubview(starImage)
     }
     
+    private func setUpUI() {
+        setUpSubviews()
+        setUpConstraints()
+    }
+    
+    func display(item: Int) {
+        
+        ratingLabel.text = "\(item)"
+    }
+    
     private func setUpConstraints() {
         profileImageView.snp.makeConstraints { maker in
             maker.centerY.equalToSuperview()
@@ -67,15 +77,5 @@ class RatingCustomView: UIView {
             maker.right.equalTo(ratingLabel).offset(20)
             maker.width.height.equalTo(18)
         }
-    }
-    
-    private func setUpUI() {
-        setUpSubviews()
-        setUpConstraints()
-    }
-    
-    func display(item: Int) {
-        
-        ratingLabel.text = "\(item)"
     }
 }

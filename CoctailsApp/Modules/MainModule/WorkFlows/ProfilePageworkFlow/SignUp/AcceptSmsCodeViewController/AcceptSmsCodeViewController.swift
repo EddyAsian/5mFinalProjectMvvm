@@ -35,19 +35,10 @@ class AcceptSmsCodeViewController: UIViewController {
                 
                 
                 let tabBar = CocktailsTabBarController()
-                        tabBar.modalPresentationStyle = .fullScreen
+                tabBar.modalPresentationStyle = .fullScreen
                 //        navigationController?.pushViewController(tabBar, animated: true)
                 self!.present(tabBar, animated: true, completion: nil)
-                        tabBar.selectedIndex = 1
-                
-                
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                let vc = storyboard.instantiateViewController(
-//                    withIdentifier: CocktailsTabBarController.identifier
-//                )
-//                self?.navigationController?.pushViewController(vc, animated: true)
-//                vc.modalPresentationStyle = .fullScreen
-//                self?.present(vc, animated: true)
+                tabBar.selectedIndex = 1
             }
         }
     }
@@ -121,8 +112,6 @@ class AcceptSmsCodeViewController: UIViewController {
         initViewModel()
         setUpUI()
         smsCodeTextField.delegate = self
-        
-//        dismiss(animated: false)
     }
     
     private func setUpUI() {
@@ -145,29 +134,8 @@ class AcceptSmsCodeViewController: UIViewController {
     
     @objc
     private func confirmTapped(_ sender: UIButton) {
-//         AuthManager.shared.verifyPhoneAuthTapped()
         viewModel.verifyCodeAndTryToSignIn(smsCode: smsCodeTextField.text)
-        
-//        let tabBar = CocktailsTabBarController()
-//        tabBar.modalPresentationStyle = .fullScreen
-////        navigationController?.pushViewController(tabBar, animated: true)
-//        present(tabBar, animated: true, completion: nil)
-//        tabBar.selectedIndex = 1
     }
-//    override func viewDidDisappear(_ animated: Bool) {
-//        self.dismiss(animated: false, completion: nil)
-//    }
-    
-//    private func showAlert() {
-//        let alert = UIAlertController(
-//            title: "Error",
-//            message: "You must input something",
-//            preferredStyle: .alert
-//        )
-//        let okAction = UIAlertAction(title: "OK", style: .cancel)
-//        alert.addAction(okAction)
-//        present(alert, animated: true)
-//    }
     
     private func setUpConstraints() {
         menuPagesHeader.snp.makeConstraints{ maker in
@@ -215,7 +183,7 @@ extension AcceptSmsCodeViewController: UITextFieldDelegate {
         default: ()
         }
     }
- }
+}
 
 
 

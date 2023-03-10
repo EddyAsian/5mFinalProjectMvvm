@@ -116,23 +116,6 @@ class SignUpViewController: UIViewController {
         return button
     }()
     
-    //    var logIn: UIButton = {
-    //        var button = UIButton(type: .system)
-    //        button.backgroundColor = ColorConstants.tabBarItemAccent
-    //        button.setTitle("Log in", for: .normal)
-    //        button.titleLabel?.textColor = .white
-    //        button.setTitleColor(.white, for: .normal)
-    //        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
-    //        button.layer.cornerRadius = Constants.cornerRadius
-    //        button.layer.shadowOffset = CGSize(width: 0.0, height: 5)
-    //        button.layer.shadowOpacity = 0.2
-    //        button.addTarget(
-    //            self, action: #selector(logInUserTapped),
-    //            for: .touchUpInside
-    //        )
-    //        return button
-    //    }()
-    
     var clear: UIButton = {
         var button = UIButton(type: .system)
         button.backgroundColor = ColorConstants.tabBarItemAccent
@@ -165,7 +148,6 @@ class SignUpViewController: UIViewController {
     private func setUpSubviews() {
         view.addSubview(profileTitle)
         view.addSubview(borderView)
-        //        view.addSubview(logIn)
         view.addSubview(profileImage)
         view.addSubview(usernameLabel)
         view.addSubview(emailInformation)
@@ -182,9 +164,7 @@ class SignUpViewController: UIViewController {
         addNewUser()
         clearKeychain()
         saveKeyChainManager()
-//        dismiss(animated: true)
         let addNumberVc = AddNumberViewController()
-//        dismiss(animated: false)
         present(addNumberVc, animated: true)
     }
     

@@ -17,15 +17,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let navController = UINavigationController()
-        navController.viewControllers = [
-            //            WelcomeViewController(),
-            CocktailsMenuViewController(),
-            ChoosedCocktailViewController(),
-            FavouriteDrinksViewController(),
-            BasketChoosedViewController()
-        ]
-        
         let home = WelcomeViewController()
         //        let home = ProfileViewController()
         //        let home = CocktailsTabBarController()

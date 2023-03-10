@@ -134,7 +134,6 @@ class BasketFinalBuyViewController: UIViewController {
         bottomView.snp.makeConstraints { (make) -> Void in
             make.left.right.bottom.equalTo(-10)
             make.height.equalTo(49)
-//            make.width.equalTo(340)
         }
         
         selectButton.snp.makeConstraints { (make) -> Void in
@@ -166,14 +165,10 @@ extension BasketFinalBuyViewController : UITableViewDelegate,UITableViewDataSour
         
         let cell = tableView.dequeueReusableCell(withIdentifier: shoppingCarCellIdntifier, for: indexPath) as! BasketChShoppingCell
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
-        
         cell.addGoodArray = addGoodArray![indexPath.row]
-        
         cell.delegate = self
-        
         return cell
     }
-    
 }
 
 extension BasketFinalBuyViewController : BasketChShoppingCellDelegate {
@@ -183,18 +178,13 @@ extension BasketFinalBuyViewController : BasketChShoppingCellDelegate {
         guard let indexPath = showCartTableView.indexPath(for: shopping) else {
             return
         }
-        
         let data = addGoodArray![indexPath.row]
-        
         if button.tag == 10 {
-            
             if data.count < 1 {
                 return
             }
-            
             data.count -= 1
             label.text = "\(data.count)"
-            
         } else {
             data.count += 1
             label.text = "\(data.count)"

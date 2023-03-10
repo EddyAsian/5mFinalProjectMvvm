@@ -19,16 +19,13 @@ import RxRelay
 
 class CocktailsMenuViewController: UIViewController {
     
-//    let notificationCenter = NotificationCenter.default
+    //    let notificationCenter = NotificationCenter.default
     
     private var basketArray: [Drinks] = []
-    
-//    private var viewModel: MainViewModelType = MainViewModel()
-    
     private lazy var viewModel = { CocktailsMenuViewModel() }()
     
     private func initViewModel() {
-//        isLoading = true
+        isLoading = true
         viewModel.getDrinksWithLetter()
         viewModel.reloadDrinksCollectionView = { [weak self] in
             DispatchQueue.main.async {
@@ -44,7 +41,7 @@ class CocktailsMenuViewController: UIViewController {
         viewModel.dataFoundWithName = { [weak self] result in
             DispatchQueue.main.async {
                 self?.noCocktailsFoundLabel.isHidden = result
-//                self?.isLoading = false
+                self?.isLoading = false
             }
         }
     }
@@ -60,29 +57,28 @@ class CocktailsMenuViewController: UIViewController {
         present(errorAlert, animated: true)
     }
     
-//    NotificationCenter.default.post(name: notification, object: nil)
-  
+    //    NotificationCenter.default.post(name: notification, object: nil)
+    
     
     // For requesting to API to get next letter's drinks
-//    private var currentLetterUnicodeVoralue: UInt32 = 97
-//    private var currentLetter = "a"
+    //    private var currentLetterUnicodeVoralue: UInt32 = 97
+    //    private var currentLetter = "a"
     
     
     
-//    private var drinks: [Drinks] = [] {
-//        didSet {
-//            filteredDrinks = drinks
-//        }
-//    }
+    //    private var drinks: [Drinks] = [] {
+    //        didSet {
+    //            filteredDrinks = drinks
+    //        }
+    //    }
     
-//    private var filteredDrinks = [Drinks]() {
-//        didSet {
-//            updateUIwithSearchResultsState(resultIsEmpty: filteredDrinks.isEmpty)
-//            drinksCollectionView.reloadData()
-//        }
-//    }
+    //    private var filteredDrinks = [Drinks]() {
+    //        didSet {
+    //            updateUIwithSearchResultsState(resultIsEmpty: filteredDrinks.isEmpty)
+    //            drinksCollectionView.reloadData()
+    //        }
+    //    }
     
-    // MARK: Subviews creating
     private lazy var allDrinksTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Tastiest Cocktails"
@@ -165,54 +161,35 @@ class CocktailsMenuViewController: UIViewController {
         return label
     }()
     
-//    private lazy var activityIndicator: UIActivityIndicatorView = {
-//        let view = UIActivityIndicatorView()
-//        view.hidesWhenStopped = true
-//        view.startAnimating()
-//        return view
-//    }()
-//
-//    private lazy var isLoading: Bool = false {
-//        didSet {
-//            _ = isLoading ? activityIndicator.startAnimating() :activityIndicator.stopAnimating()
-//        }
-//    }
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.hidesWhenStopped = true
+        view.startAnimating()
+        return view
+    }()
     
-  override func loadView() {
+    private lazy var isLoading: Bool = false {
+        didSet {
+            _ = isLoading ? activityIndicator.startAnimating() :activityIndicator.stopAnimating()
+        }
+    }
+    
+    override func loadView() {
         super.loadView()
         view.backgroundColor = ColorConstants.background
         setupSubViews()
         setUPConstraints()
-      
         configureDrinksCollectionView()
-      
         configureSearchDrinkSearchBar()
-      initViewModel()
-//        getDrinksForLetter(currentLetter)
-      
-//      let loginRepsonse = ["userInfo": [basketArray]]
-//
-//      NotificationCenter.default.post(name: NSNotification.Name("NotifyCocktails"), object: nil, userInfo: loginRepsonse)
-//
+        initViewModel()
+        //        getDrinksForLetter(currentLetter)
+        
+        //      let loginRepsonse = ["userInfo": [basketArray]]
+        //
+        //      NotificationCenter.default.post(name: NSNotification.Name("NotifyCocktails"), object: nil, userInfo: loginRepsonse)
+        //
     }
     
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-        
-//        let dictionary = [basketArray]
-//        notificationCenter.post(name: .changeArrayNotification , object: self, userInfo: dictionary)
-//
-     
-        
-//    }
-    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//
-//        let dictionary = ["model": basketArray]
-//        notificationCenter.post(name: .changeArrayNotification , object: self, userInfo: dictionary)
-//    }
-//
     private func setupSubViews() {
         view.addSubview(allDrinksTitleLabel)
         view.addSubview(pageInfoSubtitleLabel)
@@ -220,36 +197,9 @@ class CocktailsMenuViewController: UIViewController {
         view.addSubview(backgroundViewForCollection)
         view.addSubview(drinksCollectionView)
         view.addSubview(noCocktailsFoundLabel)
-//        view.addSubview(activityIndicator)
+        view.addSubview(activityIndicator)
     }
-    
-    // MARK: Call API methods ()
-//    private func getDrinksForLetter(_ letter: String) {
-//        Task {
-//            isLoading = true
-//            let drinksFromAPI = try await getDrinksForLetter(letter).drinks ?? []
-//            drinks.append(contentsOf: drinksFromAPI)
-//            isLoading = false
-//        }
-//    }
-    
-//    private func getDrinksForName(_ name: String) {
-//        Task {
-//            filteredDrinks = try await viewModel.getDrinksByName(name).drinks ?? []
-//        }
-//    }
-    
-//    private func updateUIwithSearchResultsState(resultIsEmpty: Bool) {
-//        if filteredDrinks.isEmpty && !drinks.isEmpty {
-//            drinksCollectionView.isHidden = true
-//            noCocktailsFoundLabel.isHidden = false
-//        } else {
-//            drinksCollectionView.isHidden = false
-//            noCocktailsFoundLabel.isHidden = true
-//        }
-//    }
-    
-    // MARK: Configuring methods ()
+        
     private func configureSearchDrinkSearchBar() {
         searchDrinkSearchBar.delegate = self
     }
@@ -262,7 +212,6 @@ class CocktailsMenuViewController: UIViewController {
         drinksCollectionView.delegate = self
         drinksCollectionView.dataSource = self
     }
-    
     
     private func setUPConstraints() {
         allDrinksTitleLabel.snp.makeConstraints { make in
@@ -301,13 +250,13 @@ class CocktailsMenuViewController: UIViewController {
             make.centerY.equalTo(drinksCollectionView.snp.centerY)
         }
         
-//        activityIndicator.snp.makeConstraints { make in
-//            make.center.equalToSuperview()
-//            make.height.width.equalTo(24)
-//        }
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.height.width.equalTo(24)
+        }
     }
 }
-    
+
 
 extension CocktailsMenuViewController: UICollectionViewDataSource {
     func collectionView(
@@ -322,7 +271,7 @@ extension CocktailsMenuViewController: UICollectionViewDataSource {
         guard let cell = drinksCollectionView.dequeueReusableCell(
             withReuseIdentifier: MenuCollectionViewCell.identifier,
             for: indexPath
-        ) as? MenuCollectionViewCell else { fatalError("xib does not exists") }
+        ) as? MenuCollectionViewCell else { fatalError("cell does not exists") }
         let cellVM = viewModel.getCellViewModel(at: indexPath)
         cell.cellViewModel = cellVM
         return cell
@@ -330,7 +279,6 @@ extension CocktailsMenuViewController: UICollectionViewDataSource {
 }
 
 extension CocktailsMenuViewController: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -345,7 +293,6 @@ extension CocktailsMenuViewController: UICollectionViewDelegateFlowLayout {
         didSelectItemAt indexPath: IndexPath
     ) {
         let vc = ChoosedCocktailViewController()
-//            ) as? ChoosedCocktailViewController else { fatalError("there is no xib") }
         vc.viewModel.drink = viewModel.filteredDrinks[indexPath.row]
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
@@ -360,14 +307,6 @@ extension CocktailsMenuViewController: UICollectionViewDelegateFlowLayout {
         letter = String(scalar)
     }
     
-//    private func fetchNextData () {
-//        moveToNextLetter(
-//            letter: &currentLetter,
-//            value: &currentLetterUnicodeVoralue
-//        )
-//        getDrinksForLetter(currentLetter)
-//    }
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // Check if the user has scrolled to the bottom of the view and it is not
         // searching cocktail process
@@ -375,12 +314,11 @@ extension CocktailsMenuViewController: UICollectionViewDelegateFlowLayout {
         let scrollOffsetThreshold = scrollViewContentHeight - drinksCollectionView.bounds.size.height
         
         if scrollView.contentOffset.y > scrollOffsetThreshold,
-            searchDrinkSearchBar.text!.isEmpty {
+           searchDrinkSearchBar.text!.isEmpty {
             viewModel.getDrinksWithNextLetter()
         }
     }
 }
-
 
 extension CocktailsMenuViewController: UISearchBarDelegate {
     func searchBar(

@@ -17,6 +17,8 @@ class StepperView: UIControl {
     
     weak var delegate: HidableStepperDelegate?
     
+    var isHiddableViewRevealead: Bool = false
+    
     public enum ButtonType {
         case normal
         case allRounded
@@ -33,50 +35,11 @@ class StepperView: UIControl {
         }
     }
     
+    var animationDuration: Double {
+        return Double(layer.frame.width) / 1000
+    }
+    
     var minimumNumberOfItems: Int = 0
-    
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        sharedInit()
-    }
-    
-    required public init?(coder: NSCoder) {
-        super.init(coder: coder)
-        sharedInit()
-    }
-    
-    lazy var decreaseButton: UIButton = {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(decrease), for: [.touchDragExit, .touchCancel, .touchUpInside, .touchUpOutside])
-        button.setTitle("  -  ", for: .normal)
-        button.titleLabel?.textAlignment = .center
-        return button
-    }()
-    
-    lazy var additionButton: UIButton = {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(add), for: [.touchDragExit, .touchCancel, .touchUpInside, .touchUpOutside])
-        button.setTitle("  +  ", for: .normal)
-        button.titleLabel?.textAlignment = .center
-        return button
-    }()
-    
-    lazy var spacerView: UIView = {
-        let spacerView: UIView = UIView()
-        spacerView.backgroundColor = stepperBackgroundColor
-        return spacerView
-    }()
-    
-    lazy var quantityOfItemsLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.text = quantityOfItemsUnityOfMeasure
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.2
-        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        label.textColor = UIColor.purple
-        return label
-    }()
     
     var additionButtonColor: UIColor = .orange {
         didSet {
@@ -106,24 +69,60 @@ class StepperView: UIControl {
     
     var hiddableView: UIView!
     
+    lazy var decreaseButton: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(decrease), for: [.touchDragExit, .touchCancel, .touchUpInside, .touchUpOutside])
+        button.setTitle("-", for: .normal)
+        return button
+    }()
+    
+    lazy var additionButton: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(add), for: [.touchDragExit, .touchCancel, .touchUpInside, .touchUpOutside])
+        button.setTitle("+", for: .normal)
+        return button
+    }()
+    
+    lazy var spacerView: UIView = {
+        let spacerView: UIView = UIView()
+        spacerView.backgroundColor = stepperBackgroundColor
+        return spacerView
+    }()
+    
+    lazy var quantityOfItemsLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.text = quantityOfItemsUnityOfMeasure
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.2
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        label.textColor = UIColor.purple
+        return label
+    }()
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        sharedInit()
+    }
+    
+    required public init?(coder: NSCoder) {
+        super.init(coder: coder)
+        sharedInit()
+    }
+    
     private func sharedInit() {
         clipsToBounds = true
-        
         hiddableView = UIView()
-        
         spacerView.addSubview(quantityOfItemsLabel)
-        
         hiddableView.addSubview(spacerView)
         hiddableView.addSubview(decreaseButton)
         hiddableView.clipsToBounds = false
-        
         addSubview(hiddableView)
         addSubview(additionButton)
     }
     
     public override func layoutSubviews() {
         let buttonWidth = frame.height
-        
         decreaseButton.frame = CGRect(x: 0, y: 0, width: buttonWidth, height: buttonWidth)
         additionButton.frame = CGRect(x: frame.width - buttonWidth, y: 0, width: buttonWidth, height: buttonWidth)
         
@@ -162,8 +161,6 @@ class StepperView: UIControl {
         }
     }
     
-    var isHiddableViewRevealead: Bool = false
-    
     @objc func add(_ sender: UIButton) {
         quantityOfItems += 1
         if !isHiddableViewRevealead { revealDecreaseButton() }
@@ -182,10 +179,6 @@ class StepperView: UIControl {
         button.setTitle(title, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         return button
-    }
-    
-    var animationDuration: Double {
-        return Double(layer.frame.width) / 1000
     }
     
     func revealDecreaseButton() {
