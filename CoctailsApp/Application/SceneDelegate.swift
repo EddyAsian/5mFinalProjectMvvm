@@ -18,8 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         let home = WelcomeViewController()
+       
         //        let home = ProfileViewController()
-        //        let home = CocktailsTabBarController()
+//                let home = CocktailsTabBarController()
         //        let home = AJToViewController()
         //        let home = BasketViewController ()
         window?.rootViewController = home

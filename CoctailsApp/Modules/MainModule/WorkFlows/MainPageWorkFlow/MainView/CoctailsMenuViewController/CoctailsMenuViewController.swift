@@ -294,6 +294,7 @@ extension CocktailsMenuViewController: UICollectionViewDelegateFlowLayout {
     ) {
         let vc = ChoosedCocktailViewController()
         vc.viewModel.drink = viewModel.filteredDrinks[indexPath.row]
+       
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }

@@ -40,7 +40,7 @@
 		D49B7A4B29A8342100AFA3BA /* BasketChPriceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B7A4A29A8342000AFA3BA /* BasketChPriceLabel.swift */; };
 		D49C538629A727F8005C6E09 /* StepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C538529A727F8005C6E09 /* StepperView.swift */; };
 		D49DFF7A29A754CB00CF65A4 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49DFF7929A754CB00CF65A4 /* EditProfileVC.swift */; };
-		D49DFF7E29A75B4900CF65A4 /* FavouriteCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49DFF7D29A75B4900CF65A4 /* FavouriteCVCell.swift */; };
+		D49DFF7E29A75B4900CF65A4 /* FavouriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49DFF7D29A75B4900CF65A4 /* FavouriteTableViewCell.swift */; };
 		D49E3AA329A991FA00168152 /* FavouriteDrinksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49E3AA229A991FA00168152 /* FavouriteDrinksViewController.swift */; };
 		D49EA2FC29A4698F007C450A /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49EA2FB29A4698F007C450A /* KeyChainManager.swift */; };
 		D49EA2FE29A46AA0007C450A /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49EA2FD29A46AA0007C450A /* View+Extension.swift */; };
@@ -99,7 +99,7 @@
 		D49B7A4A29A8342000AFA3BA /* BasketChPriceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketChPriceLabel.swift; sourceTree = "<group>"; };
 		D49C538529A727F8005C6E09 /* StepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperView.swift; sourceTree = "<group>"; };
 		D49DFF7929A754CB00CF65A4 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
-		D49DFF7D29A75B4900CF65A4 /* FavouriteCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCVCell.swift; sourceTree = "<group>"; };
+		D49DFF7D29A75B4900CF65A4 /* FavouriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteTableViewCell.swift; sourceTree = "<group>"; };
 		D49E3AA229A991FA00168152 /* FavouriteDrinksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteDrinksViewController.swift; sourceTree = "<group>"; };
 		D49EA2FB29A4698F007C450A /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
 		D49EA2FD29A46AA0007C450A /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
@@ -311,12 +311,12 @@
 			path = EditProfileVc;
 			sourceTree = "<group>";
 		};
-		D49DFF7C29A75B1900CF65A4 /* FavouriteCollectionViewCell */ = {
+		D49DFF7C29A75B1900CF65A4 /* FavouriteTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				D49DFF7D29A75B4900CF65A4 /* FavouriteCVCell.swift */,
+				D49DFF7D29A75B4900CF65A4 /* FavouriteTableViewCell.swift */,
 			);
-			path = FavouriteCollectionViewCell;
+			path = FavouriteTableViewCell;
 			sourceTree = "<group>";
 		};
 		D49E3AA129A991D700168152 /* FavouriteDrinksWorkFlow */ = {
@@ -569,7 +569,7 @@
 		D4AC79E929AC7FA900859CDC /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				D49DFF7C29A75B1900CF65A4 /* FavouriteCollectionViewCell */,
+				D49DFF7C29A75B1900CF65A4 /* FavouriteTableViewCell */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -737,7 +737,7 @@
 				D49B7A4929A8341000AFA3BA /* BasketChShoppingCell.swift in Sources */,
 				D49AB6B529AAFD8B00BB2126 /* WelcomeInfoDTO.swift in Sources */,
 				D4AC79E129AC593300859CDC /* CocktailsCollectionViewCell.swift in Sources */,
-				D49DFF7E29A75B4900CF65A4 /* FavouriteCVCell.swift in Sources */,
+				D49DFF7E29A75B4900CF65A4 /* FavouriteTableViewCell.swift in Sources */,
 				D49EA2FE29A46AA0007C450A /* View+Extension.swift in Sources */,
 				D4A8670329A90605009BC639 /* Cocktails+CoreDataProperties.swift in Sources */,
 				D4AC79DC29AC272B00859CDC /* AcceptSmsCodeViewModel.swift in Sources */,

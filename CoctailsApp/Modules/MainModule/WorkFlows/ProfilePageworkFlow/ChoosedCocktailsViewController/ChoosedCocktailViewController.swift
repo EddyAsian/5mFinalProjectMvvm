@@ -19,19 +19,29 @@ protocol SelecetProductDelegate: AnyObject {
 
 class ChoosedCocktailViewController: UIViewController {
     
+    
+    
+   
+    
     public lazy var viewModel = { ChoosedCocktailViewModel() }()
+    
     class var identifier: String { String(describing: self) }
     
     var isLiked: Bool = false
     var cocktail: Drinks?
+    
+   
+    
     public var dataFoundWithName:((Bool) -> Void)?
+    
     weak var delegate: SelecetProductDelegate?
+    
     private var selectedProirity: String?
     public var addNewNote: ((_ ratingNumber: String) -> Void)?
     private var cocktailsCoreData: [Cocktails] = []
     
     var textToShow = ""
-    var modelOfAlldrinks: Drinks?
+//    var modelOfAlldrinks: Drinks?
     
     lazy var productImage: UIImageView = {
         var imageView = UIImageView()
@@ -141,17 +151,17 @@ class ChoosedCocktailViewController: UIViewController {
     
     //    var favouriteViewModel: FavouriteViewModel!
     //    static let id = String(describing: ChoosedCocktailViewController.self)
-    //    let drinksArray = favouriteViewModel.drinksArray?
-    //    private var filteredDrinks = [Drinks]()
+//        let drinksArray = favouriteViewModel.drinksArray?
+//        private var filteredDrinks = [Drinks]()
     
     //    let checkedBox = UIImage(systemName: "heart.fill") as! UIImage
     //    let uncheckedBox = UIImage(systemName: "heart") as! UIImage
     
-    //    public var filteredDrinks = [Drinks]() {
-    //        didSet {
-    //            dataFoundWithName?(!filteredDrinks.isEmpty)
-    //        }
-    //    }
+//        public var filteredDrinks = [Drinks]() {
+//            didSet {
+//                dataFoundWithName?(!filteredDrinks.isEmpty)
+//            }
+//        }
     
     //    var isLiked: Bool = false
     
@@ -194,6 +204,8 @@ class ChoosedCocktailViewController: UIViewController {
         setUpUI()
         customBackButton()
         initViewModel()
+        
+        
         
         //        saveRatingToDB(ratingView.ratingLabel.text!)
         //        fetchSomething()
@@ -241,8 +253,9 @@ class ChoosedCocktailViewController: UIViewController {
             //            saveRatingToDB()
             
             likedProductIcon.image = UIImage(systemName: "heart.fill")
-            
-            
+//            delegate?.addNewDrink(cocktail!)
+            delegate?.addNewDrink(viewModel.drink)
+            print(cocktail)
             //            delegate?.addNewDrink(cocktail!)
             print("I added to favourite array")
             isLiked = true
@@ -251,7 +264,7 @@ class ChoosedCocktailViewController: UIViewController {
         } else {
             likedProductIcon.image = UIImage (systemName: "heart")
             print("I removed from favourite array")
-            //            delegate?.removeLastDrink(cocktail!)
+                        delegate?.removeLastDrink(viewModel.drink)
             isLiked = false
             //            isLiked = false
             

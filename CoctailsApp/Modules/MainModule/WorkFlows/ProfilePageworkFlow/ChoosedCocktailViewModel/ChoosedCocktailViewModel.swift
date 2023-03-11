@@ -12,15 +12,17 @@ import Kingfisher
 final class ChoosedCocktailViewModel {
     public var drink: Drinks!
     
+    weak var delegate: SelecetProductDelegate?
+    
+    var item: Drinks?
+    
+//    weak var delegate: SelecetProductDelegate?
+    
     public func getDrinkToShow(_ data: Drinks) {
         self.drink = data
     }
     
-//    public var filteredDrinks = [Drinks]() {
-//        didSet {
-//            dataFoundWithName?(!filteredDrinks.isEmpty)
-//        }
-//    }
+
     
     public func setImageToImageView(imageView: UIImageView) {
         guard let url = URL(string: drink.image) else {
