@@ -299,11 +299,11 @@ extension CocktailsMenuViewController: SelecetProductDelegate {
             // notification with the updated array
             NotificationCenter.default.post(name: Notification.Name("FavouriteDrinksUpdated"), object: nil, userInfo: ["favouriteDrinksArray": favouriteDrinksArray])
         }
-        print("❤️delegate added in CocktailsMenuViewModel, there are \(viewModel.favouriteDrinksArray.count) elements in array: \(viewModel.favouriteDrinksArray)❤️")
+        print("❤️delegate added in CocktailsMenuViewModel, there are 👉  \(viewModel.favouriteDrinksArray.count) elements in array: \(viewModel.favouriteDrinksArray)❤️")
     }
     
     func removeLastDrink(_ drink: Drinks) {
         viewModel.favouriteDrinksArray.removeLast()
-        print("❤️delegate removed, there are \(viewModel.favouriteDrinksArray.count) elements in array: \(viewModel.favouriteDrinksArray)❤️")
+        print("❤️delegate removed, there are 👉 \(viewModel.favouriteDrinksArray.count) elements in array: \(viewModel.favouriteDrinksArray)❤️")
     }
 }
