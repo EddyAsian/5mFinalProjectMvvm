@@ -133,7 +133,6 @@ class FavouriteTableViewCell: UITableViewCell {
             maker.top.equalToSuperview().offset(20)
             maker.left.equalTo(productImage.snp.right).offset(10)
             maker.width.height.equalTo(105)
-//            maker.height.equalTo(100)
         }
 
         productLabel.snp.makeConstraints{ maker in

@@ -12,8 +12,6 @@ let screenSize = UIScreen.main.bounds.size
 
 class BasketChoosedViewController: UIViewController,CAAnimationDelegate {
     
-//    var drinks: Drinks?
-    
     fileprivate var goodArray = [BasketChoosedModel]()
     
     fileprivate let goodLinstCell = "AJToTableViewCell"

@@ -12,8 +12,6 @@ let favouriteScreenSize = UIScreen.main.bounds.size
 
 class FavouriteDrinksViewController: UIViewController,CAAnimationDelegate {
     
-//    var drinks: Drinks?
-    
     var favouriteDrinksArray: [Drinks] = []
 
     let viewModel = CocktailsMenuViewModel()

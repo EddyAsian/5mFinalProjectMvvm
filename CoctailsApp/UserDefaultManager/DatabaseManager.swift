@@ -9,35 +9,6 @@ import Foundation
 import FirebaseCore
 import FirebaseFirestore
 
-
-//final class DatabaseManager {
-//
-//    static let shared = DatabaseManager()
-//
-//    private let db = Firestore.firestore()
-//
-//    private init() { }
-//
-//    func setCocktailsToDataBase(
-//        collection: String,
-//        document: String,
-//        withData data: [String: Any]
-//    ) {
-//
-//        do {
-//            try db.collection(collection)
-//                .document(document)
-//                .setData(data)
-//        } catch let error {
-//            print("Error writing city to Firestore: \(error)")
-//        }
-//    }
-//}
-
-
-import FirebaseCore
-import FirebaseFirestore
-
 public struct DatabaseCollection {
     static let cocktails = "Cocktails"
 }

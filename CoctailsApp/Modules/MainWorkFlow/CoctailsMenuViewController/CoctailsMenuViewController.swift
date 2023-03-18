@@ -161,7 +161,7 @@ class CocktailsMenuViewController: UIViewController {
         view.addSubview(noCocktailsFoundLabel)
         view.addSubview(activityIndicator)
     }
-        
+    
     private func configureSearchDrinkSearchBar() {
         searchDrinkSearchBar.delegate = self
     }
@@ -256,7 +256,7 @@ extension CocktailsMenuViewController: UICollectionViewDelegateFlowLayout {
     ) {
         let vc = ChoosedCocktailViewController()
         vc.viewModel.drink = viewModel.filteredDrinks[indexPath.row]
-       
+        
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -295,14 +295,13 @@ extension CocktailsMenuViewController: SelecetProductDelegate {
         
         viewModel.favouriteDrinksArray.append(drink)
         func updateFavouriteDrinks() {
-                // Update the favourite drinks array here...
-                
-                // Post a notification with the updated array
-                NotificationCenter.default.post(name: Notification.Name("FavouriteDrinksUpdated"), object: nil, userInfo: ["favouriteDrinksArray": favouriteDrinksArray])
-            }
+            
+            // notification with the updated array
+            NotificationCenter.default.post(name: Notification.Name("FavouriteDrinksUpdated"), object: nil, userInfo: ["favouriteDrinksArray": favouriteDrinksArray])
+        }
         print("❤️delegate added in CocktailsMenuViewModel, there are \(viewModel.favouriteDrinksArray.count) elements in array: \(viewModel.favouriteDrinksArray)❤️")
     }
-
+    
     func removeLastDrink(_ drink: Drinks) {
         viewModel.favouriteDrinksArray.removeLast()
         print("❤️delegate removed, there are \(viewModel.favouriteDrinksArray.count) elements in array: \(viewModel.favouriteDrinksArray)❤️")

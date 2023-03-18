@@ -14,11 +14,7 @@ enum ArrivedData {
 
 class CocktailsMenuViewModel {
     
-  public var favouriteDrinksArray: [Drinks] = []
-    
-    
-
-    
+    public var favouriteDrinksArray: [Drinks] = []
     
     private var networkManager: NetworkManager
     
