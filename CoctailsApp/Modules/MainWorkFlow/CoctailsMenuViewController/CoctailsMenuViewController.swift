@@ -7,22 +7,12 @@
 
 import UIKit
 import SnapKit
-import RxRelay
-
-//extension NSNotification.Name {
-//    static let changeArrayNotification = NSNotification.Name.init("changeArrayNotification")
-//}
-
-//let notificationName = "com.hungry"
-//let notification = Notification.Name(notificationName)
-
 
 class CocktailsMenuViewController: UIViewController {
     
-    //    let notificationCenter = NotificationCenter.default
-    
-    private var basketArray: [Drinks] = []
     private lazy var viewModel = { CocktailsMenuViewModel() }()
+    
+    private var favouriteDrinksArray: [Drinks] = []
     
     private func initViewModel() {
         isLoading = true
@@ -56,28 +46,6 @@ class CocktailsMenuViewController: UIViewController {
         )
         present(errorAlert, animated: true)
     }
-    
-    //    NotificationCenter.default.post(name: notification, object: nil)
-    
-    
-    // For requesting to API to get next letter's drinks
-    //    private var currentLetterUnicodeVoralue: UInt32 = 97
-    //    private var currentLetter = "a"
-    
-    
-    
-    //    private var drinks: [Drinks] = [] {
-    //        didSet {
-    //            filteredDrinks = drinks
-    //        }
-    //    }
-    
-    //    private var filteredDrinks = [Drinks]() {
-    //        didSet {
-    //            updateUIwithSearchResultsState(resultIsEmpty: filteredDrinks.isEmpty)
-    //            drinksCollectionView.reloadData()
-    //        }
-    //    }
     
     private lazy var allDrinksTitleLabel: UILabel = {
         let label = UILabel()
@@ -182,12 +150,6 @@ class CocktailsMenuViewController: UIViewController {
         configureDrinksCollectionView()
         configureSearchDrinkSearchBar()
         initViewModel()
-        //        getDrinksForLetter(currentLetter)
-        
-        //      let loginRepsonse = ["userInfo": [basketArray]]
-        //
-        //      NotificationCenter.default.post(name: NSNotification.Name("NotifyCocktails"), object: nil, userInfo: loginRepsonse)
-        //
     }
     
     private func setupSubViews() {
@@ -330,12 +292,19 @@ extension CocktailsMenuViewController: UISearchBarDelegate {
 
 extension CocktailsMenuViewController: SelecetProductDelegate {
     func addNewDrink(_ drink: Drinks) {
-        basketArray.append(drink)
-        print("Added throw delegate and now there are \(basketArray.count) elements in array: \(basketArray)")
+        
+        viewModel.favouriteDrinksArray.append(drink)
+        func updateFavouriteDrinks() {
+                // Update the favourite drinks array here...
+                
+                // Post a notification with the updated array
+                NotificationCenter.default.post(name: Notification.Name("FavouriteDrinksUpdated"), object: nil, userInfo: ["favouriteDrinksArray": favouriteDrinksArray])
+            }
+        print("❤️delegate added in CocktailsMenuViewModel, there are \(viewModel.favouriteDrinksArray.count) elements in array: \(viewModel.favouriteDrinksArray)❤️")
     }
-    
+
     func removeLastDrink(_ drink: Drinks) {
-        basketArray.removeLast()
-        print("Removed throw delegate and now there are \(basketArray.count) elements in array: \(basketArray)")
+        viewModel.favouriteDrinksArray.removeLast()
+        print("❤️delegate removed, there are \(viewModel.favouriteDrinksArray.count) elements in array: \(viewModel.favouriteDrinksArray)❤️")
     }
 }

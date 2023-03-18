@@ -14,6 +14,21 @@ class FavouriteDrinksViewController: UIViewController,CAAnimationDelegate {
     
 //    var drinks: Drinks?
     
+    var favouriteDrinksArray: [Drinks] = []
+
+    let viewModel = CocktailsMenuViewModel()
+
+    
+    // Define a function that will be called when the notification is received
+     @objc func updateFavouriteDrinks(notification: Notification) {
+         if let userInfo = notification.userInfo,
+            let favouriteDrinksArray = userInfo["favouriteDrinksArray"] as? [Drinks] {
+             // Use the updated favouriteDrinksArray here...
+             print("💚\(favouriteDrinksArray)💚")
+         }
+     }
+    
+    
     fileprivate var goodArray = [BasketChoosedModel]()
     
     fileprivate let goodLinstCell = "FavouriteTableViewCell"
@@ -78,6 +93,10 @@ class FavouriteDrinksViewController: UIViewController,CAAnimationDelegate {
     override func loadView() {
         super.loadView()
         view.backgroundColor = ColorConstants.tabBarItemLight
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateFavouriteDrinks), name: Notification.Name("FavouriteDrinksUpdated"), object: nil)
+    
+        
         objectsTextInBasket()
         addUiView()
         setupSubViews()
@@ -92,8 +111,6 @@ class FavouriteDrinksViewController: UIViewController,CAAnimationDelegate {
     }
     
     func addUiView() {
-       
-//        navigationItem.title = "Shopping List"
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartBtn)
         navigationController?.navigationBar.addSubview(amontCart)
         navigationController?.navigationBar.barTintColor = UIColor.white
@@ -133,10 +150,6 @@ class FavouriteDrinksViewController: UIViewController,CAAnimationDelegate {
          }
         
         cartTableView.snp.makeConstraints { (make) in
-//            make.width.equalTo(screenSize.width);
-//            make.height.equalTo(screenSize.height);
-//            make.top.equalTo(self.view);
-//            make.right.equalTo(self.view);
             make.top.equalTo(pageInfoSubtitleLabel.snp.bottom).offset(10)
             make.bottom.equalToSuperview().inset(35)
             make.left.right.bottom.equalToSuperview()
@@ -182,16 +195,9 @@ extension FavouriteDrinksViewController : FavouriteCVCellDelegate {
         guard let indexPath = cartTableView.indexPath(for: cell) else {
             return
         }
-//        let redata = goodArray[indexPath.row]
-//        addGoodArray.append(redata)
+
         goodArray.remove(at: indexPath.row)
         cartTableView.deleteRows(at: [indexPath], with: .left)
-//        var rect = cartTableView.rectForRow(at: indexPath)
-//
-//        rect.origin.y -= cartTableView.contentOffset.y
-//        var headRect = icon.frame
-//        headRect.origin.y = rect.origin.y + headRect.origin.y - 64
-//        startAnimation(headRect, iconView: icon)
     }
 }
 

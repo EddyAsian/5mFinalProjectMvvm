@@ -139,9 +139,9 @@
 			children = (
 				D49AD24329A3E1CC00FE7FCC /* GoogleService-Info.plist */,
 				288CE6CD2998A7EF006E2FE8 /* CoctailsApp */,
-				288CE6CC2998A7EF006E2FE8 /* Products */,
-				8824E7E0BE1A75443376DCB3 /* Pods */,
 				9652E0514F4A8E390379C2FC /* Frameworks */,
+				8824E7E0BE1A75443376DCB3 /* Pods */,
+				288CE6CC2998A7EF006E2FE8 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -232,6 +232,57 @@
 			path = ChoosedCocktailsViewController;
 			sourceTree = "<group>";
 		};
+		78E4963129C52642003A5716 /* BasketViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D49B7A4029A8335600AFA3BA /* BasketChoosedModel.swift */,
+			);
+			path = BasketViewModel;
+			sourceTree = "<group>";
+		};
+		78E4963229C5266D003A5716 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D49B7A4429A8339300AFA3BA /* BaskedChoosedTableViewCell.swift */,
+				D49B7A4A29A8342000AFA3BA /* BasketChPriceLabel.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		78E4963329C526B3003A5716 /* BasketFinalBuyViewController */ = {
+			isa = PBXGroup;
+			children = (
+				78E4963429C52740003A5716 /* Components */,
+				D49B7A4629A833F000AFA3BA /* BasketFinalBuyViewController.swift */,
+			);
+			path = BasketFinalBuyViewController;
+			sourceTree = "<group>";
+		};
+		78E4963429C52740003A5716 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D49B7A4829A8341000AFA3BA /* BasketChShoppingCell.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		78E4963529C52972003A5716 /* ChoosedWorkFlow */ = {
+			isa = PBXGroup;
+			children = (
+				D4A06A1A29ACDC6B000C3A09 /* ChoosedCocktailViewModel */,
+				28C4AE8D299911B0008299C3 /* ChoosedCocktailsViewController */,
+			);
+			path = ChoosedWorkFlow;
+			sourceTree = "<group>";
+		};
+		78E4963629C529F1003A5716 /* TabBarWorkflow */ = {
+			isa = PBXGroup;
+			children = (
+				D49EA2F529A4667E007C450A /* MainTabBarController */,
+			);
+			path = TabBarWorkflow;
+			sourceTree = "<group>";
+		};
 		8824E7E0BE1A75443376DCB3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,12 +328,7 @@
 		D49B7A3F29A8333700AFA3BA /* BasketViewController */ = {
 			isa = PBXGroup;
 			children = (
-				D49B7A4029A8335600AFA3BA /* BasketChoosedModel.swift */,
 				D49B7A4229A8337D00AFA3BA /* BasketChoosedViewController.swift */,
-				D49B7A4429A8339300AFA3BA /* BaskedChoosedTableViewCell.swift */,
-				D49B7A4629A833F000AFA3BA /* BasketFinalBuyViewController.swift */,
-				D49B7A4829A8341000AFA3BA /* BasketChShoppingCell.swift */,
-				D49B7A4A29A8342000AFA3BA /* BasketChPriceLabel.swift */,
 			);
 			path = BasketViewController;
 			sourceTree = "<group>";
@@ -290,6 +336,9 @@
 		D49C538129A721EE005C6E09 /* BasketWorkFlow */ = {
 			isa = PBXGroup;
 			children = (
+				78E4963229C5266D003A5716 /* Components */,
+				78E4963329C526B3003A5716 /* BasketFinalBuyViewController */,
+				78E4963129C52642003A5716 /* BasketViewModel */,
 				D49B7A3F29A8333700AFA3BA /* BasketViewController */,
 			);
 			path = BasketWorkFlow;
@@ -303,12 +352,12 @@
 			path = StepperView;
 			sourceTree = "<group>";
 		};
-		D49DFF7829A754A800CF65A4 /* EditProfileVc */ = {
+		D49DFF7829A754A800CF65A4 /* EditProfileWorkFlow */ = {
 			isa = PBXGroup;
 			children = (
 				D49DFF7929A754CB00CF65A4 /* EditProfileVC.swift */,
 			);
-			path = EditProfileVc;
+			path = EditProfileWorkFlow;
 			sourceTree = "<group>";
 		};
 		D49DFF7C29A75B1900CF65A4 /* FavouriteTableViewCell */ = {
@@ -319,14 +368,14 @@
 			path = FavouriteTableViewCell;
 			sourceTree = "<group>";
 		};
-		D49E3AA129A991D700168152 /* FavouriteDrinksWorkFlow */ = {
+		D49E3AA129A991D700168152 /* FavouriteWorkFlow */ = {
 			isa = PBXGroup;
 			children = (
 				D4AC79D529AB692D00859CDC /* FavouriteViewModel */,
 				D4AC79EA29AC7FBA00859CDC /* FavouriteDrinksViewController */,
 				D4AC79E929AC7FA900859CDC /* Components */,
 			);
-			path = FavouriteDrinksWorkFlow;
+			path = FavouriteWorkFlow;
 			sourceTree = "<group>";
 		};
 		D49EA2EA29A46300007C450A /* Extensions */ = {
@@ -355,29 +404,15 @@
 		D49EA2F229A465A8007C450A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				D49EA2F329A46633007C450A /* MainModule */,
+				78E4963629C529F1003A5716 /* TabBarWorkflow */,
+				D49EA2F629A4675D007C450A /* WelcomeWorkFlow */,
+				D49EA2F829A467F2007C450A /* MainWorkFlow */,
+				78E4963529C52972003A5716 /* ChoosedWorkFlow */,
+				D49E3AA129A991D700168152 /* FavouriteWorkFlow */,
+				D49C538129A721EE005C6E09 /* BasketWorkFlow */,
+				D49EA2FA29A468F4007C450A /* ProfilePageWorkFlow */,
 			);
 			path = Modules;
-			sourceTree = "<group>";
-		};
-		D49EA2F329A46633007C450A /* MainModule */ = {
-			isa = PBXGroup;
-			children = (
-				D49EA2F429A46650007C450A /* WorkFlows */,
-			);
-			path = MainModule;
-			sourceTree = "<group>";
-		};
-		D49EA2F429A46650007C450A /* WorkFlows */ = {
-			isa = PBXGroup;
-			children = (
-				D49EA2F629A4675D007C450A /* MainPageWorkFlow */,
-				D49E3AA129A991D700168152 /* FavouriteDrinksWorkFlow */,
-				D49DFF7829A754A800CF65A4 /* EditProfileVc */,
-				D49C538129A721EE005C6E09 /* BasketWorkFlow */,
-				D49EA2FA29A468F4007C450A /* ProfilePageworkFlow */,
-			);
-			path = WorkFlows;
 			sourceTree = "<group>";
 		};
 		D49EA2F529A4667E007C450A /* MainTabBarController */ = {
@@ -388,53 +423,40 @@
 			path = MainTabBarController;
 			sourceTree = "<group>";
 		};
-		D49EA2F629A4675D007C450A /* MainPageWorkFlow */ = {
+		D49EA2F629A4675D007C450A /* WelcomeWorkFlow */ = {
 			isa = PBXGroup;
 			children = (
 				D4AADB0129AAE6C90064A2B5 /* WelcomeViewcontroller */,
-				D49EA2F829A467F2007C450A /* MainView */,
-				D49EA2F729A4679B007C450A /* Components */,
 			);
-			path = MainPageWorkFlow;
+			path = WelcomeWorkFlow;
 			sourceTree = "<group>";
 		};
-		D49EA2F729A4679B007C450A /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				D49C538429A727DE005C6E09 /* StepperView */,
-				D49EA2F529A4667E007C450A /* MainTabBarController */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		D49EA2F829A467F2007C450A /* MainView */ = {
+		D49EA2F829A467F2007C450A /* MainWorkFlow */ = {
 			isa = PBXGroup;
 			children = (
 				D4A06A1929ACCB7C000C3A09 /* CoctailsMenuViewController */,
 				D49EA2F929A46838007C450A /* MainViewModel */,
 				D4AC79DE29AC57B700859CDC /* Components */,
 			);
-			path = MainView;
+			path = MainWorkFlow;
 			sourceTree = "<group>";
 		};
 		D49EA2F929A46838007C450A /* MainViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				28C4AE8829991180008299C3 /* CoctailsMenuViewModel.swift */,
-				D4A06A1F29ACE4C4000C3A09 /* CocktailsCellViewModel.swift */,
 			);
 			path = MainViewModel;
 			sourceTree = "<group>";
 		};
-		D49EA2FA29A468F4007C450A /* ProfilePageworkFlow */ = {
+		D49EA2FA29A468F4007C450A /* ProfilePageWorkFlow */ = {
 			isa = PBXGroup;
 			children = (
-				D4A06A1A29ACDC6B000C3A09 /* ChoosedCocktailViewModel */,
-				28C4AE8D299911B0008299C3 /* ChoosedCocktailsViewController */,
+				D49DFF7829A754A800CF65A4 /* EditProfileWorkFlow */,
 				D4AC79DA29AC26B300859CDC /* SignUp */,
 				28C4AE842998F2D7008299C3 /* Model */,
 			);
-			path = ProfilePageworkFlow;
+			path = ProfilePageWorkFlow;
 			sourceTree = "<group>";
 		};
 		D49EA2FF29A47684007C450A /* Constants */ = {
@@ -527,6 +549,7 @@
 		D4AC79DE29AC57B700859CDC /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				D49C538429A727DE005C6E09 /* StepperView */,
 				D4AC79DF29AC590800859CDC /* CocktailsCollectionViewCell */,
 				28C4AE832998F2A7008299C3 /* CustomDetails */,
 			);
@@ -536,6 +559,7 @@
 		D4AC79DF29AC590800859CDC /* CocktailsCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				D4A06A1F29ACE4C4000C3A09 /* CocktailsCellViewModel.swift */,
 				D4AC79E029AC593300859CDC /* CocktailsCollectionViewCell.swift */,
 			);
 			path = CocktailsCollectionViewCell;

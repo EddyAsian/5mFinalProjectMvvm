@@ -7,12 +7,18 @@
 
 import Foundation
 
+enum ArrivedData {
+    case drinksByLetter
+    case drinksByName
+}
+
 class CocktailsMenuViewModel {
     
-    enum ArrivedData {
-        case drinksByLetter
-        case drinksByName
-    }
+  public var favouriteDrinksArray: [Drinks] = []
+    
+    
+
+    
     
     private var networkManager: NetworkManager
     
@@ -121,3 +127,5 @@ class CocktailsMenuViewModel {
         }
     }
 }
+
+

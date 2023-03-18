@@ -9,43 +9,27 @@ import UIKit
 import SnapKit
 import Kingfisher
 import CoreData
-import RxRelay
-
-
-protocol SelecetProductDelegate: AnyObject {
-    func addNewDrink(_ drink: Drinks)
-    func removeLastDrink(_ drink: Drinks)
-}
 
 class ChoosedCocktailViewController: UIViewController {
     
-    
-    
-   
+    weak var delegate: SelecetProductDelegate?
     
     public lazy var viewModel = { ChoosedCocktailViewModel() }()
     
     class var identifier: String { String(describing: self) }
     
     var isLiked: Bool = false
-    var cocktail: Drinks?
-    
-   
     
     public var dataFoundWithName:((Bool) -> Void)?
-    
-    weak var delegate: SelecetProductDelegate?
     
     private var selectedProirity: String?
     public var addNewNote: ((_ ratingNumber: String) -> Void)?
     private var cocktailsCoreData: [Cocktails] = []
     
     var textToShow = ""
-//    var modelOfAlldrinks: Drinks?
     
     lazy var productImage: UIImageView = {
         var imageView = UIImageView()
-        //        imageView.kf.setImage(with: URL(string: modelOfAlldrinks!.image))
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -59,7 +43,6 @@ class ChoosedCocktailViewController: UIViewController {
     
     lazy var productsNameLabel: UILabel = {
         var label = UILabel()
-        //        label.text = String(describing: modelOfAlldrinks!.name)
         label.font = UIFont(name: "Avenir Heavy", size: 18)
         label.textColor = .white
         return label
@@ -104,10 +87,8 @@ class ChoosedCocktailViewController: UIViewController {
     
     lazy var descriptionLabel: UILabel = {
         var label = UILabel()
-        //        label.text = String(describing: modelOfAlldrinks!.instructions)
         label.font = UIFont(name: "Avenir Next", size: 14)
         label.textColor = .black
-        //        label.numberOfLines = 0
         return label
     }()
     
@@ -149,68 +130,11 @@ class ChoosedCocktailViewController: UIViewController {
         return imageView
     }()
     
-    //    var favouriteViewModel: FavouriteViewModel!
-    //    static let id = String(describing: ChoosedCocktailViewController.self)
-//        let drinksArray = favouriteViewModel.drinksArray?
-//        private var filteredDrinks = [Drinks]()
-    
-    //    let checkedBox = UIImage(systemName: "heart.fill") as! UIImage
-    //    let uncheckedBox = UIImage(systemName: "heart") as! UIImage
-    
-//        public var filteredDrinks = [Drinks]() {
-//            didSet {
-//                dataFoundWithName?(!filteredDrinks.isEmpty)
-//            }
-//        }
-    
-    //    var isLiked: Bool = false
-    
-    //    var collector: [Any] = []
-    
-    //    var completionHandler: ((Drinks?) -> Void)?
-    
-    //    public lazy var viewModel = { DrinkInfoViewModel() }()
-    //    class var identifier: String { String(describing: self) }
-    //
-    //    class var nib: UINib { UINib(nibName: identifier, bundle: nil) }
-    
-    
-    //    {
-    //        didSet {
-    //            updateUIwithSearchResultsState(resultIsEmpty: filteredDrinks.isEmpty)
-    //            drinksCollectionView.reloadData()
-    //        }
-    //    }
-    
-    
-    //    private let info: Drinks
-    //
-    //    init(dish: Drinks) {
-    //
-    //        self.info = dish
-    //        super.init(nibName: nil, bundle: nil)
-    //    }
-    
-    //    required init?(coder: NSCoder) {
-    //        fatalError("init(coder:) has not been implemented")
-    //    }
-    //
-    //    var addNewNote = { rati}
-    
-    //    var food: Drinks?
-    
     override func loadView() {
         super.loadView()
         setUpUI()
         customBackButton()
         initViewModel()
-        
-        
-        
-        //        saveRatingToDB(ratingView.ratingLabel.text!)
-        //        fetchSomething()
-        
-        //        NotificationCenter.default.addObserver(self, selector: #selector(doThisWhenNotify(notification:)), name: NSNotification.Name(rawValue: "post"), object: nil)
     }
     
     private func initViewModel() {
@@ -249,63 +173,22 @@ class ChoosedCocktailViewController: UIViewController {
     
     @objc func likeTap() {
         if isLiked == false {
-            //            favouriteDrinks.append(Drinks)
-            //            saveRatingToDB()
-            
             likedProductIcon.image = UIImage(systemName: "heart.fill")
-//            delegate?.addNewDrink(cocktail!)
-            delegate?.addNewDrink(viewModel.drink)
-            print(cocktail)
-            //            delegate?.addNewDrink(cocktail!)
-            print("I added to favourite array")
+            
+            delegate?.addNewDrink(viewModel.drink!)
             isLiked = true
             let vc = FavouriteDrinksViewController()
-            //            vc.viewModel.cocktail = viewModel.filteredDrinks.append(cocktail!)
         } else {
             likedProductIcon.image = UIImage (systemName: "heart")
-            print("I removed from favourite array")
-                        delegate?.removeLastDrink(viewModel.drink)
+            
+            delegate?.removeLastDrink(viewModel.drink)
             isLiked = false
-            //            isLiked = false
-            
-            //            filteredDrinks.append(cocktail!)
-            
-            //            func doThisWhenNotify(notification : NSNotification) {
-            //                let info = notification.userInfo
-            //                print("notifyname : ",info?["name"])
-            //                print("notifyimage : ",info?["age"])
-            //                print("notifyInstr : ",info?["email"])
-            //
-            //            }
-            
-            //            NotificationCenter.default.post(name: Notification.Name("model"), object: cocktail)
-            //            completionHandler?(cocktail)
-            //            doitman()
-            //            guard let rating = ratingView.ratingLabel.text else { return  }
-            //            addNewNote?(rating)
-            //            isLiked = false
-            
         }
     }
     
     @objc func openBasketVc() {
-        //        dismiss(animated: true)
         navigationController?.pushViewController(BasketChoosedViewController(), animated: true)
     }
-    
-    //        @objc func tappedMe() {
-    //            //        dismiss(animated: true, completion: nil)
-    //            //        let tabBar = CocktailsTabBarController()
-    //            //        tabBar.modalPresentationStyle = .fullScreen
-    //            //        present(tabBar, animated: true, completion: nil)
-    //            //        tabBar.selectedIndex = 3
-    //            print("tapped add to cart")
-    //            //           delegate?.addNewDrink(cocktail!)
-    //
-    //            guard let foodname = modelOfAlldrinks?.name,
-    //                  let foodDescription = modelOfAlldrinks?.instructions else { return }
-    //
-    //        }
     
     private func saveRatingToDB(_ ratingNumber: String) {
         let data = Date()
@@ -323,7 +206,6 @@ class ChoosedCocktailViewController: UIViewController {
         self.cocktailsCoreData.insert(cocktail, at: 0)
         AppDelegate.shared.coreDataStack.saveContext()
         DispatchQueue.main.async {
-            //            self.ratingView.reloadData()
         }
     }
     
@@ -437,42 +319,14 @@ class ChoosedCocktailViewController: UIViewController {
     }
 }
 
-
-//extension Notification.Name {
-//    static let reload = Notification.Name("reload")
-//}
-
-
 extension ChoosedCocktailViewController {
-    //        func collectionView(
-    //            _ collectionView: UICollectionView,
-    //            layout collectionViewLayout: UICollectionViewLayout,
-    //            sizeForItemAt indexPath: IndexPath
-    //        ) -> CGSize {
-    //            let cellCustomWidth = (collectionView.bounds.width - 50) / 2
-    //            return CGSize(width: cellCustomWidth, height: cellCustomWidth + 11)
-    //        }
     
     func collectionView(
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
-    ) {
-        
-        //        print(Drinks[indexPath.item].id)
-        //        collector.append(Drinks[indexPath.item])
-        //        print("This is your colector \(collector)")
-        
-        
-        //        let choosedForBasketVC = FavouriteDrinksViewController()
-        //        let model = filteredDrinks[indexPath.row]
-        //        let observe = BehaviorRelay<Drinks>(value: model)
-        //        observe.subscribe(onNext: { drinks in
-        //            choosedForBasketVC.cocktail = drinks
-        //            print(choosedForBasketVC.cocktail as Any)
-        //        })
-        //        //            choosedForBasketVC.delegate = self
-        //        navigationController?.pushViewController(choosedForBasketVC, animated: true)
-    }
+    )
+    
+    { }
 }
 
 func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
