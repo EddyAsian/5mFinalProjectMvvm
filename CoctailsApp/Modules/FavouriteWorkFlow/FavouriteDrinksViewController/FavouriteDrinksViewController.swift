@@ -8,18 +8,20 @@
 import UIKit
 import SnapKit
 
-let favouriteScreenSize = UIScreen.main.bounds.size
-
-class FavouriteDrinksViewController: UIViewController,CAAnimationDelegate {
+class FavouriteDrinksViewController: UIViewController {
+    
+//    var drinks: Drinks?
     
     var favouriteDrinksArray: [Drinks] = []
 
     let viewModel = CocktailsMenuViewModel()
 
     
+    // Define a function that will be called when the notification is received
      @objc func updateFavouriteDrinks(notification: Notification) {
          if let userInfo = notification.userInfo,
             let favouriteDrinksArray = userInfo["favouriteDrinksArray"] as? [Drinks] {
+             // Use the updated favouriteDrinksArray here...
              print("💚\(favouriteDrinksArray)💚")
          }
      }
@@ -92,7 +94,7 @@ class FavouriteDrinksViewController: UIViewController,CAAnimationDelegate {
     
     override func loadView() {
         super.loadView()
-        view.backgroundColor = ColorConstants.description
+        view.backgroundColor = ColorConstants.tabBarItemLight
         
         
     
@@ -200,76 +202,3 @@ extension FavouriteDrinksViewController : FavouriteCVCellDelegate {
         cartTableView.deleteRows(at: [indexPath], with: .left)
     }
 }
-
-extension FavouriteDrinksViewController  {
-    fileprivate func startAnimation(_ rect: CGRect ,iconView:UIImageView) {
-        if layer == nil {
-            layer = CALayer()
-            layer?.contents = iconView.layer.contents
-            layer?.contentsGravity = CALayerContentsGravity.resizeAspectFill
-            layer?.bounds = rect
-            layer?.cornerRadius = layer!.bounds.height * 0.5
-            layer?.masksToBounds = true
-            layer?.position = CGPoint(x: iconView.center.x, y: rect.maxY)
-            UIApplication.shared.keyWindow?.layer.addSublayer(layer!)
-            path = UIBezierPath()
-            path?.move(to: layer!.position)
-            path?.addQuadCurve(to: CGPoint(x: screenSize.width - 25, y: 35), controlPoint: CGPoint(x: screenSize.width * 0.5, y: 80))
-        }
-        
-        groupAnimation()
-    }
-    
-    fileprivate func groupAnimation() {
-        cartTableView.isUserInteractionEnabled = false
-        let animation = CAKeyframeAnimation(keyPath: "position")
-        animation.path = path!.cgPath
-        animation.rotationMode = CAAnimationRotationMode.rotateAuto
-        
-        let bigAnimation = CABasicAnimation(keyPath: "transform.scale")
-        bigAnimation.duration = 0.5
-        bigAnimation.fromValue = 1
-        bigAnimation.toValue = 2
-        bigAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
-        
-        let smallAnimation = CABasicAnimation(keyPath: "transform.scale")
-        smallAnimation.beginTime = 0.5
-        smallAnimation.duration = 1.5
-        smallAnimation.fromValue = 2
-        smallAnimation.toValue = 0.3
-        smallAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
-        
-        let groupAnimation = CAAnimationGroup()
-        groupAnimation.animations = [animation, bigAnimation, smallAnimation]
-        groupAnimation.duration = 2
-        groupAnimation.isRemovedOnCompletion = false
-        groupAnimation.fillMode = CAMediaTimingFillMode.forwards
-        groupAnimation.delegate = self ;
-        layer?.add(groupAnimation, forKey: "groupAnimation")
-    }
-    
-    public func animationDidStop(_ anim: CAAnimation, finished flag: Bool){
-        if anim == layer?.animation(forKey: "groupAnimation") {
-            cartTableView.isUserInteractionEnabled = true
-            layer?.removeAllAnimations()
-            layer?.removeFromSuperlayer()
-            layer = nil
-            if self.addGoodArray.count > 0 {
-                amontCart.isHidden = false
-            }
-            
-            let goodCountAnimation = CATransition()
-            goodCountAnimation.duration = 0.25
-            amontCart.text = "\(self.addGoodArray.count)"
-            amontCart.layer.add(goodCountAnimation, forKey: nil)
-            let cartAnimation = CABasicAnimation(keyPath: "transform.translation.y")
-            cartAnimation.duration = 0.25
-            cartAnimation.fromValue = -5
-            cartAnimation.toValue = 5
-            cartAnimation.autoreverses = true
-            cartBtn.layer.add(cartAnimation, forKey: nil)
-        }
-    }
-}
-
-
