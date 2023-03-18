@@ -19,11 +19,9 @@ class FavouriteDrinksViewController: UIViewController,CAAnimationDelegate {
     let viewModel = CocktailsMenuViewModel()
 
     
-    // Define a function that will be called when the notification is received
      @objc func updateFavouriteDrinks(notification: Notification) {
          if let userInfo = notification.userInfo,
             let favouriteDrinksArray = userInfo["favouriteDrinksArray"] as? [Drinks] {
-             // Use the updated favouriteDrinksArray here...
              print("💚\(favouriteDrinksArray)💚")
          }
      }
@@ -90,11 +88,15 @@ class FavouriteDrinksViewController: UIViewController,CAAnimationDelegate {
         return btn
     }()
     
+    override func viewDidLoad() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateFavouriteDrinks), name: Notification.Name("FavouriteDrinksUpdated"), object: nil)
+    }
+    
     override func loadView() {
         super.loadView()
-        view.backgroundColor = ColorConstants.tabBarItemLight
+        view.backgroundColor = ColorConstants.description
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateFavouriteDrinks), name: Notification.Name("FavouriteDrinksUpdated"), object: nil)
+        
     
         
         objectsTextInBasket()

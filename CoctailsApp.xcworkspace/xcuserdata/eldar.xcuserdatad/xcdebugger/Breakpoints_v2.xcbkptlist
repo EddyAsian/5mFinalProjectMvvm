@@ -20,5 +20,53 @@
             landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CDF969EE-837C-4289-A4D3-4365B13F9D50"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoctailsApp/Modules/FavouriteWorkFlow/FavouriteDrinksViewController/FavouriteDrinksViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "updateFavouriteDrinks(notification:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CDF969EE-837C-4289-A4D3-4365B13F9D50 - 5053b2327a762ead"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CoctailsApp.FavouriteDrinksViewController.updateFavouriteDrinks(notification: Foundation.Notification) -&gt; ()"
+                  moduleName = "CoctailsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eldar/WORK/Projects/5Month/Final%20Project/CoctailsApp/CoctailsApp/Modules/FavouriteWorkFlow/FavouriteDrinksViewController/FavouriteDrinksViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "140">
+               </Location>
+               <Location
+                  uuid = "CDF969EE-837C-4289-A4D3-4365B13F9D50 - 5053b2327a762ead"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CoctailsApp.FavouriteDrinksViewController.updateFavouriteDrinks(notification: Foundation.Notification) -&gt; ()"
+                  moduleName = "CoctailsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eldar/WORK/Projects/5Month/Final%20Project/CoctailsApp/CoctailsApp/Modules/FavouriteWorkFlow/FavouriteDrinksViewController/FavouriteDrinksViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "192">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

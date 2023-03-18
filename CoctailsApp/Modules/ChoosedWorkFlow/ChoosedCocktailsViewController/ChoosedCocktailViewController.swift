@@ -67,6 +67,7 @@ class ChoosedCocktailViewController: UIViewController {
         imageView.layer.cornerRadius = 20
         imageView.backgroundColor = .white
         imageView.tintColor = ColorConstants.likedProductIcon
+        imageView.frame = CGRect(x: 0, y: 0, width: 65, height: 65)
         let tap = UITapGestureRecognizer(
             target: self,
             action: #selector(likeTap)
@@ -157,11 +158,11 @@ class ChoosedCocktailViewController: UIViewController {
     
     private func setUpSubviews() {
         view.addSubview(productImage)
+        view.addSubview(informationView)
         productImage.addSubview(productsNameView)
         productsNameView.addSubview(productsNameLabel)
-        view.addSubview(informationView)
-        informationView.addSubview(ratingView)
         informationView.addSubview(likedProductIcon)
+        informationView.addSubview(ratingView)
         informationView.addSubview(descriptionTitleLabel)
         informationView.addSubview(descriptionLabel)
         informationView.addSubview(latestReviewsTitleLabel)
