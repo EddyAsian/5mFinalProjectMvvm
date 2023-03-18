@@ -262,17 +262,6 @@ class EditProfileVC: UIViewController {
         present(alert, animated: true)
     }
     
-//    private func showPasswordAlert() {
-//        let alert = UIAlertController(
-//            title: "Error",
-//            message: "Для входа введите правильный пароль",
-//            preferredStyle: .alert
-//        )
-//        let okAction = UIAlertAction(title: "OK", style: .cancel)
-//        alert.addAction(okAction)
-//        present(alert, animated: true)
-//    }
-    
     private func saveAlert() {
         let alert = UIAlertController(
             title: "Success",
