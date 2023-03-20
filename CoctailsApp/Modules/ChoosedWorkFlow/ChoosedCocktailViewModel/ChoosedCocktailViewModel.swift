@@ -9,14 +9,39 @@
 import Foundation
 import Kingfisher
 
-protocol SelecetProductDelegate: AnyObject {
-    func addNewDrink(_ drink: Drinks)
-    func removeLastDrink(_ drink: Drinks)
+protocol LikedDrinksProvider {
+    var likedDrinks: [Drinks] { get set }
+    func getLikedDrinks() -> [Drinks]
+
+    init()
 }
 
-final class ChoosedCocktailViewModel {
+extension LikedDrinksProvider {
+    func getLikedDrinks() -> [Drinks] {
+        return likedDrinks
+    }
+}
+
+final class ChoosedCocktailViewModel: LikedDrinksProvider {
     
-    public var drink: Drinks!
+    var drink: Drinks!
+        var likedDrinks: [Drinks] = []
+        
+        func addLikedDrink() {
+            guard let drink = self.drink as? Drinks else {
+                return
+            }
+            likedDrinks.append(drink)
+            print("😼\(likedDrinks)")
+        }
+
+    func removeLastLikedDrink() {
+        guard let drink = self.drink as? Drinks else {
+            return
+        }
+        let removedDrink = likedDrinks.removeLast()
+           print("Removed drink: \(likedDrinks)")
+    }
     
     public func getDrinkToShow(_ data: Drinks) {
         self.drink = data

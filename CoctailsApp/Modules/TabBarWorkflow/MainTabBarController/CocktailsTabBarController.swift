@@ -42,8 +42,8 @@ class CocktailsTabBarController: UITabBarController {
             ),
             
             createControllers(
-                from: CocktailsMenuViewController(),
-                image: generateItemIcon(from: itemIcons[1])
+                from: CocktailsMenuViewController(viewModelFactory: DefaultCocktailsMenuViewModelFactory()),
+                    image: generateItemIcon(from: itemIcons[1])
             ),
             
             createControllers(

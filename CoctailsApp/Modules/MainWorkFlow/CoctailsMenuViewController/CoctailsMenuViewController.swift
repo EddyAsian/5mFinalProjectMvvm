@@ -8,9 +8,32 @@
 import UIKit
 import SnapKit
 
+protocol CocktailsMenuViewModelFactory {
+    func createCocktailsMenuViewModel() -> CocktailsMenuViewModel
+}
+
+class DefaultCocktailsMenuViewModelFactory: CocktailsMenuViewModelFactory {
+    func createCocktailsMenuViewModel() -> CocktailsMenuViewModel {
+        return CocktailsMenuViewModel()
+    }
+}
+
 class CocktailsMenuViewController: UIViewController {
     
-    private lazy var viewModel = { CocktailsMenuViewModel() }()
+    private let viewModelFactory: CocktailsMenuViewModelFactory
+    
+    init(viewModelFactory: CocktailsMenuViewModelFactory) {
+        self.viewModelFactory = viewModelFactory
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private lazy var viewModel: CocktailsMenuViewModel = {
+        viewModelFactory.createCocktailsMenuViewModel()
+    }()
     
     private var favouriteDrinksArray: [Drinks] = []
     
@@ -254,10 +277,10 @@ extension CocktailsMenuViewController: UICollectionViewDelegateFlowLayout {
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
     ) {
-        let vc = ChoosedCocktailViewController()
+        let viewModelProvider = DefaultChoosedCocktailViewModelProvider()
+        let vc = ChoosedCocktailViewController(viewModelProvider: viewModelProvider)
         vc.viewModel.drink = viewModel.filteredDrinks[indexPath.row]
-        
-        vc.delegate = self
+//        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -290,20 +313,20 @@ extension CocktailsMenuViewController: UISearchBarDelegate {
     ) { viewModel.getDrinksWithName(searchText) }
 }
 
-extension CocktailsMenuViewController: SelecetProductDelegate {
-    func addNewDrink(_ drink: Drinks) {
-        
-        viewModel.favouriteDrinksArray.append(drink)
-        func updateFavouriteDrinks() {
-            
-            // notification with the updated array
-            NotificationCenter.default.post(name: Notification.Name("FavouriteDrinksUpdated"), object: nil, userInfo: ["favouriteDrinksArray": favouriteDrinksArray])
-        }
-        print("❤️delegate added in CocktailsMenuViewModel, there are 👉  \(viewModel.favouriteDrinksArray.count) elements in array: \(viewModel.favouriteDrinksArray)❤️")
-    }
-    
-    func removeLastDrink(_ drink: Drinks) {
-        viewModel.favouriteDrinksArray.removeLast()
-        print("❤️delegate removed, there are 👉 \(viewModel.favouriteDrinksArray.count) elements in array: \(viewModel.favouriteDrinksArray)❤️")
-    }
-}
+//extension CocktailsMenuViewController: SelecetProductDelegate {
+//    func addNewDrink(_ drink: Drinks) {
+//        
+//        viewModel.favouriteDrinksArray.append(drink)
+//        func updateFavouriteDrinks() {
+//
+//            // notification with the updated array
+//            NotificationCenter.default.post(name: Notification.Name("FavouriteDrinksUpdated"), object: nil, userInfo: ["favouriteDrinksArray": favouriteDrinksArray])
+//        }
+//        print("❤️delegate added in CocktailsMenuViewModel, there are 👉  \(viewModel.favouriteDrinksArray.count) elements in array: \(viewModel.favouriteDrinksArray)❤️")
+//    }
+//
+//    func removeLastDrink(_ drink: Drinks) {
+//        viewModel.favouriteDrinksArray.removeLast()
+//        print("❤️delegate removed, there are 👉 \(viewModel.favouriteDrinksArray.count) elements in array: \(viewModel.favouriteDrinksArray)❤️")
+//    }
+//}

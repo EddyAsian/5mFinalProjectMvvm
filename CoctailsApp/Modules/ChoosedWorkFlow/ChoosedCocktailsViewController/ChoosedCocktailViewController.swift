@@ -10,11 +10,37 @@ import SnapKit
 import Kingfisher
 import CoreData
 
+protocol ChoosedCocktailViewModelProvider {
+    func createChoosedCocktailViewModel() -> ChoosedCocktailViewModel
+}
+
+class DefaultChoosedCocktailViewModelProvider: ChoosedCocktailViewModelProvider {
+    func createChoosedCocktailViewModel() -> ChoosedCocktailViewModel {
+        return ChoosedCocktailViewModel()
+    }
+}
+
 class ChoosedCocktailViewController: UIViewController {
     
-    weak var delegate: SelecetProductDelegate?
+    //    public lazy var viewModel = { ChoosedCocktailViewModel() }()
+
     
-    public lazy var viewModel = { ChoosedCocktailViewModel() }()
+    private let viewModelProvider: ChoosedCocktailViewModelProvider
+    
+    public lazy var viewModel = viewModelProvider.createChoosedCocktailViewModel()
+    
+    init(viewModelProvider: ChoosedCocktailViewModelProvider) {
+           self.viewModelProvider = viewModelProvider
+           super.init(nibName: nil, bundle: nil)
+       }
+    
+    required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    
+    
+//    weak var delegate: SelecetProductDelegate?
+    
     
     class var identifier: String { String(describing: self) }
     
@@ -176,14 +202,16 @@ class ChoosedCocktailViewController: UIViewController {
         if isLiked == false {
             likedProductIcon.image = UIImage(systemName: "heart.fill")
             
-            delegate?.addNewDrink(viewModel.drink!)
+            viewModel.addLikedDrink()
+            
             isLiked = true
             let vc = FavouriteDrinksViewController()
         } else {
             likedProductIcon.image = UIImage (systemName: "heart")
             
-            delegate?.removeLastDrink(viewModel.drink)
+            
             isLiked = false
+            viewModel.removeLastLikedDrink()
         }
     }
     
