@@ -280,7 +280,7 @@ extension CocktailsMenuViewController: UICollectionViewDelegateFlowLayout {
         let viewModelProvider = DefaultChoosedCocktailViewModelProvider()
         let vc = ChoosedCocktailViewController(viewModelProvider: viewModelProvider)
         vc.viewModel.drink = viewModel.filteredDrinks[indexPath.row]
-//        vc.delegate = self
+        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -313,20 +313,20 @@ extension CocktailsMenuViewController: UISearchBarDelegate {
     ) { viewModel.getDrinksWithName(searchText) }
 }
 
-//extension CocktailsMenuViewController: SelecetProductDelegate {
-//    func addNewDrink(_ drink: Drinks) {
-//        
-//        viewModel.favouriteDrinksArray.append(drink)
-//        func updateFavouriteDrinks() {
-//
-//            // notification with the updated array
-//            NotificationCenter.default.post(name: Notification.Name("FavouriteDrinksUpdated"), object: nil, userInfo: ["favouriteDrinksArray": favouriteDrinksArray])
-//        }
-//        print("❤️delegate added in CocktailsMenuViewModel, there are 👉  \(viewModel.favouriteDrinksArray.count) elements in array: \(viewModel.favouriteDrinksArray)❤️")
-//    }
-//
-//    func removeLastDrink(_ drink: Drinks) {
-//        viewModel.favouriteDrinksArray.removeLast()
-//        print("❤️delegate removed, there are 👉 \(viewModel.favouriteDrinksArray.count) elements in array: \(viewModel.favouriteDrinksArray)❤️")
-//    }
-//}
+extension CocktailsMenuViewController: SelecetProductDelegate {
+    func addNewDrink(_ drink: Drinks) {
+        
+        viewModel.favouriteDrinksArray.append(drink)
+        func updateFavouriteDrinks() {
+
+            // notification with the updated array
+            NotificationCenter.default.post(name: Notification.Name("FavouriteDrinksUpdated"), object: nil, userInfo: ["favouriteDrinksArray": favouriteDrinksArray])
+        }
+        print("❤️delegate added in CocktailsMenuViewModel, there are 👉  \(viewModel.favouriteDrinksArray.count) elements in array: \(viewModel.favouriteDrinksArray)❤️")
+    }
+
+    func removeLastDrink(_ drink: Drinks) {
+        viewModel.favouriteDrinksArray.removeLast()
+        print("❤️delegate removed, there are 👉 \(viewModel.favouriteDrinksArray.count) elements in array: \(viewModel.favouriteDrinksArray)❤️")
+    }
+}

@@ -20,10 +20,8 @@ class DefaultChoosedCocktailViewModelProvider: ChoosedCocktailViewModelProvider 
     }
 }
 
-class ChoosedCocktailViewController: UIViewController {
-    
-    //    public lazy var viewModel = { ChoosedCocktailViewModel() }()
 
+class ChoosedCocktailViewController: UIViewController {
     
     private let viewModelProvider: ChoosedCocktailViewModelProvider
     
@@ -39,9 +37,8 @@ class ChoosedCocktailViewController: UIViewController {
         }
     
     
-//    weak var delegate: SelecetProductDelegate?
-    
-    
+    weak var delegate: SelecetProductDelegate?
+        
     class var identifier: String { String(describing: self) }
     
     var isLiked: Bool = false
@@ -202,16 +199,14 @@ class ChoosedCocktailViewController: UIViewController {
         if isLiked == false {
             likedProductIcon.image = UIImage(systemName: "heart.fill")
             
-            viewModel.addLikedDrink()
-            
+            delegate?.addNewDrink(viewModel.drink!)
             isLiked = true
             let vc = FavouriteDrinksViewController()
         } else {
             likedProductIcon.image = UIImage (systemName: "heart")
             
-            
+            delegate?.removeLastDrink(viewModel.drink)
             isLiked = false
-            viewModel.removeLastLikedDrink()
         }
     }
     
