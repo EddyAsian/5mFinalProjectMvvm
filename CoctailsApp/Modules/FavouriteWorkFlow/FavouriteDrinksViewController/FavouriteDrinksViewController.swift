@@ -12,9 +12,9 @@ class FavouriteDrinksViewController: UIViewController {
     
 //    var drinks: Drinks?
     
-    var favouriteDrinksArray: [Drinks] = []
+    var getFavouriteDrinksArrayNotification: [Drinks] = []
 
-    let viewModel = CocktailsMenuViewModel()
+//    let viewModel = CocktailsMenuViewModel()
 
     
     // Define a function that will be called when the notification is received
@@ -22,10 +22,11 @@ class FavouriteDrinksViewController: UIViewController {
          if let userInfo = notification.userInfo,
             let favouriteDrinksArray = userInfo["favouriteDrinksArray"] as? [Drinks] {
              // Use the updated favouriteDrinksArray here...
-             print("💚\(favouriteDrinksArray)💚")
+             print("💚Notification watching from another VC, there are 👉  \(favouriteDrinksArray.count) elements in array: \(favouriteDrinksArray)💚")
+             getFavouriteDrinksArrayNotification = favouriteDrinksArray
+             print(getFavouriteDrinksArrayNotification)
          }
      }
-    
     
     fileprivate var goodArray = [BasketChoosedModel]()
     
@@ -170,7 +171,7 @@ class FavouriteDrinksViewController: UIViewController {
 extension FavouriteDrinksViewController : UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return goodArray.count
+        return getFavouriteDrinksArrayNotification.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

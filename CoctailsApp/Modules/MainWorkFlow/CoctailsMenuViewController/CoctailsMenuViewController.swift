@@ -35,7 +35,7 @@ class CocktailsMenuViewController: UIViewController {
         viewModelFactory.createCocktailsMenuViewModel()
     }()
     
-    private var favouriteDrinksArray: [Drinks] = []
+    
     
     private func initViewModel() {
         isLoading = true
@@ -198,6 +198,12 @@ class CocktailsMenuViewController: UIViewController {
         drinksCollectionView.dataSource = self
     }
     
+    func updateFavouriteDrinks() {
+
+        // notification with the updated array
+        NotificationCenter.default.post(name: Notification.Name("FavouriteDrinksUpdated"), object: nil, userInfo: ["favouriteDrinksArray": viewModel.favouriteDrinksArray])
+    }
+    
     private func setUPConstraints() {
         allDrinksTitleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(55)
@@ -317,12 +323,10 @@ extension CocktailsMenuViewController: SelecetProductDelegate {
     func addNewDrink(_ drink: Drinks) {
         
         viewModel.favouriteDrinksArray.append(drink)
-        func updateFavouriteDrinks() {
-
-            // notification with the updated array
-            NotificationCenter.default.post(name: Notification.Name("FavouriteDrinksUpdated"), object: nil, userInfo: ["favouriteDrinksArray": favouriteDrinksArray])
-        }
+      
         print("❤️delegate added in CocktailsMenuViewModel, there are 👉  \(viewModel.favouriteDrinksArray.count) elements in array: \(viewModel.favouriteDrinksArray)❤️")
+        
+        updateFavouriteDrinks()
     }
 
     func removeLastDrink(_ drink: Drinks) {

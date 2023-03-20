@@ -15,7 +15,7 @@ enum ArrivedData {
 class CocktailsMenuViewModel {
     
     public var favouriteDrinksArray: [Drinks] = []
-    
+        
     private var networkManager: NetworkManager
     
     private var currentLetter: String
