@@ -96,10 +96,6 @@ class FavouriteDrinksViewController: UIViewController {
     override func loadView() {
         super.loadView()
         view.backgroundColor = ColorConstants.tabBarItemLight
-        
-        
-    
-        
         objectsTextInBasket()
         addUiView()
         setupSubViews()
