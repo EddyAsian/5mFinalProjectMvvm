@@ -90,5 +90,6 @@ class CocktailsTabBarController: UITabBarController {
         super.loadView()
         setTabBarAppearance()
         setupVC()
+        
     }
 }

@@ -8,6 +8,24 @@
 import UIKit
 import SnapKit
 
+
+class FavouriteDrinksNotificationManager {
+    private var observer: NSObjectProtocol?
+
+    init(observer: NSObject, selector: Selector) {
+        self.observer = NotificationCenter.default.addObserver(forName: Notification.Name("FavouriteDrinksUpdated"), object: nil, queue: nil) { notification in
+            observer.perform(selector, with: notification)
+        }
+    }
+
+    deinit {
+        if let observer = observer {
+            NotificationCenter.default.removeObserver(observer)
+        }
+    }
+}
+
+
 class FavouriteDrinksViewController: UIViewController {
     
 //    var drinks: Drinks?
@@ -16,17 +34,8 @@ class FavouriteDrinksViewController: UIViewController {
 
 //    let viewModel = CocktailsMenuViewModel()
 
-    
-    // Define a function that will be called when the notification is received
-     @objc func updateFavouriteDrinks(notification: Notification) {
-         if let userInfo = notification.userInfo,
-            let favouriteDrinksArray = userInfo["favouriteDrinksArray"] as? [Drinks] {
-             // Use the updated favouriteDrinksArray here...
-             print("💚Notification watching from another VC, there are 👉  \(favouriteDrinksArray.count) elements in array: \(favouriteDrinksArray)💚")
-             getFavouriteDrinksArrayNotification = favouriteDrinksArray
-             print(getFavouriteDrinksArrayNotification)
-         }
-     }
+   
+    private var favouriteDrinksNotificationManager: FavouriteDrinksNotificationManager?
     
     fileprivate var goodArray = [BasketChoosedModel]()
     
@@ -90,8 +99,16 @@ class FavouriteDrinksViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
-        NotificationCenter.default.addObserver(self, selector: #selector(updateFavouriteDrinks), name: Notification.Name("FavouriteDrinksUpdated"), object: nil)
+        
+        favouriteDrinksNotificationManager = FavouriteDrinksNotificationManager(observer: self, selector: #selector(handleFavouriteDrinksNotification(notification:)))
     }
+    
+    
+
+  
+    
+    
+  
     
     override func loadView() {
         super.loadView()
@@ -115,6 +132,16 @@ class FavouriteDrinksViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = UIColor.white
         
         cartTableView.register(FavouriteTableViewCell.self, forCellReuseIdentifier: goodLinstCell)
+    }
+    
+    @objc func handleFavouriteDrinksNotification(notification: Notification) {
+        if let userInfo = notification.userInfo,
+            let favouriteDrinksArray = userInfo["favouriteDrinksArray"] as? [Drinks] {
+            // Use the updated favouriteDrinksArray here...
+            print("💚Notification watching from another VC, there are 👉  \(favouriteDrinksArray.count) elements in array: \(favouriteDrinksArray)💚")
+            getFavouriteDrinksArrayNotification = favouriteDrinksArray
+            print(getFavouriteDrinksArrayNotification)
+        }
     }
     
     @objc fileprivate func cartClick () {
