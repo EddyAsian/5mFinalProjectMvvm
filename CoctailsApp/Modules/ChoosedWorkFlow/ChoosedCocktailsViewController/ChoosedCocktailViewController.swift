@@ -90,7 +90,6 @@ class ChoosedCocktailViewController: UIViewController {
         imageView.layer.cornerRadius = 20
         imageView.backgroundColor = .white
         imageView.tintColor = ColorConstants.likedProductIcon
-        imageView.frame = CGRect(x: 0, y: 0, width: 65, height: 65)
         let tap = UITapGestureRecognizer(
             target: self,
             action: #selector(likeTap)
@@ -184,7 +183,7 @@ class ChoosedCocktailViewController: UIViewController {
         view.addSubview(informationView)
         productImage.addSubview(productsNameView)
         productsNameView.addSubview(productsNameLabel)
-        informationView.addSubview(likedProductIcon)
+        view.addSubview(likedProductIcon)
         informationView.addSubview(ratingView)
         informationView.addSubview(descriptionTitleLabel)
         informationView.addSubview(descriptionLabel)
@@ -289,7 +288,7 @@ class ChoosedCocktailViewController: UIViewController {
         }
         
         likedProductIcon.snp.makeConstraints { maker in
-            maker.top.equalToSuperview().offset(-25)
+            maker.top.equalTo(informationView.snp.top).offset(-25)
             maker.left.equalTo(informationView.snp.right).inset(70)
             maker.width.height.equalTo(45)
         }
