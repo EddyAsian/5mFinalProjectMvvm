@@ -26,13 +26,35 @@ class FavouriteDrinksNotificationManager {
 }
 
 
+protocol FavouriteDrinksViewModelFactory {
+    func createCocktailsMenuViewModel() -> FavouriteDrinksViewModel
+}
+
+class DefaultCocktailsFavouriteMenuViewModelFactory: FavouriteDrinksViewModelFactory {
+    func createCocktailsMenuViewModel() -> FavouriteDrinksViewModel {
+        return FavouriteDrinksViewModel()
+    }
+}
+
 class FavouriteDrinksViewController: UIViewController {
     
 //    var drinks: Drinks?
     
-    var getFavouriteDrinksArrayNotification: [Drinks] = []
+    private let viewModelFavouriteFactory: FavouriteDrinksViewModelFactory
+        
+        init(viewModelFavouriteFactory: FavouriteDrinksViewModelFactory) {
+            self.viewModelFavouriteFactory = viewModelFavouriteFactory
+            super.init(nibName: nil, bundle: nil)
+        }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 
-//    let viewModel = CocktailsMenuViewModel()
+    private lazy var viewModel: FavouriteDrinksViewModel = {
+        viewModelFavouriteFactory.createCocktailsMenuViewModel()
+    }()
 
    
     private var favouriteDrinksNotificationManager: FavouriteDrinksNotificationManager?
@@ -139,15 +161,17 @@ class FavouriteDrinksViewController: UIViewController {
             let favouriteDrinksArray = userInfo["favouriteDrinksArray"] as? [Drinks] {
             // Use the updated favouriteDrinksArray here...
             print("💚Notification watching from another VC, there are 👉  \(favouriteDrinksArray.count) elements in array: \(favouriteDrinksArray)💚")
-            getFavouriteDrinksArrayNotification = favouriteDrinksArray
-            print(getFavouriteDrinksArrayNotification)
+            viewModel.getFavouriteDrinksArrayNotification = favouriteDrinksArray
+            print("💋\(viewModel.getFavouriteDrinksArrayNotification)")
         }
     }
     
     @objc fileprivate func cartClick () {
-        let controller = BasketFinalBuyViewController()
-        controller.addGoodArray = addGoodArray
-        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+//        let controller = BasketFinalBuyViewController()
+//        controller.addGoodArray = addGoodArray
+//        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+        
+        print("💋\(viewModel.getFavouriteDrinksArrayNotification)")
     }
     
     private func objectsTextInBasket() {
@@ -194,7 +218,7 @@ class FavouriteDrinksViewController: UIViewController {
 extension FavouriteDrinksViewController : UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return getFavouriteDrinksArrayNotification.count
+        return viewModel.getFavouriteDrinksArrayNotification.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

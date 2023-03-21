@@ -52,7 +52,7 @@ class CocktailsTabBarController: UITabBarController {
             ),
             
             createControllers(
-                from: FavouriteDrinksViewController(),
+                from: FavouriteDrinksViewController(viewModelFavouriteFactory: DefaultCocktailsFavouriteMenuViewModelFactory()),
                 image: generateItemIcon(from: itemIcons[3])
             ),
             

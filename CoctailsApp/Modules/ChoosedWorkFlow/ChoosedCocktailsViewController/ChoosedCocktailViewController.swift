@@ -200,7 +200,7 @@ class ChoosedCocktailViewController: UIViewController {
             
             delegate?.addNewDrink(viewModel.drink!)
             isLiked = true
-            let vc = FavouriteDrinksViewController()
+            
         } else {
             likedProductIcon.image = UIImage (systemName: "heart")
             
