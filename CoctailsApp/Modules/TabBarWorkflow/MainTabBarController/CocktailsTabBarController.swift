@@ -9,7 +9,19 @@ import UIKit
 
 class CocktailsTabBarController: UITabBarController {
     
+    //    private let viewModelFavouriteFactory = DefaultCocktailsFavouriteMenuViewModelFactory()
+    
+    
     class var identifier: String { String(describing: self) }
+    
+    
+    //    private lazy var favouriteDrinksVC: FavouriteDrinksViewController = {
+    //        let viewModelFactory = DefaultCocktailsFavouriteMenuViewModelFactory()
+    //        let vc = FavouriteDrinksViewController(viewModelFavouriteFactory: viewModelFactory)
+    //        return vc
+    //    }()
+    
+    
     
     private func createControllers(
         from baseVC: UIViewController,
@@ -43,7 +55,7 @@ class CocktailsTabBarController: UITabBarController {
             
             createControllers(
                 from: CocktailsMenuViewController(viewModelFactory: DefaultCocktailsMenuViewModelFactory()),
-                    image: generateItemIcon(from: itemIcons[1])
+                image: generateItemIcon(from: itemIcons[1])
             ),
             
             createControllers(
@@ -90,6 +102,7 @@ class CocktailsTabBarController: UITabBarController {
         super.loadView()
         setTabBarAppearance()
         setupVC()
-        
+        //        viewControllers?.append(createControllers(from: favouriteDrinksVC, image: UIImage(named: "favourites")))
+        //        favouriteDrinksVC.loadViewIfNeeded()
     }
 }

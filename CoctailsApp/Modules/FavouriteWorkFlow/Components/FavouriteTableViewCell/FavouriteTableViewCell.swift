@@ -10,16 +10,16 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-//protocol FavouriteCVCellDelegate :NSObjectProtocol {
-//
-//    func clickTransmitData(_ cell:FavouriteTableViewCell ,icon: UIImageView)
-//}
+protocol FavouriteCVCellDelegate :NSObjectProtocol {
+
+    func clickDislike(_ cell:FavouriteTableViewCell, label: UILabel)
+}
 
 class FavouriteTableViewCell: UITableViewCell {
     
-    public var favouriteCellViewModel: FavouriteCocktailsCellViewModel?
     
-//    weak var delegate: FavouriteCVCellDelegate?
+    
+    weak var delegate: FavouriteCVCellDelegate?
     
     
 //    public var cellFavouriteViewModel: FavouriteCocktailsCellViewModel? {
@@ -86,14 +86,14 @@ class FavouriteTableViewCell: UITableViewCell {
     }()
     
     
-//    fileprivate lazy var addCarButton: UIButton = {
-//
-//        let addCarButton = UIButton(type: UIButton.ButtonType.custom)
-//        addCarButton.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
-//        addCarButton.tintColor = .red
-//        addCarButton.addTarget(self, action: #selector(self.addCarButtonClick(_:)), for: UIControl.Event.touchUpInside)
-//        return addCarButton
-//    }()
+     lazy var favouriteHeartButton: UIButton = {
+
+        let addCarButton = UIButton(type: UIButton.ButtonType.custom)
+        addCarButton.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
+        addCarButton.tintColor = .red
+        addCarButton.addTarget(self, action: #selector(self.heartClick(_:)), for: UIControl.Event.touchUpInside)
+        return addCarButton
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -101,25 +101,27 @@ class FavouriteTableViewCell: UITableViewCell {
         makeConstraints()
     }
     
+  
+    
     func setupSubViews() {
         contentView.addSubview(productImage)
         contentView.addSubview(productLabel)
         contentView.addSubview(descriptionLabel)
-//        contentView.addSubview(addCarButton)
+        contentView.addSubview(favouriteHeartButton)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    @objc fileprivate func addCarButtonClick(_ btn:UIButton) {
-//        addCarButton.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
+    @objc fileprivate func heartClick(_ btn:UIButton) {
+        favouriteHeartButton.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
 //        goodModel!.alreadyAddShoppingCArt = true
-//
+
 //        btn.isEnabled = !goodModel!.alreadyAddShoppingCArt
-//        delegate?.clickTransmitData(self, icon: productImage)
-//
-//    }
+        delegate?.clickDislike(self, label: productLabel )
+
+    }
     
     
     
@@ -138,6 +140,9 @@ class FavouriteTableViewCell: UITableViewCell {
 //    }
     
     
+ 
+    
+    public var favouriteCellViewModel: FavouriteCocktailsCellViewModel?
     
     
     
@@ -171,11 +176,11 @@ class FavouriteTableViewCell: UITableViewCell {
             maker.height.equalTo(50)
         }
         
-//        addCarButton.snp.makeConstraints { (make) -> Void in
-//            make.right.equalTo(-12)
-//            make.top.equalTo(25)
-//            make.width.height.equalTo(30)
-//        }
+       favouriteHeartButton.snp.makeConstraints { (make) -> Void in
+            make.right.equalTo(-12)
+            make.top.equalTo(25)
+            make.width.height.equalTo(30)
+        }
     }
 }
 

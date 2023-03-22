@@ -322,7 +322,7 @@ extension CocktailsMenuViewController: UISearchBarDelegate {
 extension CocktailsMenuViewController: SelecetProductDelegate {
     func addNewDrink(_ drink: Drinks) {
         
-        viewModel.favouriteDrinksArray.append(drink)
+        viewModel.favouriteDrinksArray.insert(drink, at: 0)
       
         print("❤️delegate added in CocktailsMenuViewModel, there are 👉  \(viewModel.favouriteDrinksArray.count) elements in array: \(viewModel.favouriteDrinksArray)❤️")
         

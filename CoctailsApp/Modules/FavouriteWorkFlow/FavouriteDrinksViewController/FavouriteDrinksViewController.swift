@@ -40,6 +40,12 @@ class FavouriteDrinksViewController: UIViewController {
     
     private let viewModelFavouriteFactory: FavouriteDrinksViewModelFactory
     
+
+        
+    
+    
+    
+    
     init(viewModelFavouriteFactory: FavouriteDrinksViewModelFactory) {
         self.viewModelFavouriteFactory = viewModelFavouriteFactory
         super.init(nibName: nil, bundle: nil)
@@ -57,15 +63,15 @@ class FavouriteDrinksViewController: UIViewController {
     
     private var favouriteDrinksNotificationManager: FavouriteDrinksNotificationManager?
     
-    fileprivate var goodArray = [Drinks]()
+//    fileprivate var goodArray = [Drinks]()
     
     fileprivate let goodLinstCell = "FavouriteTableViewCell"
     
-    fileprivate var addGoodArray = [Drinks]()
+//    fileprivate var addGoodArray = [Drinks]()
     
-    fileprivate var path : UIBezierPath?
+//    fileprivate var path : UIBezierPath?
     
-    var layer: CALayer?
+//    var layer: CALayer?
     
     private lazy var allDrinksTitleLabel: UILabel = {
         let label = UILabel()
@@ -90,7 +96,7 @@ class FavouriteDrinksViewController: UIViewController {
         var label = UILabel()
         label.textColor = UIColor.red
         label.backgroundColor = UIColor.white
-        label.text = "\(self.goodArray.count)"
+//        label.text = "\(self.goodArray.count)"
         label.font = UIFont.systemFont(ofSize: 11)
         label.textAlignment = NSTextAlignment.center
         label.layer.cornerRadius = 7.5
@@ -118,12 +124,23 @@ class FavouriteDrinksViewController: UIViewController {
         return btn
     }()
     
+    
+    
+    
     override func viewDidLoad() {
+        cartTableView.delegate = self
+        cartTableView.dataSource = self
+        cartTableView.reloadData()
+        viewModel = viewModelFavouriteFactory.createCocktailsMenuViewModel()
+//        viewModel.getFavouriteDrinksArrayNotification
         
         favouriteDrinksNotificationManager = FavouriteDrinksNotificationManager(observer: self, selector: #selector(handleFavouriteDrinksNotification(notification:)))
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        cartTableView.reloadData()
+    }
     
     
     
@@ -132,13 +149,15 @@ class FavouriteDrinksViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
+        
+       
+        
         view.backgroundColor = ColorConstants.tabBarItemLight
         //        viewModel.objectsTextInBasket()
         addUiView()
         setupSubViews()
         setUpConstraints()
-        cartTableView.delegate = self
-        cartTableView.dataSource = self
+        
         
     }
     
@@ -220,7 +239,8 @@ extension FavouriteDrinksViewController : UITableViewDelegate,UITableViewDataSou
         let cell = tableView.dequeueReusableCell(withIdentifier: goodLinstCell, for: indexPath) as! FavouriteTableViewCell
         let drink = viewModel.getFavouriteDrinksArrayNotification[indexPath.row]
         cell.configure(with: drink)
-        return cell
+        cell.delegate = self
+            return cell
     }
     
     
@@ -229,15 +249,16 @@ extension FavouriteDrinksViewController : UITableViewDelegate,UITableViewDataSou
     }
 }
 
-//extension FavouriteDrinksViewController : FavouriteCVCellDelegate {
-//
-//    func clickTransmitData(_ cell: FavouriteTableViewCell, icon: UIImageView) {
-//
-//        guard let indexPath = cartTableView.indexPath(for: cell) else {
-//            return
-//        }
-//
-//        goodArray.remove(at: indexPath.row)
-//        cartTableView.deleteRows(at: [indexPath], with: .left)
-//    }
-//}
+extension FavouriteDrinksViewController : FavouriteCVCellDelegate {
+
+    func clickDislike(_ cell: FavouriteTableViewCell, label: UILabel) {
+
+        guard let indexPath = cartTableView.indexPath(for: cell) else {
+            return
+        }
+
+        viewModel.getFavouriteDrinksArrayNotification.remove(at: indexPath.row)
+        
+        cartTableView.deleteRows(at: [indexPath], with: .left)
+    }
+}
