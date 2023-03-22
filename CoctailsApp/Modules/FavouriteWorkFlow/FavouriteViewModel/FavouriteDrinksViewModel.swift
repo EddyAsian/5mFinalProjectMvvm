@@ -9,6 +9,20 @@ import Foundation
 
 class FavouriteDrinksViewModel {
     var getFavouriteDrinksArrayNotification: [Drinks] = []
+    
+    
+    
+//    func objectsTextInBasket() {
+//        for i in 0..<10 {
+//            let model = getFavouriteDrinksArrayNotification
+//            model.description
+//            model.title = "\(i * i * 9 + 30) soms"
+//            model.desc = "Cocktail №\(i + 1) 🍹"
+//            model.newPrice = "\(i * i * 9)"
+//            model.oldPrice = "\(i * i * 9)"
+////            goodArray.append(model)
+//        }
+//    }
 }
 
 

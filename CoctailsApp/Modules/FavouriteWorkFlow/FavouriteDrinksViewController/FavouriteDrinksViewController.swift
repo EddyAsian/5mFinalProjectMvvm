@@ -11,13 +11,13 @@ import SnapKit
 
 class FavouriteDrinksNotificationManager {
     private var observer: NSObjectProtocol?
-
+    
     init(observer: NSObject, selector: Selector) {
         self.observer = NotificationCenter.default.addObserver(forName: Notification.Name("FavouriteDrinksUpdated"), object: nil, queue: nil) { notification in
             observer.perform(selector, with: notification)
         }
     }
-
+    
     deinit {
         if let observer = observer {
             NotificationCenter.default.removeObserver(observer)
@@ -38,32 +38,30 @@ class DefaultCocktailsFavouriteMenuViewModelFactory: FavouriteDrinksViewModelFac
 
 class FavouriteDrinksViewController: UIViewController {
     
-//    var drinks: Drinks?
-    
     private let viewModelFavouriteFactory: FavouriteDrinksViewModelFactory
-        
-        init(viewModelFavouriteFactory: FavouriteDrinksViewModelFactory) {
-            self.viewModelFavouriteFactory = viewModelFavouriteFactory
-            super.init(nibName: nil, bundle: nil)
-        }
+    
+    init(viewModelFavouriteFactory: FavouriteDrinksViewModelFactory) {
+        self.viewModelFavouriteFactory = viewModelFavouriteFactory
+        super.init(nibName: nil, bundle: nil)
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-
+    
     private lazy var viewModel: FavouriteDrinksViewModel = {
         viewModelFavouriteFactory.createCocktailsMenuViewModel()
     }()
-
-   
+    
+    
     private var favouriteDrinksNotificationManager: FavouriteDrinksNotificationManager?
     
-    fileprivate var goodArray = [BasketChoosedModel]()
+    fileprivate var goodArray = [Drinks]()
     
     fileprivate let goodLinstCell = "FavouriteTableViewCell"
     
-    fileprivate var addGoodArray = [BasketChoosedModel]()
+    fileprivate var addGoodArray = [Drinks]()
     
     fileprivate var path : UIBezierPath?
     
@@ -126,19 +124,21 @@ class FavouriteDrinksViewController: UIViewController {
     }
     
     
-
-  
     
     
-  
+    
+    
+    
     
     override func loadView() {
         super.loadView()
         view.backgroundColor = ColorConstants.tabBarItemLight
-        objectsTextInBasket()
+        //        viewModel.objectsTextInBasket()
         addUiView()
         setupSubViews()
         setUpConstraints()
+        cartTableView.delegate = self
+        cartTableView.dataSource = self
         
     }
     
@@ -158,46 +158,38 @@ class FavouriteDrinksViewController: UIViewController {
     
     @objc func handleFavouriteDrinksNotification(notification: Notification) {
         if let userInfo = notification.userInfo,
-            let favouriteDrinksArray = userInfo["favouriteDrinksArray"] as? [Drinks] {
+           let favouriteDrinksArray = userInfo["favouriteDrinksArray"] as? [Drinks] {
             // Use the updated favouriteDrinksArray here...
             print("💚Notification watching from another VC, there are 👉  \(favouriteDrinksArray.count) elements in array: \(favouriteDrinksArray)💚")
             viewModel.getFavouriteDrinksArrayNotification = favouriteDrinksArray
-            print("💋\(viewModel.getFavouriteDrinksArrayNotification)")
+            print("💋there are 👉 \(viewModel.getFavouriteDrinksArrayNotification.count) in array viewModel.getFavouriteDrinksArrayNotification: \(viewModel.getFavouriteDrinksArrayNotification)")
         }
     }
     
     @objc fileprivate func cartClick () {
-//        let controller = BasketFinalBuyViewController()
-//        controller.addGoodArray = addGoodArray
-//        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+        //        let controller = BasketFinalBuyViewController()
+        //        controller.addGoodArray = addGoodArray
+        //        present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         
-        print("💋\(viewModel.getFavouriteDrinksArrayNotification)")
+        cartTableView.reloadData()
+        
+        print("💋there are 👉 \(viewModel.getFavouriteDrinksArrayNotification.count) in array viewModel.getFavouriteDrinksArrayNotification: \(viewModel.getFavouriteDrinksArrayNotification)")
     }
     
-    private func objectsTextInBasket() {
-        for i in 0..<10 {
-            let model = BasketChoosedModel()
-            model.iconName = "goodicon_\(i)"
-            model.title = "\(i * i * 9 + 30) soms"
-            model.desc = "Cocktail №\(i + 1) 🍹"
-            model.newPrice = "\(i * i * 9)"
-            model.oldPrice = "\(i * i * 9)"
-            goodArray.append(model)
-        }
-    }
+    
     
     func setUpConstraints () {
         
         allDrinksTitleLabel.snp.makeConstraints { make in
-             make.top.equalToSuperview().offset(55)
-             make.centerX.equalToSuperview()
-         }
-         
-         pageInfoSubtitleLabel.snp.makeConstraints { make in
-             make.top.equalTo(allDrinksTitleLabel.snp.bottom).offset(0)
-             make.centerX.equalToSuperview()
-             make.height.equalTo(77)
-         }
+            make.top.equalToSuperview().offset(55)
+            make.centerX.equalToSuperview()
+        }
+        
+        pageInfoSubtitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(allDrinksTitleLabel.snp.bottom).offset(0)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(77)
+        }
         
         cartTableView.snp.makeConstraints { (make) in
             make.top.equalTo(pageInfoSubtitleLabel.snp.bottom).offset(10)
@@ -215,38 +207,37 @@ class FavouriteDrinksViewController: UIViewController {
     }
 }
 
-extension FavouriteDrinksViewController : UITableViewDelegate,UITableViewDataSource{
+extension FavouriteDrinksViewController : UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        print("Number of rows: \(viewModel.getFavouriteDrinksArrayNotification.count)")
+
         return viewModel.getFavouriteDrinksArrayNotification.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: goodLinstCell
-        ) as! FavouriteTableViewCell
-        
-        cell.selectionStyle = UITableViewCell.SelectionStyle.none
-        cell.goodModel = goodArray[indexPath.row]
-        cell.delegate = self
+        let cell = tableView.dequeueReusableCell(withIdentifier: goodLinstCell, for: indexPath) as! FavouriteTableViewCell
+        let drink = viewModel.getFavouriteDrinksArrayNotification[indexPath.row]
+        cell.configure(with: drink)
         return cell
     }
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         200
     }
 }
 
-extension FavouriteDrinksViewController : FavouriteCVCellDelegate {
-    
-    func clickTransmitData(_ cell: FavouriteTableViewCell, icon: UIImageView) {
-        
-        guard let indexPath = cartTableView.indexPath(for: cell) else {
-            return
-        }
-
-        goodArray.remove(at: indexPath.row)
-        cartTableView.deleteRows(at: [indexPath], with: .left)
-    }
-}
+//extension FavouriteDrinksViewController : FavouriteCVCellDelegate {
+//
+//    func clickTransmitData(_ cell: FavouriteTableViewCell, icon: UIImageView) {
+//
+//        guard let indexPath = cartTableView.indexPath(for: cell) else {
+//            return
+//        }
+//
+//        goodArray.remove(at: indexPath.row)
+//        cartTableView.deleteRows(at: [indexPath], with: .left)
+//    }
+//}

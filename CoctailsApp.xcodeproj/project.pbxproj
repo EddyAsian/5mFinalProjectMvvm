@@ -22,6 +22,7 @@
 		28C4AE822998EDAD008299C3 /* AddProductCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C4AE812998EDAD008299C3 /* AddProductCustomButton.swift */; };
 		28C4AE8929991180008299C3 /* CoctailsMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C4AE8829991180008299C3 /* CoctailsMenuViewModel.swift */; };
 		28C4AE8C299911A2008299C3 /* SighUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C4AE8B299911A2008299C3 /* SighUpViewModel.swift */; };
+		783D62A729C9590A00848964 /* FavouriteCocktailsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783D62A629C9590A00848964 /* FavouriteCocktailsCellViewModel.swift */; };
 		97CBEA007A42FE89574D9F6F /* Pods_CoctailsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6CDF999D2F8E8F3015646B3 /* Pods_CoctailsApp.framework */; };
 		D42D24C629A1CDB800008A81 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42D24C529A1CDB800008A81 /* UserDefaultManager.swift */; };
 		D42D24CB29A3900E00008A81 /* UIImageResize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42D24CA29A3900E00008A81 /* UIImageResize.swift */; };
@@ -80,6 +81,7 @@
 		28C4AE8829991180008299C3 /* CoctailsMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoctailsMenuViewModel.swift; sourceTree = "<group>"; };
 		28C4AE8B299911A2008299C3 /* SighUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SighUpViewModel.swift; sourceTree = "<group>"; };
 		554590F3EB0B8068FFB0FE7E /* Pods-CoctailsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoctailsApp.release.xcconfig"; path = "Target Support Files/Pods-CoctailsApp/Pods-CoctailsApp.release.xcconfig"; sourceTree = "<group>"; };
+		783D62A629C9590A00848964 /* FavouriteCocktailsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCocktailsCellViewModel.swift; sourceTree = "<group>"; };
 		D3ADBEC4314104752136CBB9 /* Pods-CoctailsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoctailsApp.debug.xcconfig"; path = "Target Support Files/Pods-CoctailsApp/Pods-CoctailsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D42D24C529A1CDB800008A81 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		D42D24CA29A3900E00008A81 /* UIImageResize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageResize.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 			isa = PBXGroup;
 			children = (
 				D49DFF7D29A75B4900CF65A4 /* FavouriteTableViewCell.swift */,
+				783D62A629C9590A00848964 /* FavouriteCocktailsCellViewModel.swift */,
 			);
 			path = FavouriteTableViewCell;
 			sourceTree = "<group>";
@@ -755,6 +758,7 @@
 				D4A866FB29A900FF009BC639 /* CocktailsDataModel.xcdatamodeld in Sources */,
 				D4A06A2029ACE4C4000C3A09 /* CocktailsCellViewModel.swift in Sources */,
 				288CE6D12998A7EF006E2FE8 /* SceneDelegate.swift in Sources */,
+				783D62A729C9590A00848964 /* FavouriteCocktailsCellViewModel.swift in Sources */,
 				D49B7A4929A8341000AFA3BA /* BasketChShoppingCell.swift in Sources */,
 				D49AB6B529AAFD8B00BB2126 /* WelcomeInfoDTO.swift in Sources */,
 				D4AC79E129AC593300859CDC /* CocktailsCollectionViewCell.swift in Sources */,

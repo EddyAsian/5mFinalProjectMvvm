@@ -8,33 +8,48 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
-protocol FavouriteCVCellDelegate :NSObjectProtocol {
-    
-    func clickTransmitData(_ cell:FavouriteTableViewCell ,icon: UIImageView)
-}
+//protocol FavouriteCVCellDelegate :NSObjectProtocol {
+//
+//    func clickTransmitData(_ cell:FavouriteTableViewCell ,icon: UIImageView)
+//}
 
 class FavouriteTableViewCell: UITableViewCell {
     
-    weak var delegate: FavouriteCVCellDelegate?
+    public var favouriteCellViewModel: FavouriteCocktailsCellViewModel?
     
-    var goodModel : BasketChoosedModel? {
-        didSet {
-            if let iconName  = goodModel?.iconName {
-                productImage.image = UIImage(named: iconName)
-            }
-            if let title = goodModel?.title {
-                productLabel.text = title
-            }
-            if let desc = goodModel?.desc {
-                descriptionLabel.text = desc
-            }
-            addCarButton.isSelected = !goodModel!.alreadyAddShoppingCArt
-            layoutIfNeeded()
-        }
-    }
+//    weak var delegate: FavouriteCVCellDelegate?
     
-    var collBackIconView: UIImageView?
+    
+//    public var cellFavouriteViewModel: FavouriteCocktailsCellViewModel? {
+//        didSet {
+//            productLabel.text = cellFavouriteViewModel?.drinkName
+//            cellFavouriteViewModel?.setImageToImageView(imageView: productImage)
+//        }
+//    }
+    
+    
+//    var goodModel : Drinks? {
+//        didSet {
+//
+//
+//
+//               cellFavouriteViewModel?.setImageToImageView(imageView: productImage)
+//
+//
+//
+//                productLabel.text = cellFavouriteViewModel?.drinkName
+//
+//
+//                descriptionLabel.text = "advavav"
+//
+////            addCarButton.isSelected = !goodModel!.alreadyAddShoppingCArt
+//            layoutIfNeeded()
+//        }
+//    }
+    
+//    var collBackIconView: UIImageView?
     
     var productImage: UIImageView = {
         var productImage = UIImageView(
@@ -71,14 +86,14 @@ class FavouriteTableViewCell: UITableViewCell {
     }()
     
     
-    fileprivate lazy var addCarButton: UIButton = {
-        
-        let addCarButton = UIButton(type: UIButton.ButtonType.custom)
-        addCarButton.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
-        addCarButton.tintColor = .red
-        addCarButton.addTarget(self, action: #selector(self.addCarButtonClick(_:)), for: UIControl.Event.touchUpInside)
-        return addCarButton
-    }()
+//    fileprivate lazy var addCarButton: UIButton = {
+//
+//        let addCarButton = UIButton(type: UIButton.ButtonType.custom)
+//        addCarButton.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
+//        addCarButton.tintColor = .red
+//        addCarButton.addTarget(self, action: #selector(self.addCarButtonClick(_:)), for: UIControl.Event.touchUpInside)
+//        return addCarButton
+//    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -90,38 +105,52 @@ class FavouriteTableViewCell: UITableViewCell {
         contentView.addSubview(productImage)
         contentView.addSubview(productLabel)
         contentView.addSubview(descriptionLabel)
-        contentView.addSubview(addCarButton)
+//        contentView.addSubview(addCarButton)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc fileprivate func addCarButtonClick(_ btn:UIButton) {
+//    @objc fileprivate func addCarButtonClick(_ btn:UIButton) {
 //        addCarButton.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
 //        goodModel!.alreadyAddShoppingCArt = true
 //
 //        btn.isEnabled = !goodModel!.alreadyAddShoppingCArt
-        delegate?.clickTransmitData(self, icon: productImage)
-        
-    }
+//        delegate?.clickTransmitData(self, icon: productImage)
+//
+//    }
     
     
     
-    public func configure(with model: Drinks) {
+//    public func configure(with model: Drinks) {
 //        func showme() {
 //            guard let vc = storyboard?.instantiateViewController(withIdentifier: ChoosedCocktailViewController.id) as? ChoosedCocktailViewController else { fatalError() }
 //            vc.completionHandler = { model in
 //                self.
 //            }
 //        }
-        
-        guard let url = URL(string: model.image) else { return }
-        productImage.kf.setImage(with: url)
-        productLabel.text = model.name
-        descriptionLabel.text = model.instructions
-    }
+//
+//        guard let url = URL(string: model.image) else { return }
+//        productImage.kf.setImage(with: url)
+//        productLabel.text = model.name
+//        descriptionLabel.text = model.instructions
+//    }
     
+    
+    
+    
+    
+    func configure(with drink: Drinks) {
+        productLabel.text = drink.name
+        descriptionLabel.text = drink.instructions
+        favouriteCellViewModel?.setImageToImageView(imageView: productImage)
+        }
+    
+        
+
+
+        
    func makeConstraints () {
         productImage.snp.makeConstraints{ maker in
             maker.left.equalToSuperview().offset(10)
@@ -142,11 +171,11 @@ class FavouriteTableViewCell: UITableViewCell {
             maker.height.equalTo(50)
         }
         
-        addCarButton.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(-12)
-            make.top.equalTo(25)
-            make.width.height.equalTo(30)
-        }
+//        addCarButton.snp.makeConstraints { (make) -> Void in
+//            make.right.equalTo(-12)
+//            make.top.equalTo(25)
+//            make.width.height.equalTo(30)
+//        }
     }
 }
 
